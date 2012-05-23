@@ -102,7 +102,7 @@ class SCH_Form_Family_TabHeader {
             $qfKey = empty($reset) ? "&qfKey={$form->controller->_key}" : '';
 
             foreach ( $tabs as $key => $value ) {
-                $tabs[$key]['link'] = CRM_Utils_System::url( 'civicrm/sfschool/family/' . strtolower($key),
+                $tabs[$key]['link'] = CRM_Utils_System::url( 'civicrm/school/family/' . strtolower($key),
                                                              "{$reset}snippet=4&cid={$studentId}&pid={$parentId}{$qfKey}" );
                 $tabs[$key]['active'] = $tabs[$key]['valid'] = true;
             }

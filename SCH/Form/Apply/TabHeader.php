@@ -95,7 +95,7 @@ class SCH_Form_Apply_TabHeader {
         $qfKey = empty($reset) ? "&qfKey={$form->controller->_key}" : '';
 
         foreach ( $tabs as $key => $value ) {
-            $tabs[$key]['link'] = CRM_Utils_System::url( 'civicrm/sfschool/apply/' . strtolower($key),
+            $tabs[$key]['link'] = CRM_Utils_System::url( 'civicrm/school/apply/' . strtolower($key),
                                                          "{$reset}snippet=4{$qfKey}" );
             $tabs[$key]['active'] = $tabs[$key]['valid'] = true;
         }

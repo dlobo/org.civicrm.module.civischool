@@ -156,7 +156,7 @@ Attendance Sheet for {$displayDate} {$time}
         } );        
     
         cj('.status').click( function( ) {
-            var dataUrl = {/literal}"{crmURL p='civicrm/ajax/sfschool/signin' h=0 }"{literal}
+            var dataUrl = {/literal}"{crmURL p='civicrm/ajax/school/signin' h=0 }"{literal}
             var selectedValues = cj(this).val();
             var values = selectedValues.split( ':::');
             contactID = values[0];
@@ -173,7 +173,7 @@ Attendance Sheet for {$displayDate} {$time}
         });
 
         cj('.signout_select').change( function( ) {
-            var dataUrl = {/literal}"{crmURL p='civicrm/ajax/sfschool/signin' h=0 }"{literal}
+            var dataUrl = {/literal}"{crmURL p='civicrm/ajax/school/signin' h=0 }"{literal}
             var selectedValues = cj(this).attr('id');
             var values = selectedValues.split( '_');
             contactID = values[1];
@@ -197,7 +197,7 @@ Attendance Sheet for {$displayDate} {$time}
               var contactID = cj("#student_id").val( );
     	      var course    = cj("#course_name").val( );
     	      if ( contactID && course ) {
-          	     var dataUrl = {/literal}"{crmURL p='civicrm/ajax/sfschool/addnew' h=0 }"{literal};
+          	     var dataUrl = {/literal}"{crmURL p='civicrm/ajax/school/addnew' h=0 }"{literal};
               	     cj.post( dataUrl, { contactID: cj("#student_id").val( ),
                                          course: cj("#course_name").val( ),{/literal}{if $signOut}signout: cj("#signout_add").val( ),{/if}{literal}
                                          dayOfWeek: sDayOfWeek, 
@@ -221,7 +221,7 @@ Attendance Sheet for {$displayDate} {$time}
               var contactID = cj("#student_id_top").val( );
     	      var course    = cj("#course_name_top").val( );
     	      if ( contactID && course ) {
-          	     var dataUrl = {/literal}"{crmURL p='civicrm/ajax/sfschool/addnew' h=0 }"{literal};
+          	     var dataUrl = {/literal}"{crmURL p='civicrm/ajax/school/addnew' h=0 }"{literal};
               	     cj.post( dataUrl, { contactID: cj("#student_id_top").val( ),
                                          course: cj("#course_name_top").val( ),{/literal}{if $signOut}signout: cj("#signout_add_top").val( ),{/if}{literal}
                                          dayOfWeek: sDayOfWeek, 

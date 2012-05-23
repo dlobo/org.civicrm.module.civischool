@@ -50,7 +50,7 @@
 </table>
 <br/>
 <strong>Please make cheques payable to The San Francisco School. Questions? Contact
-the Business Office at 239-1410 or business@sfschool.org.</strong>
+the Business Office at 239-1410 or business@school.org.</strong>
 <br/>
 </div>
 </div>
@@ -153,6 +153,6 @@ the Business Office at 239-1410 or business@sfschool.org.</strong>
 
 {if ($action neq 4) AND ($monthlySignout OR $feeDetail) }
     <div class="footer" id="civicrm-footer">
-        If the above information is incorrect, please send a detailed email to <a href="mailto:sning@sfschool.org">Surrina Ning</a>
+        If the above information is incorrect, please send a detailed email to <a href="mailto:sning@school.org">Surrina Ning</a>
     </div>
 {/if}

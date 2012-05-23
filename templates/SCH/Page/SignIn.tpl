@@ -95,7 +95,7 @@ Attendance Sheet for {$displayDate} {$time}
         } );        
     
         cj('.status').click( function( ) {
-            var dataUrl = {/literal}"{crmURL p='civicrm/ajax/sfschool/signin' h=0 }"{literal}
+            var dataUrl = {/literal}"{crmURL p='civicrm/ajax/school/signin' h=0 }"{literal}
             var selectedValues = cj(this).val();
             var values = selectedValues.split( ':::');
             contactID = values[0];
@@ -113,7 +113,7 @@ Attendance Sheet for {$displayDate} {$time}
         });
 
         cj('.signout_select').change( function( ) {
-            var dataUrl = {/literal}"{crmURL p='civicrm/ajax/sfschool/signin' h=0 }"{literal}
+            var dataUrl = {/literal}"{crmURL p='civicrm/ajax/school/signin' h=0 }"{literal}
             var selectedValues = cj(this).attr('id');
             var values = selectedValues.split( '_');
             contactID = values[1];
@@ -133,8 +133,8 @@ Attendance Sheet for {$displayDate} {$time}
         });
     
         {/literal}    
-        var contactUrl = "{crmURL p='civicrm/ajax/sfschool/contactlist' q="dayOfWeek=`$dayOfWeek`" h=0 }"
-        var classUrl  = "{crmURL p='civicrm/ajax/sfschool/classlist' q="dayOfWeek=`$dayOfWeek`" h=0 }"
+        var contactUrl = "{crmURL p='civicrm/ajax/school/contactlist' q="dayOfWeek=`$dayOfWeek`" h=0 }"
+        var classUrl  = "{crmURL p='civicrm/ajax/school/classlist' q="dayOfWeek=`$dayOfWeek`" h=0 }"
 
         {literal}
         cj("#contact").autocomplete( contactUrl, {
@@ -155,7 +155,7 @@ Attendance Sheet for {$displayDate} {$time}
               var contactID = cj("input[name=contact_id]").val( );
     	      var course    = cj("#course").val( );
     	      if ( contactID && course ) {
-          	     var dataUrl = {/literal}"{crmURL p='civicrm/ajax/sfschool/addnew' h=0 }"{literal};
+          	     var dataUrl = {/literal}"{crmURL p='civicrm/ajax/school/addnew' h=0 }"{literal};
               	     cj.post( dataUrl, { contactID: cj("input[name=contact_id]").val( ),
                                          course: cj("#course").val( ),{/literal}{if $signOut}signout: cj("#signout_add").val( ),{/if}{literal}
                                          dayOfWeek: sDayOfWeek, 

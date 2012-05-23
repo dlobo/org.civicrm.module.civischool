@@ -168,14 +168,14 @@ WHERE  entity_id = %3
 
         if ( $this->controller->getButtonName('submit') == "_qf_{$className}_next" ) {
             $nextTab = SCH_Form_Family_TabHeader::getNextSubPage( $this, $className );
-            $nextUrl = CRM_Utils_System::url( 'civicrm/sfschool/family/' . strtolower($nextTab),
+            $nextUrl = CRM_Utils_System::url( 'civicrm/school/family/' . strtolower($nextTab),
                                               "reset=1&cid={$this->_studentId}&pid={$this->_parentId}" );
             CRM_Utils_System::redirect( $nextUrl );
         } else if ( $className == 'Diversity' ) {
             $displayName = CRM_Contact_BAO_Contact::displayName( $this->_studentId );
             $taskList    = $this->isAppCompleted( );
             if ( $taskList['is_completed'] ) {
-                $familyUrl = CRM_Utils_System::url( 'civicrm/sfschool/family',
+                $familyUrl = CRM_Utils_System::url( 'civicrm/school/family',
                                                     "reset=1&cid={$this->_studentId}&pid={$this->_parentId}" );
                 $session   = CRM_Core_Session::singleton();
                 $session->getStatus( true );
@@ -183,7 +183,7 @@ WHERE  entity_id = %3
 Please note, you may access your account at any time to update or edit your records through the SCH Parent Portal.<br />At any time, you can edit your %1 for %2 from your SCH Parent Portal",
                                          array( 1 => "<a href='{$familyUrl}'>Family Information</a>",
                                                 2 => $displayName ) ) );
-                CRM_Utils_System::redirect( CRM_Utils_System::url('civicrm/sfschool/family/complete',
+                CRM_Utils_System::redirect( CRM_Utils_System::url('civicrm/school/family/complete',
                                                                   "reset=1&cid={$this->_studentId}&pid={$this->_parentId}") );
             }
         }

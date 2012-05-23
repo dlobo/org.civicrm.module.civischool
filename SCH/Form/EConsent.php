@@ -147,7 +147,7 @@ ORDER BY   c.display_name, c.id, p.id
             }
         }
 
-        CRM_Utils_System::redirect( CRM_Utils_System::url( 'civicrm/sfschool/econsent',
+        CRM_Utils_System::redirect( CRM_Utils_System::url( 'civicrm/school/econsent',
                                                            'reset=1' ) );
     }
 

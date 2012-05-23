@@ -29,7 +29,7 @@ I/we also agree to assume financial responsibility for emergency care and servic
 <h2>Handbook Acknowledgement (Required)</h2>
 </p>
 <p>
-I/we acknowledge that I/we have read <a href="http://sfschool.org/drupal/sites/default/files/families/protected/sfs-family-handbook-2010-11.pdf">The San Francisco School Parent Handbook</a> and agree to abide by the policies therein. I/we understand that The San Francisco School reserves the right to amend its policies and Handbook from time to time and I/we hereby agree to abide by such amended policies. The latest version of the Handbook can be downloaded <a href="http://sfschool.org/drupal/sites/default/files/families/protected/sfs-family-handbook-2009-10.pdf">here</a> and will be posted on The San Francisco School website.
+I/we acknowledge that I/we have read <a href="http://school.org/drupal/sites/default/files/families/protected/sfs-family-handbook-2010-11.pdf">The San Francisco School Parent Handbook</a> and agree to abide by the policies therein. I/we understand that The San Francisco School reserves the right to amend its policies and Handbook from time to time and I/we hereby agree to abide by such amended policies. The latest version of the Handbook can be downloaded <a href="http://school.org/drupal/sites/default/files/families/protected/sfs-family-handbook-2009-10.pdf">here</a> and will be posted on The San Francisco School website.
 <table class="form-layout-compressed">
   <tr>
     <td>

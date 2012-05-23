@@ -138,7 +138,7 @@ class SCH_Page_Class extends CRM_Core_Page {
                     if ( $permission &&
                          isset( $classInfo[$idValues['id']] ) ) {
                         $name = urlencode( $idValues['name'] );
-                        $url = CRM_Utils_System::url( 'civicrm/sfschool/extended/detail',
+                        $url = CRM_Utils_System::url( 'civicrm/school/extended/detail',
                                                       "reset=1&name={$name}&day={$idValues['day']}&sess={$idValues['session']}" );
                         $idValues['num_url']      = $url;
                         $idValues['num_students'] = $classInfo[$idValues['id']]['current'];
@@ -166,7 +166,7 @@ class SCH_Page_Class extends CRM_Core_Page {
                                                                         array('id' =>$valueId['index'] ));
                         if ( isset( $classInfo[$valueId['id']] ) ) {
                             $name = urlencode( $valueId['name'] );
-                            $url = CRM_Utils_System::url( 'civicrm/sfschool/extended/detail',
+                            $url = CRM_Utils_System::url( 'civicrm/school/extended/detail',
                                                           "reset=1&name={$name}&day={$valueId['day']}&sess={$valueId['session']}" );
                             $valueId['num_url']      = $url;
                             $valueId['num_students'] = $classInfo[$valueId['id']]['current'];

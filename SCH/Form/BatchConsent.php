@@ -140,7 +140,7 @@ ORDER BY   c.last_name, s.grade_sis desc, c.id, p.id
                                              $mysqlDate );
         }
 
-        CRM_Utils_System::redirect( CRM_Utils_System::url( 'civicrm/sfschool/batchConsent',
+        CRM_Utils_System::redirect( CRM_Utils_System::url( 'civicrm/school/batchConsent',
                                                            "reset=1&c={$this->_character}" ) );
     }
 
@@ -200,7 +200,7 @@ VALUES
                                  'Q','R','S','T','U','V','W','X',
                                  'Y','Z');
 
-        $baseURL = CRM_Utils_System::url( 'civicrm/sfschool/batchConsent', 'reset=1&c=' );
+        $baseURL = CRM_Utils_System::url( 'civicrm/school/batchConsent', 'reset=1&c=' );
         $aToZBar = array( );
         foreach ( $staticAlphabets as $char ) {
             $klass = '';

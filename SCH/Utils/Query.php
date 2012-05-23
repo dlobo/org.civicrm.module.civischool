@@ -162,7 +162,7 @@ ORDER BY  e.is_primary desc
     static function getClasses( $name = null ) {
         $sql = "
 SELECT DISTINCT( name )
-FROM   sfschool_extended_care_source
+FROM   school_extended_care_source
 WHERE  is_active = 1
 AND    term = %1
 ";

@@ -49,7 +49,7 @@ class SCH_Utils_ExtendedCare {
         END_POSITION = 11,
         TERM = 'Spring 2012',
         COORDINATOR_NAME  = 'Vivian Walz',
-        COORDINATOR_EMAIL = 'vwalz@sfschool.org';
+        COORDINATOR_EMAIL = 'vwalz@school.org';
 
     static
         $_extendedCareElements = null,
@@ -97,11 +97,11 @@ class SCH_Utils_ExtendedCare {
                     $select = array( '' => '- select -' ) + $values['select'];
 
                     $element =& $form->addElement( 'select',
-                                                   "sfschool_activity_{$day}_{$session}",
+                                                   "school_activity_{$day}_{$session}",
                                                    "{$day} - {$time}",
                                                    $select );
 
-                    self::$_extendedCareElements[] = "sfschool_activity_{$day}_{$session}";
+                    self::$_extendedCareElements[] = "school_activity_{$day}_{$session}";
                 }
             }
         }
@@ -127,7 +127,7 @@ WHERE  entity_id = %1 AND has_cancelled = 0 AND term = %2
 
         while ( $dao->fetch( ) ) {
             $id   = self::makeID( $dao, 'Custom' );
-            $name = "sfschool_activity_{$dao->day_of_week}_{$dao->session}";
+            $name = "school_activity_{$dao->day_of_week}_{$dao->session}";
             $defaults[$name] = $id;
             $form->addElement( 'checkbox', "{$name}_cancel", ts( 'Cancel this activity?' ) );
 
@@ -156,7 +156,7 @@ WHERE  entity_id = %1 AND has_cancelled = 0 AND term = %2
 
         $sql = "
 SELECT *
-FROM   sfschool_extended_care_source
+FROM   school_extended_care_source
 WHERE  term  = %1
 ";
         if( $is_active ) {
@@ -314,7 +314,7 @@ AND    %2 <= max_grade
 
         foreach ( $daysOfWeek as $day )  {
             foreach ( $sessions as $session ) {
-                $name = "sfschool_activity_{$day}_{$session}";
+                $name = "school_activity_{$day}_{$session}";
                 if ( ! empty( $params["{$name}_cancel"] ) ) {
                     if ( ! array_key_exists( $day, $classCancelled ) ) {
                         $classCancelled[$day] = array( );
@@ -559,7 +559,7 @@ ORDER BY  c.id, e.day_of_week, e.session
                 $values[$contactID]['extendedCareEdit'] =
                     CRM_Utils_System::url( 'civicrm/profile/edit', "reset=1&gid=4&id={$contactID}&excare=1&$parent" );
                 $values[$contactID]['extendedCareView'] =
-                    CRM_Utils_System::url( 'civicrm/sfschool/extendedCare', "reset=1&id={$contactID}" );
+                    CRM_Utils_System::url( 'civicrm/school/extendedCare', "reset=1&id={$contactID}" );
             }
         }
 
@@ -571,7 +571,7 @@ ORDER BY  c.id, e.day_of_week, e.session
         $sql = "
 SELECT     count(entity_id) as current, s.max_participants as max, s.term, s.day_of_week, s.session, s.name
 FROM       civicrm_value_extended_care e
-INNER JOIN sfschool_extended_care_source s ON ( s.term = e.term AND s.day_of_week = e.day_of_week AND s.session = e.session AND s.name = e.name )
+INNER JOIN school_extended_care_source s ON ( s.term = e.term AND s.day_of_week = e.day_of_week AND s.session = e.session AND s.name = e.name )
 WHERE      e.has_cancelled = 0
 AND        s.term = %1
 ";
@@ -714,7 +714,7 @@ WHERE  entity_id = %1 AND has_cancelled = 0 AND term = %2
         $sql = "
 SELECT e.id, e.class, s.location
 FROM   civicrm_value_extended_care_signout e
-LEFT JOIN sfschool_extended_care_source s ON ( e.class = s.name AND  s.day_of_week = DAYNAME( '{$_date}' ) )
+LEFT JOIN school_extended_care_source s ON ( e.class = s.name AND  s.day_of_week = DAYNAME( '{$_date}' ) )
 WHERE  entity_id = %1
 AND    signin_time LIKE '{$_date}%'
 AND    ( is_morning = 0 OR is_morning IS NULL )

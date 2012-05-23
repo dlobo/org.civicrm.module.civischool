@@ -36,8 +36,8 @@
 class SCH_Utils_Mail {
 
     const
-        SCH_FROM_EMAIL = "SCH Parent Portal <info.portal@sfschool.org>",
-        SCH_BCC_EMAIL  = "SCH Parent Archival <archive.portal@sfschool.org>";
+        SCH_FROM_EMAIL = "SCH Parent Portal <info.portal@school.org>",
+        SCH_BCC_EMAIL  = "SCH Parent Archival <archive.portal@school.org>";
 
     static function sendMailToParents( $childID,
                                        $subjectTPL,

@@ -79,7 +79,7 @@ AND    is_active = 1
 
         $query   = "
 SELECT distinct {$this->_colMapper['sessionName']} as session_name
-FROM   sfschool_extended_care_source value_extended_care_2_civireport
+FROM   school_extended_care_source value_extended_care_2_civireport
 WHERE  is_active = 1
 AND    term = %1
 ";
@@ -130,7 +130,7 @@ AND    term = %1
 SELECT distinct value_extended_care_2_civireport.{$this->_colMapper['sessionName']} as session_name,
        value_extended_care_2_civireport.{$this->_colMapper['sessionOrder']} as session_order,
        additional_rows as extra_rows, instructor, location
-FROM   sfschool_extended_care_source value_extended_care_2_civireport
+FROM   school_extended_care_source value_extended_care_2_civireport
 WHERE  is_active = 1
 AND    term = %1
 AND   {$this->_colMapper['dayOfWeek']} = '{$this->_params['weekday_value']}'

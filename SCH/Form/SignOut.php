@@ -139,7 +139,7 @@ VALUES
             }
         }
 
-        $url = CRM_Utils_System::url( 'civicrm/sfschool/signout', 'reset=1' );
+        $url = CRM_Utils_System::url( 'civicrm/school/signout', 'reset=1' );
         CRM_Utils_System::redirect( $url );
     }
 

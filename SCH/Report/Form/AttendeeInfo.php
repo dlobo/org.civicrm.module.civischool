@@ -52,7 +52,7 @@ class SCH_Report_Form_AttendeeInfo extends CRM_Report_Form {
         }
 
         $sql = " SELECT DISTINCT( name ) as class
-FROM   sfschool_extended_care_source
+FROM   school_extended_care_source
 WHERE  is_active = 1";
 
         $dao = CRM_Core_DAO::executeQuery( $sql );

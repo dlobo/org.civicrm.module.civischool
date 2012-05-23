@@ -84,7 +84,7 @@ class SCH_Form_Apply extends CRM_Core_Form
         $className = CRM_Utils_String::getClassName( $this->_name );
         if ( $this->controller->getButtonName('submit') == "_qf_{$className}_next" ) {
             $nextTab = SCH_Form_Apply_TabHeader::getNextSubPage( $this, $className );
-            $nextUrl = CRM_Utils_System::url( 'civicrm/sfschool/apply/' . strtolower($nextTab),
+            $nextUrl = CRM_Utils_System::url( 'civicrm/school/apply/' . strtolower($nextTab),
                                               "reset=1" );
             CRM_Utils_System::redirect( $nextUrl );
         }

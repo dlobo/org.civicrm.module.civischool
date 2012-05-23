@@ -209,8 +209,8 @@ class SCH_Report_Form_ParentTeacherConference extends CRM_Report_Form {
         $alias = $this->_aliases[$this->_customTable];
         $this->_from = "FROM
                               civicrm_activity_assignment activity_assignment
-                              INNER JOIN $this->_customTable sfschool
-                                           ON sfschool.entity_id = activity_assignment.assignee_contact_id  AND (sfschool.subtype='Parent' OR sfschool.subtype='Staff')
+                              INNER JOIN $this->_customTable school
+                                           ON school.entity_id = activity_assignment.assignee_contact_id  AND (school.subtype='Parent' OR school.subtype='Staff')
                               INNER JOIN civicrm_contact {$this->_aliases['civicrm_contact']}
                                            ON {$this->_aliases['civicrm_contact']}.id = activity_assignment.assignee_contact_id
                               INNER  JOIN civicrm_activity {$this->_aliases['civicrm_activity']}

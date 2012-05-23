@@ -38,7 +38,7 @@ require_once 'CRM/Report/Form.php';
 class SCH_Report_Form_ExtendedDaySchedule extends CRM_Report_Form {
 
     // set custom table name
-    protected $_customTable          = 'sfschool_extended_care_source';
+    protected $_customTable          = 'school_extended_care_source';
 
     // node id to be display bellow the report
     protected $_nodeId               = 15;

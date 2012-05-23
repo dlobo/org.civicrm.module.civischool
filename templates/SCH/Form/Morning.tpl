@@ -53,7 +53,7 @@
             pickupName = cj("#pickup_name").val( );
             if ( ( student_id_1 || student_id_2 || student_id_3 || student_id_4 || student_id_5 || student_id_6 ) && 
 	           pickupName ) {
-                 var dataUrl = {/literal}"{crmURL p='civicrm/ajax/sfschool/morning' h=0 }"{literal};
+                 var dataUrl = {/literal}"{crmURL p='civicrm/ajax/school/morning' h=0 }"{literal};
                  cj.post( dataUrl, { studentID_1: student_id_1,
 		                     atSchoolMeeting_1: at_school_meeting_1,
                                      studentID_2: student_id_2,

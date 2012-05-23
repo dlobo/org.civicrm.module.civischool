@@ -11,11 +11,11 @@ The electronic signature consent form will allow you to complete the forms onlin
 
 Please note, that a separate form must be completed for each child.
 
-If you have any questions please email Charlie Meade at cmeade@sfschool.org or call him at 415.239.1475.
+If you have any questions please email Charlie Meade at cmeade@school.org or call him at 415.239.1475.
 
-If you have already submitted the form, please send an email to frontdesk@sfschool.org to confirm they have received the signed form.
+If you have already submitted the form, please send an email to frontdesk@school.org to confirm they have received the signed form.
 
-You can download the consent form here: http://sfschool.org/SCH_E-ProgramConsentForm.pdf
+You can download the consent form here: http://school.org/SCH_E-ProgramConsentForm.pdf
 
 Thanks.
 

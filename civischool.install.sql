@@ -19,6 +19,6 @@ CREATE TABLE `school_extended_care_source` (
   `is_hidden` tinyint(4) NOT NULL DEFAULT '0',
   `is_free_class` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `INDEX_sfschool_extended_care_source` (`term`,`day_of_week`,`session`,`is_active`,`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=236 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+  KEY `INDEX_school_extended_care_source` (`term`,`day_of_week`,`session`,`is_active`,`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
 

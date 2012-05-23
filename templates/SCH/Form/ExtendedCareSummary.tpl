@@ -37,7 +37,7 @@
 {foreach from=$summary item=row}
 {if $showBalances}
   <tr class="{cycle values="odd-row,even-row"}">
-    <td><a href="{crmURL p="civicrm/sfschool/extendedCare" q="reset=1&id=`$row.id`"}">{$row.name}</a></td>
+    <td><a href="{crmURL p="civicrm/school/extendedCare" q="reset=1&id=`$row.id`"}">{$row.name}</a></td>
     <td>{$row.totalCharges}</td>
     <td>{$row.totalPayments}</td>
     <td>{if $row.balanceDue}{$row.balanceDue}{else}&nbsp;{/if}</td>
@@ -46,7 +46,7 @@
 {else}
 {if $row.blockCharge > 0 OR $showDetails}
   <tr class="{cycle values="odd-row,even-row"}">
-    <td><a href="{crmURL p="civicrm/sfschool/extendedCare" q="reset=1&id=`$row.id`"}">{$row.name}</a></td>
+    <td><a href="{crmURL p="civicrm/school/extendedCare" q="reset=1&id=`$row.id`"}">{$row.name}</a></td>
     <td>{if $row.doNotCharge}0 ({$row.doNotCharge}, {$row.blockCharge}){else}{$row.blockCharge}{/if}</td>
 {if $showDetails}
     <td>

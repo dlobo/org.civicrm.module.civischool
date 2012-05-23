@@ -85,7 +85,7 @@ class SCH_Form_Class extends CRM_Core_Form
 
         if ( $this->_indexID ) {
             $params = array( 1 => array( $this->_indexID, 'Integer' ) );
-            $sql    = "SELECT * FROM sfschool_extended_care_source WHERE id=%1";
+            $sql    = "SELECT * FROM school_extended_care_source WHERE id=%1";
 
             $dao = CRM_Core_DAO::executeQuery( $sql, $params );
             while( $dao->fetch() ) {
@@ -117,7 +117,7 @@ class SCH_Form_Class extends CRM_Core_Form
                                       'session'     => array( 'title' => ts('Session'), ),
                                       'term' 	    => array( 'title' => ts('Term'), ), ) ;
 
-                $sql = "SELECT * FROM sfschool_extended_care_source where id=%1";
+                $sql = "SELECT * FROM school_extended_care_source where id=%1";
                 $dao = CRM_Core_DAO::executeQuery( $sql, $params );
                 while( $dao->fetch() ) {
                     foreach( $classDetail as $field => $value ) {
@@ -211,14 +211,14 @@ class SCH_Form_Class extends CRM_Core_Form
         if ($this->_action & CRM_Core_Action::DISABLE ) {
             if ( $this->_indexID )  {
                 $queryParams = array( 1 => array( $this->_indexID, 'Integer' ) );
-                $sql = "UPDATE sfschool_extended_care_source SET is_active=0 WHERE id=%1";
+                $sql = "UPDATE school_extended_care_source SET is_active=0 WHERE id=%1";
                 CRM_Core_DAO::executeQuery( $sql, $queryParams );
                 CRM_Core_Session::setStatus( ts('Class has been has been Disabled.') );
 
                 //update student Data
                 $curentDate = date('Y-m-d');
                 $query = "UPDATE civicrm_value_extended_care {$student_class}
-                           INNER JOIN sfschool_extended_care_source {$class_source} ON  ( {$addQuery} )
+                           INNER JOIN school_extended_care_source {$class_source} ON  ( {$addQuery} )
                            SET {$student_class}.end_date='{$curentDate}' , {$student_class}.has_cancelled=1
                            ";
                 CRM_Core_DAO::executeQuery( $query, $queryParams );
@@ -227,13 +227,13 @@ class SCH_Form_Class extends CRM_Core_Form
         } elseif ( $this->_action & CRM_Core_Action::ENABLE ) {
             if ( $this->_indexID )  {
                 $queryParams = array( 1 => array( $this->_indexID, 'Integer' ) );
-                $sql         = "UPDATE sfschool_extended_care_source SET is_active=1 WHERE id=%1";
+                $sql         = "UPDATE school_extended_care_source SET is_active=1 WHERE id=%1";
                 CRM_Core_DAO::executeQuery( $sql, $queryParams );
                 CRM_Core_Session::setStatus( ts('Class has been has been Enabled.') );
 
                 //update student Data
                 $query = "UPDATE civicrm_value_extended_care {$student_class}
-                           INNER JOIN sfschool_extended_care_source {$class_source} ON ( {$addQuery} )
+                           INNER JOIN school_extended_care_source {$class_source} ON ( {$addQuery} )
                            SET {$student_class}.end_date=NULL , {$student_class}.has_cancelled=0
                            ";
                 CRM_Core_DAO::executeQuery( $query, $queryParams );
@@ -279,11 +279,11 @@ class SCH_Form_Class extends CRM_Core_Form
                 $clauses = implode( " , ", $clauses );
                 if ( $this->_action & CRM_Core_Action::ADD ) {
                     // add new class
-                    $sql       = "INSERT INTO sfschool_extended_care_source SET {$clauses} ";
+                    $sql       = "INSERT INTO school_extended_care_source SET {$clauses} ";
                     $statusMsg = ts("Class %1 for %2 has been added successfully",array( 1 => $params['name'], 2 => $params['day_of_week'] ));
                 } else {
                     $queryParams[$count] = array( $this->_indexID , 'Integer' );
-                    $sql                 = "UPDATE sfschool_extended_care_source SET {$clauses} WHERE id=%{$count}";
+                    $sql                 = "UPDATE school_extended_care_source SET {$clauses} WHERE id=%{$count}";
                     $statusMsg           = ts("Class Has been edited Successfully");
                 }
 
@@ -291,6 +291,6 @@ class SCH_Form_Class extends CRM_Core_Form
                 CRM_Core_Session::setStatus( $statusMsg );
             }
         }
-        CRM_Utils_System::redirect( CRM_Utils_System::url('civicrm/sfschool/extended/class', "reset=1") );
+        CRM_Utils_System::redirect( CRM_Utils_System::url('civicrm/school/extended/class', "reset=1") );
     }
 }

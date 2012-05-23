@@ -76,7 +76,7 @@ SELECT     c.id as contact_id, c.display_name as display_name, s.name as course_
 FROM       civicrm_contact c
 INNER JOIN civicrm_value_school_information v ON v.entity_id = c.id
 INNER JOIN civicrm_value_extended_care s ON ( s.entity_id = c.id AND s.has_cancelled = 0 AND s.day_of_week = '{$this->_dayOfWeek}' )
-INNER JOIN sfschool_extended_care_source e ON ( s.session = e.session AND s.name = e.name AND s.term = e.term AND s.day_of_week = e.day_of_week )
+INNER JOIN school_extended_care_source e ON ( s.session = e.session AND s.name = e.name AND s.term = e.term AND s.day_of_week = e.day_of_week )
 WHERE      v.subtype = 'Student'
 AND        v.grade_sis >= 1
 AND        v.is_currently_enrolled = 1
@@ -90,7 +90,7 @@ SELECT     c.id as contact_id, c.display_name as display_name, sout.class as cou
 FROM       civicrm_contact c
 INNER JOIN civicrm_value_school_information v ON v.entity_id = c.id
 INNER JOIN civicrm_value_extended_care_signout sout ON sout.entity_id = c.id
-INNER JOIN sfschool_extended_care_source e ON ( sout.class = e.name )
+INNER JOIN school_extended_care_source e ON ( sout.class = e.name )
 WHERE      v.subtype = 'Student'
 AND        v.grade_sis >= 1
 AND        v.is_currently_enrolled = 1
@@ -107,7 +107,7 @@ SELECT     c.id as contact_id, c.display_name as display_name, sout.class as cou
 FROM       civicrm_contact c
 INNER JOIN civicrm_value_school_information v ON v.entity_id = c.id
 INNER JOIN civicrm_value_extended_care_signout sout ON sout.entity_id = c.id
-INNER JOIN sfschool_extended_care_source e ON ( sout.class = e.name )
+INNER JOIN school_extended_care_source e ON ( sout.class = e.name )
 WHERE      v.subtype = 'Student'
 AND        v.grade_sis >= 1
 AND        v.is_currently_enrolled = 1

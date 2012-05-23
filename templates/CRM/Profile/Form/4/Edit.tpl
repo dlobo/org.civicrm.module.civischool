@@ -139,7 +139,7 @@
 {if $extendedCareElements}
 
 <fieldset>
-<legend>Extended Care Information (<a href="http://sfschool.org/drupal/civicrm/sfschool/extended/class?reset=1">Program Schedule and Details</a>)</legend>
+<legend>Extended Care Information (<a href="http://school.org/drupal/civicrm/school/extended/class?reset=1">Program Schedule and Details</a>)</legend>
 <p>
 Extended Day Fees are generally charged whenever a student is at school before 8:00 or after 3:15 (excepting Amnesty International, Counselor-in-Training, Cross Country, Volleyball, and Yearbook, which are no-fee until 5:15, and Band, which is a morning class).  For some classes, Activity Fees are charged in addition to Extended Day Fees.  For exact fees for each class, click on the information link, or check the website's Extended Day Description of Classes, and Extended Day Procedures and Fees.
 <p>
@@ -159,11 +159,11 @@ Extended Day Fees are generally charged whenever a student is at school before 8
 {/if}
 
 
-{if $form.sfschool_activity_id}
+{if $form.school_activity_id}
 <fieldset>
 <legend>Schedule Parent Teacher Conference</legend>
 <table class="form-layout-compressed">
-<tr><td class="label">{$form.sfschool_activity_id.label}</td><td>{$form.sfschool_activity_id.html}</td></tr>
+<tr><td class="label">{$form.school_activity_id.label}</td><td>{$form.school_activity_id.html}</td></tr>
 </table>
 </fieldset>
 {/if}

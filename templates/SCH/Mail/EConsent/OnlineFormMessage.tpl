@@ -3,11 +3,11 @@ Dear {$parent_1_Name}{if $parent_2_Name} and {$parent_2_Name}{/if}:
 
 School is starting in less than 2 days and we still have not received emergency information for your child: {$childName}.  It is imperative that we have this information by 8:30am on Wednesday (9/1)  so that in the case of any emergency it can be handled in an effective and efficient manner.  Completing the forms online should take no more than 10 minutes.
 
-If you have any questions or issues do not hesitate to contact Steve Rubin at srubin@sfschool.org or call him at 239-1533.
+If you have any questions or issues do not hesitate to contact Steve Rubin at srubin@school.org or call him at 239-1533.
 
 Instructions:
 
-1. Go to the parent portal: http://sfschool.org/drupal/ and login using your username: (email address) and password
+1. Go to the parent portal: http://school.org/drupal/ and login using your username: (email address) and password
 
 2. Click on PARENT INFORMATION link.
 
@@ -15,7 +15,7 @@ Instructions:
 
 4. Follow the instructions to complete the form.
 
-5. Send any bugs, feedback and suggestions to lobo@yahoo.com, mari_tilos@yahoo.com, srubin@sfschool.org
+5. Send any bugs, feedback and suggestions to lobo@yahoo.com, mari_tilos@yahoo.com, srubin@school.org
 
 Thanks.
 

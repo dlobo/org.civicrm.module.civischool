@@ -91,13 +91,13 @@ ORDER BY   a.activity_date_time asc
         }
 
         if ( ! empty( $elements ) ) {
-            $form->addElement( 'select', 'sfschool_activity_id', "Choose a Meeting time for {$dao->subject}", $elements, true );
+            $form->addElement( 'select', 'school_activity_id', "Choose a Meeting time for {$dao->subject}", $elements, true );
 
             // get the default values
             $values = array( );
             self::getValues( $childID, $values, true, $parentID );
             if ( isset( $values[$childID] ) ) {
-                $defaults = array( 'sfschool_activity_id' => $values[$childID]['meeting']['id'] );
+                $defaults = array( 'school_activity_id' => $values[$childID]['meeting']['id'] );
                 $form->setDefaults( $defaults );
             }
         }
@@ -113,7 +113,7 @@ ORDER BY   a.activity_date_time asc
 
         $params = $form->controller->exportValues( $form->getVar( '_name' ) );
 
-        $activityID = CRM_Utils_Array::value( 'sfschool_activity_id', $params );
+        $activityID = CRM_Utils_Array::value( 'school_activity_id', $params );
         $childID    = $form->getVar( '_id' );
 
 
