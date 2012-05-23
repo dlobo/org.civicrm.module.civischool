@@ -33,11 +33,11 @@
  *
  */
 
-require_once 'SFS/Form/Family.php';
+require_once 'SCH/Form/Family.php';
 require_once 'api/v2/Relationship.php';
 require_once 'CRM/Core/BAO/CustomField.php';
 
-class SFS_Form_Family_Emergency extends SFS_Form_Family {
+class SCH_Form_Family_Emergency extends SCH_Form_Family {
 
     protected $_relationIds = array( 'contact'      => array(),
                                      'relationship' => array(),
@@ -48,12 +48,12 @@ class SFS_Form_Family_Emergency extends SFS_Form_Family {
     function preProcess( ) {
         parent::preProcess();
 
-        $this->_emergencyRelTypeId = CRM_Core_DAO::getFieldValue( 'CRM_Contact_DAO_RelationshipType', 
+        $this->_emergencyRelTypeId = CRM_Core_DAO::getFieldValue( 'CRM_Contact_DAO_RelationshipType',
                                                                   'Emergency Contact Of', 'id', 'name_a_b' );
         $this->_emergencyTableCol  = 'relationship_name';
     }
 
-    function setDefaultValues( ) 
+    function setDefaultValues( )
     {
         $defaults = array( );
         $blockId  = 1;
@@ -63,13 +63,13 @@ class SFS_Form_Family_Emergency extends SFS_Form_Family {
 
         $params = array( 'contact_id' => $this->_studentId );
         $relationships = civicrm_contact_relationship_get( $params, null, array('Emergency Contact Of') );
-        
+
         if ( $relationships['is_error'] ) {
             $siblings = civicrm_contact_relationship_get( $params, null, array('Sibling of') );
-            
+
             if ( !$siblings['is_error'] ) {
                 foreach ( $siblings['result'] as $sibling ) {
-                    $siblingParams = array( 'contact_id' => $sibling['cid'] ); 
+                    $siblingParams = array( 'contact_id' => $sibling['cid'] );
                     $emergencyRel  = civicrm_contact_relationship_get( $siblingParams, null, array('Emergency Contact Of') );
                     if ( !$emergencyRel['is_error'] ) {
                         $relationships = $emergencyRel;
@@ -102,11 +102,11 @@ class SFS_Form_Family_Emergency extends SFS_Form_Family {
                         }
                     }
                 }
-                    
+
                 if ( $blockId > self::BLOCK_NUM ) {
                     break;
                 }
-            
+
                 $blockIdSpots[$blockId] = 1;
 
                 $this->_relationIds['ec_contact'][$blockId]   = $relationship['cid'];
@@ -117,7 +117,7 @@ class SFS_Form_Family_Emergency extends SFS_Form_Family {
                 $params['id'] = $params['contact_id'] = $relationship['cid'];
                 $params['noRelationships'] = $params['noNotes'] = $params['noGroups'] = true;
                 CRM_Contact_BAO_Contact::retrieve( $params, $data );
-                
+
                 foreach ( $data as $dataKey => $dataVal ) {
                     if ( ! in_array($dataKey, $dataFields) ) {
                         unset($data[$dataKey]);
@@ -151,8 +151,8 @@ class SFS_Form_Family_Emergency extends SFS_Form_Family {
                 $data['email'] = $email;
 
                 $defaults['ec_contact'][$blockId] = $data;
-                
-                $groupTree = CRM_Core_BAO_CustomGroup::getTree( 'Relationship', $this, $relationship['id'], 
+
+                $groupTree = CRM_Core_BAO_CustomGroup::getTree( 'Relationship', $this, $relationship['id'],
                                                                 -1, $this->_emergencyRelTypeId );
 
                 foreach ( $groupTree as $gId => $gFields ) {
@@ -169,22 +169,22 @@ class SFS_Form_Family_Emergency extends SFS_Form_Family {
                     }
                 }
             }
-        } 
+        }
 
         return $defaults;
     }
 
     function formRule( $params, $files, $form ) {
-        $errors   = array( );  
+        $errors   = array( );
         $countFilled = 0;
         for ( $blockId = 1; $blockId <= self::BLOCK_NUM; $blockId++ ) {
             if ( !empty($params['ec_contact'][$blockId]['first_name']) ||
                  !empty($params['ec_contact'][$blockId]['last_name']) ||
                  !empty($params['ec_contact'][$blockId]['email'][1]['email']) ) {
-                $countFilled ++; 
+                $countFilled ++;
             }
         }
-         
+
         if ( $countFilled < 2 ) {
             $errors['ec_contact[2][first_name]'] = ts("Please fill at least 2 contacts details.");
         }
@@ -200,38 +200,38 @@ class SFS_Form_Family_Emergency extends SFS_Form_Family {
         for ( $blockId = 1; $blockId <= self::BLOCK_NUM; $blockId++ ) {
             $this->addElement('text', "ec_contact[$blockId][first_name]"  ,
                               ts('First Name'), $attributes['first_name'] );
-            $this->addElement('text', "ec_contact[$blockId][last_name]"   , 
+            $this->addElement('text', "ec_contact[$blockId][last_name]"   ,
                               ts('Last Name'), $attributes['last_name' ] );
 
-            $this->addElement('text', "ec_contact[$blockId][email][1][email]"   , 
+            $this->addElement('text', "ec_contact[$blockId][email][1][email]"   ,
                               ts('Email'), CRM_Core_DAO::getAttribute('CRM_Core_DAO_Email', 'email') );
              $this->addRule( "ec_contact[$blockId][email][1][email]", ts('Email is not valid.'), 'email' );
 
-            $this->addElement('text', "ec_contact[$blockId][relationship]", 
+            $this->addElement('text', "ec_contact[$blockId][relationship]",
                               ts('Relationship'), $attributes['last_name' ] );
-            $this->addElement('text', "ec_contact[$blockId][phone][1][phone]"  ,  
+            $this->addElement('text', "ec_contact[$blockId][phone][1][phone]"  ,
                               ts('Cell Phone'), $attributes['last_name' ] );
 
-            $this->addElement('text', "ec_contact[$blockId][phone][2][phone]"  ,  
+            $this->addElement('text', "ec_contact[$blockId][phone][2][phone]"  ,
                               ts('Home Phone'), $attributes['last_name' ] );
 
-            $this->addElement('text', "ec_contact[$blockId][phone][3][phone]"  ,  
+            $this->addElement('text', "ec_contact[$blockId][phone][3][phone]"  ,
                               ts('Work Phone'), $attributes['last_name' ] );
         }
         parent::buildQuickForm( );
 
-        $this->addFormRule( array( 'SFS_Form_Family_Emergency', 'formRule' ) );
+        $this->addFormRule( array( 'SCH_Form_Family_Emergency', 'formRule' ) );
     }
 
-    function postProcess() 
+    function postProcess()
     {
         $params = $this->controller->exportValues( $this->_name );
         require_once 'CRM/Contact/BAO/Contact.php';
         require_once 'CRM/Core/BAO/CustomValueTable.php';
         require_once 'CRM/Dedupe/Finder.php';
 
-        $fieldId      = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomField', 
-                                                     $this->_emergencyTableCol, 'id', 'column_name' );  
+        $fieldId      = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomField',
+                                                     $this->_emergencyTableCol, 'id', 'column_name' );
 
         $locationTypeIds = array_flip(CRM_Core_PseudoConstant::locationType());
         $phoneTypeIds    = array_flip(CRM_Core_PseudoConstant::phoneType());
@@ -256,18 +256,18 @@ class SFS_Form_Family_Emergency extends SFS_Form_Family {
                 if ( $dupeId = $this->findDupe( $dedupeParams ) ) {
                     $params['ec_contact'][$blockId]['contact_id'] = $dupeId;
                 }
-                if ( isset($this->_relationIds['ec_contact'][$blockId]) && 
+                if ( isset($this->_relationIds['ec_contact'][$blockId]) &&
                      !in_array($dupeId, $this->_relationIds['ec_contact']) ) {
                     // drop old relationship
                     $dropContactId = $this->_relationIds['ec_contact'][$blockId];
-                } 
+                }
 
                 $contactId = CRM_Contact_BAO_Contact::createProfileContact( $params['ec_contact'][$blockId],
                                                                             CRM_Core_DAO::$_nullArray );
 
                 // create relationship if doesn't already exist
-                $relationships = civicrm_get_relationships( array( 'contact_id' => $this->_studentId ), 
-                                                            array( 'contact_id' => $contactId ), 
+                $relationships = civicrm_get_relationships( array( 'contact_id' => $this->_studentId ),
+                                                            array( 'contact_id' => $contactId ),
                                                             array( 'Emergency Contact Of' ) );
                 $relationshipId = null;
                 if ( $relationships['is_error'] ) {
@@ -296,8 +296,8 @@ class SFS_Form_Family_Emergency extends SFS_Form_Family {
 
                 $fieldParams = $customFields = array();
                 if ( $relationshipId ) {
-                    $fieldParams['custom_' . $fieldId . (isset($this->_relationIds['custom'][$blockId]) ? 
-                                                         "_{$this->_relationIds['custom'][$blockId]}" : '_-1')] = 
+                    $fieldParams['custom_' . $fieldId . (isset($this->_relationIds['custom'][$blockId]) ?
+                                                         "_{$this->_relationIds['custom'][$blockId]}" : '_-1')] =
                         trim($params['ec_contact'][$blockId]['relationship']);
                     require_once 'CRM/Core/BAO/CustomValueTable.php';
                     CRM_Core_BAO_CustomValueTable::postProcess( $fieldParams,

@@ -33,10 +33,10 @@
  *
  */
 
-class SFS_Utils_Relationship {
-    
+class SCH_Utils_Relationship {
+
     static function getChildren( $parentID, &$values, $permissioned = null ) {
-        // get all children only        
+        // get all children only
         $sql = "
 SELECT     c.id, c.display_name, r.is_permission_b_a, sis.subtype, sis.grade
 FROM       civicrm_contact c
@@ -100,5 +100,5 @@ AND        r.contact_id_a = %1
                        'email'           => $dao->email );
         }
     }
-    
+
 }

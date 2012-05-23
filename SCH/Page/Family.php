@@ -35,26 +35,26 @@
 
 require_once 'CRM/Core/Page.php';
 
-class SFS_Page_Family extends CRM_Core_Page {
+class SCH_Page_Family extends CRM_Core_Page {
 
     public $_values;
     public $_phoneTypes;
     public $_locationTypes;
 
     function commonRun( $studentID ) {
-        require_once 'SFS/Form/Family.php';
+        require_once 'SCH/Form/Family.php';
         require_once 'api/v2/Relationship.php';
 
         $this->_phoneTypes    = CRM_Core_PseudoConstant::phoneType();
         $this->_locationTypes = CRM_Core_PseudoConstant::locationType();
 
         $this->_studentId = $studentID;
-        
+
         if ( $this->_studentId ) {
             // make sure _studentId is a student
-            require_once 'SFS/Utils/Query.php';
-            $subType = SFS_Utils_Query::getSubType( $this->_studentId );
-            
+            require_once 'SCH/Utils/Query.php';
+            $subType = SCH_Utils_Query::getSubType( $this->_studentId );
+
             // if subType is not student then hide the extended care tab
             if ( $subType != 'Student' ) {
                 CRM_Core_Error::fatal( ts( 'The family form is for a Contact of type Student.' ) );
@@ -63,7 +63,7 @@ class SFS_Page_Family extends CRM_Core_Page {
 
         require_once 'CRM/Contact/BAO/Contact/Permission.php';
         require_once 'CRM/Contact/BAO/Contact.php';
-        
+
         // check that the current user has permission to see student information
         if ( ! CRM_Contact_BAO_Contact_Permission::allow( $this->_studentId ) ) {
             CRM_Core_Error::fatal( ts( 'Specified user does not have permission to access student record.' ) );
@@ -86,18 +86,18 @@ class SFS_Page_Family extends CRM_Core_Page {
         $detailFields  = array( 'phone', 'email', 'address' );
 
         if ( !$relationships['is_error'] && is_array($relationships['result']) ) {
-            $this->_relDataId = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup', 
-                                                             SFS_Form_Family::RELATION_TABLE,
+            $this->_relDataId = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup',
+                                                             SCH_Form_Family::RELATION_TABLE,
                                                              'id',
                                                              'table_name' );
-            $this->_relTypeId = CRM_Core_DAO::getFieldValue( 'CRM_Contact_DAO_RelationshipType', 
+            $this->_relTypeId = CRM_Core_DAO::getFieldValue( 'CRM_Contact_DAO_RelationshipType',
                                                              'Child Of', 'id', 'name_a_b' );
             foreach ( $relationships['result'] as $rid => $relationship ) {
                 $values['household'][$rid] = $relationship;
                 $params['id'] = $params['contact_id'] = $relationship['cid'];
                 $params['noRelationships'] = $params['noNotes'] = $params['noGroups'] = true;
                 CRM_Contact_BAO_Contact::retrieve( $params, $data );
-                
+
                 // collapse the email , phone and address
                 foreach ( $detailFields as $fieldName ) {
                     $values['household'][$rid][$fieldName] = CRM_Utils_Array::value( $fieldName, $data, array( ) );
@@ -115,7 +115,7 @@ class SFS_Page_Family extends CRM_Core_Page {
                                 }
                                 $phones[] = $phone;
                             }
-                        }   
+                        }
                         $values['household'][$rid]['phone_display'] = implode( ',', $phones );
                     }
                 }
@@ -125,7 +125,7 @@ class SFS_Page_Family extends CRM_Core_Page {
                                                                    $rid,
                                                                    $this->_relDataId,
                                                                    $this->_relTypeId );
-               
+
                 $relCustData = CRM_Core_BAO_CustomGroup::buildCustomDataView( $this, $relGroupTree );
                 if ( ! empty( $relCustData[$this->_relDataId] ) ) {
                     $relInfo = array_pop( $relCustData[$this->_relDataId] );
@@ -151,12 +151,12 @@ class SFS_Page_Family extends CRM_Core_Page {
         }
 
         // emergency information
-        $emergencyRelTypeId = CRM_Core_DAO::getFieldValue( 'CRM_Contact_DAO_RelationshipType', 
+        $emergencyRelTypeId = CRM_Core_DAO::getFieldValue( 'CRM_Contact_DAO_RelationshipType',
                                                            'Emergency Contact Of', 'id', 'name_a_b' );
         $emergencyRel =  civicrm_get_relationships( array('contact_id' => $this->_studentId ),
                                                     null,
                                                     array('Emergency Contact Of') );
-        
+
         if ( !$emergencyRel['is_error'] && is_array($emergencyRel['result']) ) {
             $count = 4;
             $lookup = $cLookup = array( );
@@ -185,7 +185,7 @@ ORDER BY contact_id, is_primary desc
                     $values['emergency'][$cLookup[$dao->contact_id]]['phones'] = array( );
                     $values['emergency'][$cLookup[$dao->contact_id]]['phone_display'] = null;
                 }
-                $values['emergency'][$cLookup[$dao->contact_id]]['phones'][] = 
+                $values['emergency'][$cLookup[$dao->contact_id]]['phones'][] =
                     array( 'phone'         => $dao->phone,
                            'phone_type_id' => $dao->phone_type_id );
                 if ( ! empty( $dao->phone ) ) {
@@ -201,11 +201,11 @@ ORDER BY contact_id, is_primary desc
                 }
             }
 
-            
+
             $entityIDString = implode( ',', array_keys( $emergencyRel['result'] ) );
             $query = "
-SELECT entity_id, relationship_name 
-FROM " . SFS_Form_Family::EMERGENCY_REL_TABLE . "
+SELECT entity_id, relationship_name
+FROM " . SCH_Form_Family::EMERGENCY_REL_TABLE . "
 WHERE entity_id IN ( $entityIDString )
 ";
             $dao   = CRM_Core_DAO::executeQuery( $query );
@@ -215,20 +215,20 @@ WHERE entity_id IN ( $entityIDString )
         }
 
         // medical information
-        $medDetailId = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup', 
-                                                    SFS_Form_Family::MEDICAL_DETAILS_TABLE, 'id', 'table_name' );
-        $medInfoId   = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup', 
-                                                    SFS_Form_Family::MEDICAL_INFO_TABLE, 'id', 'table_name' );
-        $relTypeId   = CRM_Core_DAO::getFieldValue( 'CRM_Contact_DAO_RelationshipType', 
+        $medDetailId = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup',
+                                                    SCH_Form_Family::MEDICAL_DETAILS_TABLE, 'id', 'table_name' );
+        $medInfoId   = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup',
+                                                    SCH_Form_Family::MEDICAL_INFO_TABLE, 'id', 'table_name' );
+        $relTypeId   = CRM_Core_DAO::getFieldValue( 'CRM_Contact_DAO_RelationshipType',
                                                     'Child Of', 'id', 'name_a_b' );
-        $relDataId   = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup', 
-                                                    SFS_Form_Family::RELATION_TABLE, 'id', 'table_name' );
-        
+        $relDataId   = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup',
+                                                    SCH_Form_Family::RELATION_TABLE, 'id', 'table_name' );
+
         $detailGroupTree = CRM_Core_BAO_CustomGroup::getTree( 'Contact',
                                                               $this,
                                                               $this->_studentId,
                                                               $medDetailId );
-        
+
         $medValues = CRM_Core_BAO_CustomGroup::buildCustomDataView( $this, $detailGroupTree );
         if ( ! empty( $medValues[$medDetailId] ) ) {
             // format it for easy printing
@@ -277,8 +277,8 @@ WHERE entity_id IN ( $entityIDString )
         }
 
         // releases
-        $this->_schoolInfoId = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup', 
-                                                            SFS_Form_Family::SCHOOL_INFO_TABLE, 'id', 'table_name' );
+        $this->_schoolInfoId = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup',
+                                                            SCH_Form_Family::SCHOOL_INFO_TABLE, 'id', 'table_name' );
         $groupTree = CRM_Core_BAO_CustomGroup::getTree( 'Contact',
                                                         $this,
                                                         $this->_studentId,
@@ -287,7 +287,7 @@ WHERE entity_id IN ( $entityIDString )
 
         // student diversity
         $groupID  = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup',
-                                                 SFS_Form_Family::RACE_ETHNICITY_TABLE,
+                                                 SCH_Form_Family::RACE_ETHNICITY_TABLE,
                                                  'id',
                                                  'table_name' );
         $groupTree = CRM_Core_BAO_CustomGroup::getTree( 'Individual',

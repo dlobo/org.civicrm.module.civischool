@@ -33,9 +33,9 @@
  *
  */
 
-class SFS_Utils_EConsent {
+class SCH_Utils_EConsent {
     static function sendReminderEmail( ) {
-        require_once 'SFS/Utils/Mail.php';
+        require_once 'SCH/Utils/Mail.php';
 
         $sql = "
 SELECT     c.id as student_id, p.id as parent_id,
@@ -52,7 +52,7 @@ AND        s.is_currently_enrolled = 1
 AND        rd.econsent_signed IS NULL
 ORDER BY   c.id
 ";
-  
+
         $dao = CRM_Core_DAO::executeQuery( $sql );
 
         $currentEntityID = null;
@@ -65,9 +65,9 @@ ORDER BY   c.id
                 $templateVars['parentNames'] = $parentNames;
 
                 // now send a message to the parents about what they did
-                SFS_Utils_Mail::sendMailToParents( $currentEntityID,
-                                                   'SFS/Mail/EConsent/EConsentSubject.tpl',
-                                                   'SFS/Mail/EConsent/EConsentMessage.tpl',
+                SCH_Utils_Mail::sendMailToParents( $currentEntityID,
+                                                   'SCH/Mail/EConsent/EConsentSubject.tpl',
+                                                   'SCH/Mail/EConsent/EConsentMessage.tpl',
                                                    $templateVars );
                 $parentNames = array( );
             }
@@ -80,16 +80,16 @@ ORDER BY   c.id
             $templateVars['parentNames'] = $parentNames;
 
             // now send a message to the parents about what they did
-            SFS_Utils_Mail::sendMailToParents( $currentEntityID,
-                                               'SFS/Mail/EConsent/EConsentSubject.tpl',
-                                               'SFS/Mail/EConsent/EConsentMessage.tpl',
+            SCH_Utils_Mail::sendMailToParents( $currentEntityID,
+                                               'SCH/Mail/EConsent/EConsentSubject.tpl',
+                                               'SCH/Mail/EConsent/EConsentMessage.tpl',
                                                $templateVars );
         }
 
     }
 
     static function sendOnlineFormEmail( ) {
-        require_once 'SFS/Utils/Mail.php';
+        require_once 'SCH/Utils/Mail.php';
 
         $sql = "
 SELECT     c.id as student_id, p.id as parent_id,
@@ -107,7 +107,7 @@ AND        s.updated_by IS NULL
 AND        rd.econsent_signed = 1
 ORDER BY   c.id"
 ;
-  
+
         $dao = CRM_Core_DAO::executeQuery( $sql );
 
         $currentEntityID = null;
@@ -120,9 +120,9 @@ ORDER BY   c.id"
                 $templateVars['parentNames'] = $parentNames;
 
                 // now send a message to the parents about what they did
-                SFS_Utils_Mail::sendMailToParents( $currentEntityID,
-                                                   'SFS/Mail/EConsent/OnlineFormSubject.tpl',
-                                                   'SFS/Mail/EConsent/OnlineFormMessage.tpl',
+                SCH_Utils_Mail::sendMailToParents( $currentEntityID,
+                                                   'SCH/Mail/EConsent/OnlineFormSubject.tpl',
+                                                   'SCH/Mail/EConsent/OnlineFormMessage.tpl',
                                                    $templateVars );
                 $parentNames = array( );
             }
@@ -135,9 +135,9 @@ ORDER BY   c.id"
             $templateVars['parentNames'] = $parentNames;
 
             // now send a message to the parents about what they did
-            SFS_Utils_Mail::sendMailToParents( $currentEntityID,
-                                               'SFS/Mail/EConsent/OnlineFormSubject.tpl',
-                                               'SFS/Mail/EConsent/OnlineFormMessage.tpl',
+            SCH_Utils_Mail::sendMailToParents( $currentEntityID,
+                                               'SCH/Mail/EConsent/OnlineFormSubject.tpl',
+                                               'SCH/Mail/EConsent/OnlineFormMessage.tpl',
                                                $templateVars );
         }
     }
@@ -155,7 +155,7 @@ AND        s.subtype = 'Student'
 AND        s.is_currently_enrolled = 1
 ORDER BY   s.grade, c.last_name
 ";
-  
+
         require_once 'CRM/Utils/PDF/Utils.php';
 
         $dao      =  CRM_Core_DAO::executeQuery( $sql );
@@ -163,7 +163,7 @@ ORDER BY   s.grade, c.last_name
 
         $content = array( );
 
-        require_once 'SFS/Page/Family.php';
+        require_once 'SCH/Page/Family.php';
         require_once 'CRM/Utils/String.php';
         $config =& CRM_Core_Config::singleton( );
 
@@ -181,10 +181,10 @@ ORDER BY   s.grade, c.last_name
                 $currentGrade = $dao->student_grade;
             }
 
-            $page = new SFS_Page_Family( );
+            $page = new SCH_Page_Family( );
             $page->commonRun( $dao->student_id );
 
-            $template->assign( 'tplFile', 'SFS/Page/FamilyPDF.tpl' );
+            $template->assign( 'tplFile', 'SCH/Page/FamilyPDF.tpl' );
 
             $template->assign( 'childName' , $dao->student_name  );
             $template->assign( 'childGrade', $dao->student_grade );
@@ -219,19 +219,19 @@ AND        s.grade_sis = 2
 AND        c.id = 169
 ORDER BY   s.grade_sis, c.last_name
 ";
-  
+
         $dao      =  CRM_Core_DAO::executeQuery( $sql );
         $template =& CRM_Core_Smarty::singleton( );
 
         $content = array( );
 
-        require_once 'SFS/Page/Family.php';
+        require_once 'SCH/Page/Family.php';
         require_once 'CRM/Utils/String.php';
         $config =& CRM_Core_Config::singleton( );
 
         $currentGrade = null;
         while ( $dao->fetch( ) ) {
-            $page = new SFS_Page_Family( );
+            $page = new SCH_Page_Family( );
             $page->commonRun( $dao->student_id );
 
             CRM_Core_Error::debug( $page->_values );
@@ -247,11 +247,11 @@ WHERE      s.is_currently_enrolled = 1
 AND        s.subtype = 'Student'
 ORDER BY   s.grade_sis, c.id
 ";
-  
+
         $dao = CRM_Core_DAO::executeQuery( $sql );
 
-        require_once 'SFS/Form/Family.php';
-        $form =& new SFS_Form_Family( );
+        require_once 'SCH/Form/Family.php';
+        $form =& new SCH_Form_Family( );
         while ( $dao->fetch( ) ) {
             $results = $form->isAppCompleted( $dao->student_id );
             if ( ! $results['is_completed'] ) {
@@ -286,7 +286,7 @@ AND        r.is_permission_b_a = 1
 AND        s.is_currently_enrolled = 1
 ORDER BY   grade_sis, c.id
 ";
-  
+
         $dao = CRM_Core_DAO::executeQuery( $sql );
 
         $currentEntityID = null;
@@ -299,7 +299,7 @@ ORDER BY   grade_sis, c.id
             if ( $dao->student_id != $currentEntityID &&
                  $currentEntityID != null ) {
 
-                // we have parent names, lets get emergency contact names 
+                // we have parent names, lets get emergency contact names
                 // and check
                 $params  = array( 'contact_id' => $currentEntityID );
                 $relationships = civicrm_get_relationships( $params, null, array('Emergency Contact Of' ) );
@@ -312,10 +312,10 @@ ORDER BY   grade_sis, c.id
                     }
                     $matches = array_intersect( $parentNames, $rNames );
                     if ( ! empty( $matches ) ) {
-                        echo 
+                        echo
                             $currentName .
                             " : " .
-                            implode( ", ", $parentNames ) . 
+                            implode( ", ", $parentNames ) .
                             " : " .
                             implode( ", ", $matches ) .
                             "<br/>";

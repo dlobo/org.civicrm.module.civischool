@@ -33,7 +33,7 @@
  *
  */
 
-class SFS_Utils_Query {
+class SCH_Utils_Query {
 
     static function checkSubType( $id, $subType = 'Student', $redirect = true ) {
         $entitySubType = self::getSubType( $id );
@@ -54,7 +54,7 @@ class SFS_Utils_Query {
 
     static function getSubType( $id ) {
         static $_cache = array( );
-        
+
         if ( ! array_key_exists( $id, $_cache ) ) {
             $sql = "
 SELECT subtype
@@ -69,7 +69,7 @@ WHERE  entity_id = %1
 
     static function getGrade( $id ) {
         static $_cache = array( );
-        
+
         if ( ! array_key_exists( $id, $_cache ) ) {
             $sql = "
 SELECT grade
@@ -84,7 +84,7 @@ WHERE  entity_id = %1
 
     static function isCurrentlyEnrolled( $id ) {
         static $_cache = array( );
-        
+
         if ( ! array_key_exists( $id, $_cache ) ) {
             $sql = "
 SELECT is_currently_enrolled
@@ -99,7 +99,7 @@ WHERE  entity_id = %1
 
     static function &getStudentsByGrade( $extendedCareOnly = false, $splitByGrade = true, $useDisplayName = true, $prefix = '' ) {
         $sql = "
-SELECT     c.id, c.sort_name, c.display_name, sis.grade 
+SELECT     c.id, c.sort_name, c.display_name, sis.grade
 FROM       civicrm_contact c
 INNER JOIN civicrm_value_school_information sis ON sis.entity_id = c.id
 WHERE      sis.is_currently_enrolled = 1
@@ -173,8 +173,8 @@ AND    term = %1
 
         $sql .= " ORDER BY name";
 
-        require_once 'SFS/Utils/ExtendedCare.php';
-        $params = array( 1 => array( SFS_Utils_ExtendedCare::getTerm( ), 'String' ) );
+        require_once 'SCH/Utils/ExtendedCare.php';
+        $params = array( 1 => array( SCH_Utils_ExtendedCare::getTerm( ), 'String' ) );
         $dao = CRM_Core_DAO::executeQuery( $sql, $params );
 
         $classes = array( );
@@ -183,7 +183,7 @@ AND    term = %1
         }
         return $classes;
     }
-    
+
     /**
      * Get students ajax widget
      */
@@ -202,7 +202,7 @@ FROM   civicrm_contact c,
 WHERE  s.entity_id = c.id
 AND    s.grade_sis >= 1
 AND    s.subtype = 'Student'
-AND    ( c.sort_name LIKE '$name%' 
+AND    ( c.sort_name LIKE '$name%'
  OR      c.display_name LIKE '$name%' )
 ORDER BY sort_name
 LIMIT 0, {$limit}
@@ -212,7 +212,7 @@ LIMIT 0, {$limit}
         while ( $dao->fetch( ) ) {
             echo "{$dao->display_name} (Grade {$dao->grade})|{$dao->id}\n";
         }
-        exit();        
+        exit();
     }
 
 }

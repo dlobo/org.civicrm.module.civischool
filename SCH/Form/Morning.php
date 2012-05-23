@@ -35,7 +35,7 @@
 
 require_once 'CRM/Core/Form.php';
 
-class SFS_Form_Morning extends CRM_Core_Form {
+class SCH_Form_Morning extends CRM_Core_Form {
     protected $_students;
 
     function buildQuickForm( ) {
@@ -50,18 +50,18 @@ class SFS_Form_Morning extends CRM_Core_Form {
         $this->_date = CRM_Utils_Request::retrieve( 'date', 'String' , $this, false, date( 'Y-m-d' ) );
         $this->_time = CRM_Utils_Request::retrieve( 'time', 'String' , $this, false, null );
 
-        
+
         $this->assign( 'date', $this->_date );
         $this->assign( 'time', $this->_time );
 
-        $this->assign( 'displayDate', 
+        $this->assign( 'displayDate',
                        date( 'l - F d, Y', strtotime( $this->_date ) ) );
 
-        require_once 'SFS/Utils/Query.php';
+        require_once 'SCH/Utils/Query.php';
         $students =
-            array( ''  => '- Select Student -' ) + 
-            SFS_Utils_Query::getStudentsByGrade( true, false, true , ''  );
-        
+            array( ''  => '- Select Student -' ) +
+            SCH_Utils_Query::getStudentsByGrade( true, false, true , ''  );
+
         for ( $i = 1; $i <= 6; $i++ ) {
             $required = ( $i == 1 ) ? true : false;
             $this->add( 'select',
@@ -81,7 +81,7 @@ class SFS_Form_Morning extends CRM_Core_Form {
         } else if ( $atSchoolMeeting === 'false' ) {
             $atSchoolMeeting = 0;
         }
-        
+
         $atSchoolMeeting = $atSchoolMeeting ? '1' : '0';
 
         $params = array( 1 => array( $studentID       , 'Integer' ),
@@ -103,7 +103,7 @@ AND    is_morning = 1
         if ( $dao->fetch( ) ) {
             $params[4] = array( $dao->id, 'Integer' );
             $sql = "
-UPDATE civicrm_value_extended_care_signout 
+UPDATE civicrm_value_extended_care_signout
 SET    signin_time        = %2,
        signout_time       = %3,
        pickup_person_name = %5,
@@ -129,14 +129,14 @@ VALUES
                                                false,
                                                '',
                                                'REQUEST' );
-        
+
         $date = CRM_Utils_Request::retrieve( 'date',
                                              'String',
                                              CRM_Core_DAO::$_nullObject,
                                              false,
                                              date( 'Y-m-d' ),
                                              'REQUEST' );
-        
+
         $time = CRM_Utils_Request::retrieve( 'time',
                                              'String',
                                              CRM_Core_DAO::$_nullObject,
@@ -146,7 +146,7 @@ VALUES
         if ( empty( $time ) ) {
             $time = date( 'h:i' );
         }
-        
+
         $result = null;
         for ( $i = 1; $i <= 6; $i++ ) {
             $studentID = CRM_Utils_Request::retrieve( "studentID_$i",

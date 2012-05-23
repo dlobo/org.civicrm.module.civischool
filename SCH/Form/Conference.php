@@ -35,7 +35,7 @@
 
 require_once 'CRM/Core/Form.php';
 
-class SFS_Form_Conference extends CRM_Core_Form {
+class SCH_Form_Conference extends CRM_Core_Form {
 
     protected $_multipleDay   = false;
 
@@ -95,21 +95,21 @@ ORDER BY   c.display_name
                                false );
         }
 
-        $this->addButtons(array( 
-                                array ( 'type'      => 'refresh', 
+        $this->addButtons(array(
+                                array ( 'type'      => 'refresh',
                                         'name'      => ts( 'Process' ),
-                                        'spacing'   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', 
-                                        'isDefault' => true   ), 
-                                array ( 'type'      => 'cancel', 
-                                        'name'      => ts('Cancel') ), 
+                                        'spacing'   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+                                        'isDefault' => true   ),
+                                array ( 'type'      => 'cancel',
+                                        'name'      => ts('Cancel') ),
                                  )
                           );
 
-        $this->addFormRule( array( 'SFS_Form_Conference', 'formRule' ), $this );
+        $this->addFormRule( array( 'SCH_Form_Conference', 'formRule' ), $this );
     }
 
-    static function formRule( $fields, $files, $form ) 
-    {  
+    static function formRule( $fields, $files, $form )
+    {
         $errors = array( );
 
         if  ( ! CRM_Utils_Array::value( 'ptc_date_1_time',$fields) ) {
@@ -124,7 +124,7 @@ ORDER BY   c.display_name
     }
 
     function setDefaultValues( ) {
-        require_once 'SFS/Utils/Conference.php';
+        require_once 'SCH/Utils/Conference.php';
 
         $defaults = array( );
 
@@ -132,7 +132,7 @@ ORDER BY   c.display_name
             = CRM_Utils_Date::setDateDefaults(date("Y-m-d", time( ) + 14 * 24 * 60 * 60 ));
         $defaults['ptc_duration'] = 25;
 
-        $defaults['ptc_subject'] = SFS_Utils_Conference::SUBJECT;
+        $defaults['ptc_subject'] = SCH_Utils_Conference::SUBJECT;
 
         for ( $i = 1; $i < 10; $i++ ) {
             $defaults["ptc_date_{$i}"] = $defaults['ptc_date'];
@@ -148,7 +148,7 @@ ORDER BY   c.display_name
 
     function postProcess( ) {
         $params = $this->controller->exportValues( $this->_name );
-        
+
         $session =& CRM_Core_Session::singleton( );
         $userID = $session->get( 'userID' );
 
@@ -165,13 +165,13 @@ ORDER BY   c.display_name
             }
 
             $totalSlots++;
-            SFS_Utils_Conference::createConference( $userID,
+            SCH_Utils_Conference::createConference( $userID,
                                                     $params['advisor_id'],
-                                                    SFS_Utils_Conference::CONFERENCE_ACTIVITY_TYPE_ID,
+                                                    SCH_Utils_Conference::CONFERENCE_ACTIVITY_TYPE_ID,
                                                     $mysqlDate,
                                                     $params['ptc_subject'],
-                                                    SFS_Utils_Conference::LOCATION,
-                                                    SFS_Utils_Conference::STATUS,
+                                                    SCH_Utils_Conference::LOCATION,
+                                                    SCH_Utils_Conference::STATUS,
                                                     $params['duration'] );
         }
 

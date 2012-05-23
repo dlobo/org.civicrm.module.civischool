@@ -35,7 +35,7 @@
 
 require_once 'CRM/Core/Page.php';
 
-class SFS_Page_Info extends CRM_Core_Page {
+class SCH_Page_Info extends CRM_Core_Page {
 
     function run( ) {
         $nodeId = CRM_Utils_Request::retrieve( 'node', 'Positive', CRM_Core_DAO::$_nullObject );

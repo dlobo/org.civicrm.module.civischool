@@ -35,7 +35,7 @@
 
 require_once 'CRM/Core/Form.php';
 
-class SFS_Form_SignOut extends CRM_Core_Form {
+class SCH_Form_SignOut extends CRM_Core_Form {
     protected $_students;
 
     function buildQuickForm( ) {
@@ -47,14 +47,14 @@ class SFS_Form_SignOut extends CRM_Core_Form {
                     'autocomplete="off"',
                     true );
 
-        $this->assign( 'date', 
+        $this->assign( 'date',
                        date( 'l - F d, Y' ) );
 
-        require_once 'SFS/Utils/Query.php';
+        require_once 'SCH/Utils/Query.php';
         $students =
-            array( ''  => '- Select Student -' ) + 
-            SFS_Utils_Query::getStudentsByGrade( true, false, true , ''  );
-        
+            array( ''  => '- Select Student -' ) +
+            SCH_Utils_Query::getStudentsByGrade( true, false, true , ''  );
+
         for ( $i = 1; $i <= 6; $i++ ) {
             $required = ( $i == 1 ) ? true : false;
             $this->add( 'select',
@@ -127,13 +127,13 @@ VALUES
     function postProcess( ) {
         $params = $this->controller->exportValues( $this->_name );
 
-        require_once 'SFS/Utils/ExtendedCare.php';
+        require_once 'SCH/Utils/ExtendedCare.php';
         $pickup = CRM_Utils_Array::value( 'pickup_name', $params );
         for ( $i = 1 ; $i <= 6; $i++ ) {
             $studentID       = CRM_Utils_Array::value( "student_id_$i"       , $params );
             $atSchoolMeeting = CRM_Utils_Array::value( "at_school_meeting_$i", $params, false );
             if ( ! empty( $studentID ) ) {
-                SFS_Utils_ExtendedCare::processSignOut( $pickup,
+                SCH_Utils_ExtendedCare::processSignOut( $pickup,
                                                         $studentID,
                                                         $atSchoolMeeting );
             }
@@ -153,7 +153,7 @@ VALUES
                                                   'REQUEST' );
 
         $result = null;
-        require_once 'SFS/Utils/ExtendedCare.php';
+        require_once 'SCH/Utils/ExtendedCare.php';
         for ( $i = 1; $i <= 6; $i++ ) {
             $studentID       = CRM_Utils_Request::retrieve( "studentID_$i",
                                                             'Positive',
@@ -168,7 +168,7 @@ VALUES
                                                             false,
                                                             'REQUEST' );
             if ( ! empty( $studentID ) ) {
-                $className = SFS_Utils_ExtendedCare::processSignOut( $pickup,
+                $className = SCH_Utils_ExtendedCare::processSignOut( $pickup,
                                                                      $studentID,
                                                                      $atSchoolMeeting );
                 if ( empty( $className ) ) {

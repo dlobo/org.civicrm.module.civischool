@@ -35,47 +35,47 @@
 
 require_once 'CRM/Report/Form.php';
 
-class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
-    
+class SCH_Report_Form_ParentTeacherConference extends CRM_Report_Form {
+
     // set custom table name
-    protected $_customTable = 'civicrm_value_school_information';  
-    
+    protected $_customTable = 'civicrm_value_school_information';
+
     protected $_typeField   = array( 'column_name'  => 'subtype',
                                      'value'        => 'Student' );
     protected $_gradeField  = array( 'column_name'  => 'grade' );
-    
+
     protected $_actvityTypeId = 20;
-    
+
     protected $_teacherRelationship = 10;
     protected $_teacherRelContact   = 'contact_id_a';
 
     function __construct( ) {
 
         $fields = array( );
-        $query  = " 
-                   SELECT column_name, label , option_group_id 
-                   FROM civicrm_custom_field 
+        $query  = "
+                   SELECT column_name, label , option_group_id
+                   FROM civicrm_custom_field
                    WHERE is_active = 1 AND column_name='".$this->_gradeField['column_name']."' AND custom_group_id = ( SELECT id FROM civicrm_custom_group WHERE table_name='{$this->_customTable}' ) " ;
         $dao_column = CRM_Core_DAO::executeQuery( $query );
-        
+
         $this->_optionFields = $this->_textFields = array( );
 
         while ( $dao_column->fetch( ) ) {
-            $fields[$dao_column->column_name] = array('required'   => true, 
+            $fields[$dao_column->column_name] = array('required'   => true,
                                                       'title'      => $dao_column->label,
                                                       'no_display' => true
                                                         );
                 $this->_gradeField['op_group_id'] = $dao_column->option_group_id;
         }
-        
+
         $filters = array( );
         // filter for Grade
         $options = array( );
         $query   = "SELECT label , value FROM civicrm_option_value WHERE option_group_id =".$this->_gradeField['op_group_id']."  AND is_active=1";
         $dao     = CRM_Core_DAO::executeQuery( $query );
-        
+
         while( $dao->fetch( ) ) {
-            $options[$dao->value] = $dao->label; 
+            $options[$dao->value] = $dao->label;
         }
         $filters[$this->_gradeField['column_name']] = array(
                                                             'title'        => ts('Grade'),
@@ -84,12 +84,12 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
                                                             'type'         => CRM_Utils_Type::T_STRING
                                                             );
 
-        //get teacher with relatioship 
+        //get teacher with relatioship
         $this->teacherOptions = array( );
-        $query = " SELECT DISTINCT(contact.id) ,contact.display_name 
-                   FROM civicrm_contact contact 
-                   INNER JOIN civicrm_relationship relationship 
-                         ON ( contact.id=relationship.{$this->_teacherRelContact} AND relationship.is_active=1 )  
+        $query = " SELECT DISTINCT(contact.id) ,contact.display_name
+                   FROM civicrm_contact contact
+                   INNER JOIN civicrm_relationship relationship
+                         ON ( contact.id=relationship.{$this->_teacherRelContact} AND relationship.is_active=1 )
                    INNER JOIN {$this->_customTable} school_information
                          ON ( school_information.entity_id = contact.id AND (school_information.subtype='Staff' OR school_information.subtype='Parent') )
                    WHERE relationship.relationship_type_id={$this->_teacherRelationship} ";
@@ -104,7 +104,7 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
                                 array( 'dao'     => 'CRM_Activity_DAO_Activity',
                                        'fields'  =>
                                        array( 'activity_date_time' => array( 'title'        => ts('Date'),
-                                                                             'no_display'   => true, 
+                                                                             'no_display'   => true,
                                                                              'required'     => true,
                                                                              'type'         => CRM_Utils_Type::T_TIME,
                                                                              ),
@@ -118,7 +118,7 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
 
                                 'civicrm_contact' =>
                                 array( 'dao'       => 'CRM_Contact_DAO_Contact',
-                                       'fields'    => 
+                                       'fields'    =>
                                        array( 'display_name' =>
                                               array(
                                                     'no_display' => true,
@@ -139,7 +139,7 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
                                                     'options'      => array( '' => '-select-' ) + $this->teacherOptions ,
                                                     'type'         => CRM_Utils_Type::T_INT,
                                                     ) ) ),
-                                                                
+
                                  'civicrm_contact_student' =>
                                 array( 'dao'       => 'CRM_Contact_DAO_Contact',
                                        'fields'   =>
@@ -172,7 +172,7 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
                                                     ),
                                               ) ),
                                        );
-  
+
         parent::__construct( );
     }
 
@@ -180,7 +180,7 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
         $this->_add2groupSupported = false;
         parent::preProcess( );
     }
-  
+
     function select( ) {
         $select = array( );
         $this->_columnHeaders = array( );
@@ -200,10 +200,10 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
                 }
             }
         }
-        
+
         $this->_select = "SELECT " . implode( ', ', $select ) . " ";
     }
-    
+
 
     function from(  ) {
         $alias = $this->_aliases[$this->_customTable];
@@ -215,18 +215,18 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
                                            ON {$this->_aliases['civicrm_contact']}.id = activity_assignment.assignee_contact_id
                               INNER  JOIN civicrm_activity {$this->_aliases['civicrm_activity']}
                                             ON ({$this->_aliases['civicrm_activity']}.id = activity_assignment.activity_id AND  {$this->_aliases['civicrm_activity']}.is_deleted=0 AND {$this->_aliases['civicrm_activity']}.is_test=0 AND {$this->_aliases['civicrm_activity']}.activity_type_id={$this->_actvityTypeId} )
-                              INNER JOIN civicrm_activity_target activity_target 
+                              INNER JOIN civicrm_activity_target activity_target
                                             ON {$this->_aliases['civicrm_activity']}.id = activity_target.activity_id
                               INNER JOIN civicrm_contact  {$this->_aliases['civicrm_contact_student']}
                                             ON {$this->_aliases['civicrm_contact_student']}.id = activity_target.target_contact_id
-                              INNER JOIN $this->_customTable {$alias} 
+                              INNER JOIN $this->_customTable {$alias}
                                             ON ({$alias}.entity_id={$this->_aliases['civicrm_contact_student']}.id AND {$alias}.subtype='Student')
                               LEFT JOIN civicrm_relationship relationship
                                              ON (relationship.relationship_type_id = 1 AND relationship.contact_id_a = {$this->_aliases['civicrm_contact_student']}.id AND relationship.is_active=1)
                               LEFT JOIN civicrm_contact  {$this->_aliases['civicrm_contact_parent']}
                                              ON {$this->_aliases['civicrm_contact_parent']}.id =  relationship.contact_id_b ";
     }
-    
+
     function where( ) {
         $alias = $this->_aliases[$this->_customTable];
         $clauses = array( "{$this->_aliases['civicrm_activity']}.status_id = 1" );
@@ -238,12 +238,12 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
                         $relative = CRM_Utils_Array::value( "{$fieldName}_relative", $this->_params );
                         $from     = CRM_Utils_Array::value( "{$fieldName}_from"    , $this->_params );
                         $to       = CRM_Utils_Array::value( "{$fieldName}_to"      , $this->_params );
-                        
+
                         $clause = $this->dateClause( $field['name'], $relative, $from, $to );
                     } else {
                         $op = CRM_Utils_Array::value( "{$fieldName}_op", $this->_params );
                         if ( $op ) {
-                            
+
                             // hack for values type string
                             if ( $op == 'in' ) {
                                 $value  = CRM_Utils_Array::value( "{$fieldName}_value", $this->_params );
@@ -251,7 +251,7 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
                                     $clause = "( {$field['dbAlias']} IN ('" . implode( '\',\'', $value ) . "' ) )";
                                 }
                             } else {
-                                $clause = 
+                                $clause =
                                     $this->whereClause( $field,
                                                         $op,
                                                         CRM_Utils_Array::value( "{$fieldName}_value", $this->_params ),
@@ -260,7 +260,7 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
                             }
                         }
                     }
-                    
+
                     if ( ! empty( $clause ) ) {
                         $clauses[] = $clause;
                     }
@@ -271,7 +271,7 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
             $this->_where = "WHERE ( 1 ) ";
         } else {
             $this->_where = "WHERE " . implode( ' AND ', $clauses );
-        } 
+        }
 
     }
 
@@ -282,7 +282,7 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
     function groupBy( ) {
         $this->_groupBy = " GROUP BY {$this->_aliases['civicrm_contact']}.id,{$this->_aliases['civicrm_contact_student']}.id,{$this->_aliases['civicrm_activity']}.id";
     }
-     
+
     function statistics( &$rows ) {
         $statistics =  parent::statistics( $rows );
         //replace Advisor id by name
@@ -300,7 +300,7 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
         $this->beginPostProcess( );
 
         $removeHeaders = array ( 'civicrm_contact_id', 'civicrm_contact_parent_id', 'civicrm_contact_student_id');
-        
+
         $sql = $this->buildQuery( );
         $this->buildRows ( $sql, $rows );
 
@@ -316,28 +316,28 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
                 unset($tempHeaders[$field]);
             }
         }
-       
+
         $this->formatDisplay($rows );
         $this->_columnHeaders = $tempHeaders;
-        
+
         $this->doTemplateAssignment($rows );
-        
+
         $this->endPostProcess($rows );
 
-    } 
-    
+    }
+
     function alterDisplay( &$rows ) {
         $entryFound = false;
-       
+
       	$flag_teacher   = $flag_student = 0;
-        
+
         foreach ( $rows as $rowNum => $row ) {
             if ( array_key_exists('civicrm_activity_activity_date_time', $row) ) {
-                $rows[$rowNum]['civicrm_activity_activity_date_time'] = 
+                $rows[$rowNum]['civicrm_activity_activity_date_time'] =
                     CRM_Utils_Date::customFormat( $row['civicrm_activity_activity_date_time'] );
                 $entryFound = true;
             }
-            
+
             // remove repeat for  Teacher
             if ( array_key_exists('civicrm_contact_display_name', $row) ) {
                 if ( $value = $row['civicrm_contact_id'] ) {
@@ -349,15 +349,15 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
                             $privious_teacher = $value;
                         } else { $flag_teacher =0; $privious_teacher=$value; }
                     }
-                    
+
                     if(  $flag_teacher == 1 ) {
                         // hide columns for Teacher
-                        $rows[$rowNum]['civicrm_contact_display_name'] = "";          
+                        $rows[$rowNum]['civicrm_contact_display_name'] = "";
                     } else {
-                        $url = CRM_Utils_System::url( "civicrm/contact/view",  
+                        $url = CRM_Utils_System::url( "civicrm/contact/view",
                                                       'reset=1&cid=' . $value );
                         $rows[$rowNum]['civicrm_contact_display_name_link' ] = $url;
-                        $rows[$rowNum]['civicrm_contact_display_name_hover'] = 
+                        $rows[$rowNum]['civicrm_contact_display_name_hover'] =
                             ts("View Contact Summary for this Contact");
                     }
                     $entryFound = true;
@@ -373,7 +373,7 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
                         if( $privious_student == $value ) {
                             $flag_student     = 1;
                             $privious_student = $value;
-                        } else { 
+                        } else {
                             $flag_student     = 0;
                             $privious_student = $value;
                         }
@@ -387,18 +387,18 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
                         $rows[$rowNum]['civicrm_activity_subject']                 = "";
 
                     } else {
-                        $url = CRM_Utils_System::url( "civicrm/contact/view",  
+                        $url = CRM_Utils_System::url( "civicrm/contact/view",
                                                       'reset=1&cid=' . $value );
                         $rows[$rowNum]['civicrm_contact_student_display_name_link' ] = $url;
-                        $rows[$rowNum]['civicrm_contact_student_display_name_hover'] = 
+                        $rows[$rowNum]['civicrm_contact_student_display_name_hover'] =
                             ts("View Contact Summary for this Contact");
                     }
                     $entryFound = true;
                 }
             }
 
-            
-            // skip looking further in rows, if first row itself doesn't 
+
+            // skip looking further in rows, if first row itself doesn't
             // have the column we need
             if ( !$entryFound ) {
                 break;
@@ -406,5 +406,5 @@ class SFS_Report_Form_ParentTeacherConference extends CRM_Report_Form {
         }
     }
 
-    
+
 }

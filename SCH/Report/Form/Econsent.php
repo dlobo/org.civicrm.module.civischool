@@ -35,19 +35,19 @@
 
 require_once 'CRM/Report/Form.php';
 
-class SFS_Report_Form_Econsent extends CRM_Report_Form {
+class SCH_Report_Form_Econsent extends CRM_Report_Form {
 
     protected $_customTable_parentRel  = 'civicrm_value_parent_relationship_data';
-    
+
     protected $_customTable_schoolInfo = 'civicrm_value_school_information';
 
     function __construct( ) {
 
-        $this->_columns = 
-            array( 
+        $this->_columns =
+            array(
                   'civicrm_contact' =>
                   array( 'dao'       => 'CRM_Contact_DAO_Contact',
-                         'fields'    => 
+                         'fields'    =>
                          array( 'display_name' =>
                                 array(
                                       'required'   => true,
@@ -66,7 +66,7 @@ class SFS_Report_Form_Econsent extends CRM_Report_Form {
                                       ) ) ),
               'civicrm_parent_contact' =>
                   array( 'dao'       => 'CRM_Contact_DAO_Contact',
-                         'fields'    => 
+                         'fields'    =>
                          array( 'parent_name' =>
                                 array(
                                       'title'      => ts('Parent'),
@@ -82,13 +82,13 @@ class SFS_Report_Form_Econsent extends CRM_Report_Form {
                      ),
                );
 
-        $this->_columns[$this->_customTable_parentRel] = array( 
+        $this->_columns[$this->_customTable_parentRel] = array(
                                                                'dao'       => 'CRM_Contact_DAO_Contact',
                                                                'alias'     => 'parent_relationship',
-                                                               'fields'    => 
+                                                               'fields'    =>
                                                                array(
                                                                      'econsent_signed' =>
-                                                                     array( 
+                                                                     array(
                                                                            'title'      => ts('Econsent Signed?'),
                                                                            'required'   => true,
                                                                             ),
@@ -98,7 +98,7 @@ class SFS_Report_Form_Econsent extends CRM_Report_Form {
                                                                            'operatorType' => CRM_Report_Form::OP_DATE,
                                                                            'type'         => CRM_Utils_Type::T_DATE,
                                                                            'required'     => true,
-                                                                           
+
                                                                            ),
                                                                 ),
                                                                'filters'   =>
@@ -106,34 +106,34 @@ class SFS_Report_Form_Econsent extends CRM_Report_Form {
                                                                       array(
                                                                             'title' => ts('Signed Date'),
                                                                             'operatorType' => CRM_Report_Form::OP_DATE,
-                                                                            'type'         => CRM_Utils_Type::T_DATE 
+                                                                            'type'         => CRM_Utils_Type::T_DATE
                                                                             ) )
                                                                 );
 
         $this->_options = array( 'econsent_unsigned' => array( 'title'   => ts('Display only parents who have not signed Econsent.'),
                                                                'type'    => 'checkbox' ) );
-        
+
         parent::__construct( );
     }
-    
+
     function select(  ) {
         $select = $this->_columnHeaders =  array( );
         foreach ( $this->_columns as $tableName => $table ) {
- 
+
            if ( array_key_exists('fields', $table) ) {
                 foreach ( $table['fields'] as $fieldName => $field ) {
                     if ( CRM_Utils_Array::value( 'required', $field ) ||
                          CRM_Utils_Array::value( $fieldName, $this->_params['fields'] ) ) {
-                            
+
                             $select[] = "{$field['dbAlias']} as {$tableName}_{$fieldName}";
                             $this->_columnHeaders["{$tableName}_{$fieldName}"]['type']  = CRM_Utils_Array::value( 'type', $field );
                             $this->_columnHeaders["{$tableName}_{$fieldName}"]['title'] = $field['title'];
-                        
+
                     }
                 }
             }
         }
-        
+
         $this->_select = "SELECT " . implode( ",\n", $select ) . " ";
    }
 
@@ -147,9 +147,9 @@ class SFS_Report_Form_Econsent extends CRM_Report_Form {
                  LEFT JOIN {$this->_customTable_parentRel} {$parentRelAlias} ON ( {$parentRelAlias}.entity_id = relationship.id )
                  LEFT JOIN civicrm_contact {$this->_aliases['civicrm_parent_contact']} ON {$this->_aliases['civicrm_parent_contact']}.id = relationship.contact_id_b
                 ";
-                      
+
     }
-    
+
     function where( ) {
         $parentRelAlias  = $this->_aliases[$this->_customTable_parentRel];
         $whereClauses[ ] = "school_info.grade_sis != 8";
@@ -163,12 +163,12 @@ class SFS_Report_Form_Econsent extends CRM_Report_Form {
                         $relative = CRM_Utils_Array::value( "{$fieldName}_relative", $this->_params );
                         $from     = CRM_Utils_Array::value( "{$fieldName}_from"    , $this->_params );
                         $to       = CRM_Utils_Array::value( "{$fieldName}_to"      , $this->_params );
-                        
+
                         $clause = $this->dateClause( $field['name'], $relative, $from, $to, $field['type'] );
                     } else {
                         $op = CRM_Utils_Array::value( "{$fieldName}_op", $this->_params );
                         if ( $op ) {
-                            $clause = 
+                            $clause =
                                 $this->whereClause( $field,
                                                     $op,
                                                     CRM_Utils_Array::value( "{$fieldName}_value", $this->_params ),
@@ -176,14 +176,14 @@ class SFS_Report_Form_Econsent extends CRM_Report_Form {
                                                     CRM_Utils_Array::value( "{$fieldName}_max", $this->_params ) );
                         }
                     }
-                    
+
                     if ( ! empty( $clause ) ) {
                         $whereClauses[] = $clause;
                     }
                 }
             }
         }
-            
+
         if ( isset($this->_params['options']) &&
              CRM_Utils_Array::value( 'econsent_unsigned', $this->_params['options'] ) ) {
             $whereClauses[] = "({$parentRelAlias}.econsent_signed IS NULL OR {$parentRelAlias}.econsent_signed = 0)";
@@ -194,13 +194,13 @@ class SFS_Report_Form_Econsent extends CRM_Report_Form {
         } else {
             $this->_where = "WHERE " . implode( ' AND ', $whereClauses );
         }
-        
+
         if ( $this->_aclWhere ) {
             $this->_where .= " AND {$this->_aclWhere} ";
-        }   
-        
+        }
+
     }
-    
+
     function postProcess( ) {
         parent::postProcess( );
     }
@@ -222,11 +222,11 @@ class SFS_Report_Form_Econsent extends CRM_Report_Form {
                              $prev_cid = $cid;
                          }
                      }
-                     
+
                      if ( $display_flag ) {
                          foreach ( $row as $colName => $colVal ) {
                              if ( in_array($colName, $this->_noRepeats) ) {
-                                 unset($rows[$rowNum][$colName]);          
+                                 unset($rows[$rowNum][$colName]);
                              }
                             }
                      }
@@ -237,7 +237,7 @@ class SFS_Report_Form_Econsent extends CRM_Report_Form {
              // convert display name to links
              if ( array_key_exists('civicrm_contact_display_name', $row) &&
                   array_key_exists('civicrm_contact_id', $row) ) {
-                 $url = CRM_Utils_System::url( "civicrm/contact/view",  
+                 $url = CRM_Utils_System::url( "civicrm/contact/view",
                                                    'reset=1&cid='
                                                . $row['civicrm_contact_id'] );
                  $rows[$rowNum]['civicrm_contact_display_name_link' ] = $url;
@@ -245,19 +245,19 @@ class SFS_Report_Form_Econsent extends CRM_Report_Form {
                      ts("View contact summary");
                  $entryFound = true;
              }
-             
+
              // convert display name to links
              if ( array_key_exists('civicrm_parent_contact_parent_name', $row) &&
                   array_key_exists('civicrm_parent_contact_id', $row) ) {
-                 $url = CRM_Utils_System::url( "civicrm/contact/view",  
+                 $url = CRM_Utils_System::url( "civicrm/contact/view",
                                                    'reset=1&cid='
                                                . $row['civicrm_parent_contact_id'] );
                  $rows[$rowNum]['civicrm_parent_contact_parent_name_link' ] = $url;
                  $rows[$rowNum]['civicrm_parent_contact_parent_name_hover'] =
                      ts("View contact summary");
                  $entryFound = true;
-             } 
-             
+             }
+
              if ( array_key_exists('civicrm_value_parent_relationship_data_econsent_signed', $row ) ) {
                  if ( $row['civicrm_value_parent_relationship_data_econsent_signed'] == 1 ) {
                      $rows[$rowNum]['civicrm_value_parent_relationship_data_econsent_signed'] = ts('Yes');
@@ -265,7 +265,7 @@ class SFS_Report_Form_Econsent extends CRM_Report_Form {
                      $rows[$rowNum]['civicrm_value_parent_relationship_data_econsent_signed'] = ts('No');
                  }
              }
-             
+
          }
      }
 

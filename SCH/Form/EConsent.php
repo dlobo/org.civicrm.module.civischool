@@ -35,7 +35,7 @@
 
 require_once 'CRM/Core/Form.php';
 
-class SFS_Form_EConsent extends CRM_Core_Form {
+class SCH_Form_EConsent extends CRM_Core_Form {
 
     protected $_date;
 
@@ -81,7 +81,7 @@ ORDER BY   c.display_name, c.id, p.id
 
         $studentSelect = array( '' => ts( '- select student -' ) );
         $parentSelect  = array( '' => array( '' => ts( '- select parent -' ) ) );
-        
+
         $dao = CRM_Core_DAO::executeQuery( $query );
         while ( $dao->fetch( ) ) {
             if ( ! array_key_exists( $dao->student_id, $studentSelect ) ) {
@@ -91,13 +91,13 @@ ORDER BY   c.display_name, c.id, p.id
             if ( ! array_key_exists( $dao->student_id, $parentSelect ) ) {
                 $parentSelect[$dao->student_id] = array( );
             }
-            
+
             $parentSelect[$dao->student_id][$dao->parent_id] = $dao->parent_name;
         }
 
         require_once 'CRM/Utils/Date.php';
         list( $dateDefault, $ignore ) = CRM_Utils_Date::setDateDefaults(date("Y-m-d"));
-        
+
         $this->addDate("econsent_date",
                        ts( 'EConsent Signature Date' ),
                        true );
@@ -111,25 +111,25 @@ ORDER BY   c.display_name, c.id, p.id
                                       null,
                                       '&nbsp;&nbsp;&nbsp;' );
             $sel->setOptions(array( $studentSelect, $parentSelect ) );
-            
+
         }
-        
+
         $this->setDefaults( $defaults );
-        $this->addButtons(array( 
-                                array ( 'type'      => 'refresh', 
+        $this->addButtons(array(
+                                array ( 'type'      => 'refresh',
                                         'name'      => ts( 'Process' ),
-                                        'spacing'   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', 
-                                        'isDefault' => true   ), 
-                                array ( 'type'      => 'cancel', 
-                                        'name'      => ts('Cancel') ), 
+                                        'spacing'   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+                                        'isDefault' => true   ),
+                                array ( 'type'      => 'cancel',
+                                        'name'      => ts('Cancel') ),
                                  )
                           );
-        
-        $this->addFormRule( array( 'SFS_Form_EConsent', 'formRule' ), $this );
+
+        $this->addFormRule( array( 'SCH_Form_EConsent', 'formRule' ), $this );
     }
 
-    static function formRule( $fields, $files, $form ) 
-    {  
+    static function formRule( $fields, $files, $form )
+    {
         $errors = array( );
         return $errors;
     }

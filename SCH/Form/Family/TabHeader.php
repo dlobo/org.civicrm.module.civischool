@@ -37,7 +37,7 @@
 /**
  * Helper class to build navigation links
  */
-class SFS_Form_Family_TabHeader {
+class SCH_Form_Family_TabHeader {
 
     static function build( &$form ) {
         $tabs = $form->get( 'tabHeader' );
@@ -148,7 +148,7 @@ class SFS_Form_Family_TabHeader {
         if ( $current ) {
             return $current;
         }
-        
+
         if ( is_array($tabs) ) {
             foreach ( $tabs as $subPage => $pageVal ) {
                 if ( $pageVal['current'] === true ) {
@@ -157,7 +157,7 @@ class SFS_Form_Family_TabHeader {
                 }
             }
         }
-        
+
         $current = $current ? $current : 'Household';
         return $current;
     }

@@ -37,17 +37,17 @@
 require_once 'CRM/Core/Form.php';
 
 /**
- * This class generates form components for processing Event  
- * 
+ * This class generates form components for processing Event
+ *
  */
-class SFS_Form_Apply extends CRM_Core_Form
+class SCH_Form_Apply extends CRM_Core_Form
 {
 
     function preProcess( ) {
 
         // set up tabs
-        require_once 'SFS/Form/Apply/TabHeader.php';
-        SFS_Form_Apply_TabHeader::build( $this );
+        require_once 'SCH/Form/Apply/TabHeader.php';
+        SCH_Form_Apply_TabHeader::build( $this );
     }
 
     function buildQuickForm( ) {
@@ -83,7 +83,7 @@ class SFS_Form_Apply extends CRM_Core_Form
     {
         $className = CRM_Utils_String::getClassName( $this->_name );
         if ( $this->controller->getButtonName('submit') == "_qf_{$className}_next" ) {
-            $nextTab = SFS_Form_Apply_TabHeader::getNextSubPage( $this, $className );
+            $nextTab = SCH_Form_Apply_TabHeader::getNextSubPage( $this, $className );
             $nextUrl = CRM_Utils_System::url( 'civicrm/sfschool/apply/' . strtolower($nextTab),
                                               "reset=1" );
             CRM_Utils_System::redirect( $nextUrl );

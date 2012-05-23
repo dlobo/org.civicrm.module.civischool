@@ -36,10 +36,10 @@ require_once 'CRM/Core/Form.php';
 require_once 'CRM/Core/OptionGroup.php';
 require_once 'CRM/Core/SelectValues.php';
 
-class SFS_Form_Class extends CRM_Core_Form
+class SCH_Form_Class extends CRM_Core_Form
 {
-    
-    public  function preProcess( ) 
+
+    public  function preProcess( )
     {
         if ( !CRM_Core_Permission::check( 'access CiviCRM' ) ) {
             CRM_Utils_System::permissionDenied( );
@@ -47,11 +47,11 @@ class SFS_Form_Class extends CRM_Core_Form
         }
         $this->_indexID  = CRM_Utils_Request::retrieve( 'id', 'Integer', $this, false );
         $this->_action   = CRM_Utils_Request::retrieve( 'action', 'String', $this, false );
-        
+
         if ( $this->_action & ( CRM_Core_Action::DISABLE | CRM_Core_Action::ENABLE ) ) {
             return;
-        } 
-        
+        }
+
         // table fields, fieldname => type
         $this->_customFields =  array( 'term'             => 'String',
                                        'session'          => 'String',
@@ -68,32 +68,32 @@ class SFS_Form_Class extends CRM_Core_Form
                                        'location'         => 'String',
                                        'url'              => 'String',
                                        'additional_rows'  => 'Integer' );
-        
+
         if ( $this->_action & CRM_Core_Action::ADD ) {
             $this->_customFields['is_active'] = 'Integer';
         }
-        parent::preProcess();       
+        parent::preProcess();
     }
-    
+
     public  function setDefaultValues( $freez =1 ) {
-        
+
         $defaults = array( );
-        
+
         if ( $this->_action & ( CRM_Core_Action::DISABLE | CRM_Core_Action::ENABLE | CRM_Core_Action::ADD ) ) {
             return $defaults;
         }
-        
+
         if ( $this->_indexID ) {
             $params = array( 1 => array( $this->_indexID, 'Integer' ) );
             $sql    = "SELECT * FROM sfschool_extended_care_source WHERE id=%1";
-            
+
             $dao = CRM_Core_DAO::executeQuery( $sql, $params );
             while( $dao->fetch() ) {
                 foreach($this->_customFields as $field => $type ) {
                     if ( property_exists( $dao, $field ) ) {
                         if ( in_array($field, array('start_date', 'end_date')) ) {
-                            list( $defaults[$field], 
-                                  $defaults[$field . '_time'] ) = 
+                            list( $defaults[$field],
+                                  $defaults[$field . '_time'] ) =
                                 CRM_Utils_Date::setDateDefaults($dao->$field);
                         } else {
                             $defaults[$field] = $dao->$field;
@@ -103,20 +103,20 @@ class SFS_Form_Class extends CRM_Core_Form
             }
         }
         return $defaults;
-    } 
-    
-    public function buildQuickForm( ) 
+    }
+
+    public function buildQuickForm( )
     {
         if ( $this->_action & ( CRM_Core_Action::DISABLE | CRM_Core_Action::ENABLE ) ) {
-            
+
             $classDetail = array( );
             if ( $this->_indexID ) {
                 $params      = array( 1 => array( $this->_indexID, 'Integer' ) );
                 $classDetail = array( 'name'        => array( 'title' => ts('Class') ),
                                       'day_of_week' => array( 'title' => ts('Day Of week'), ),
                                       'session'     => array( 'title' => ts('Session'), ),
-                                      'term' 	    => array( 'title' => ts('Term'), ), ) ;               
-                
+                                      'term' 	    => array( 'title' => ts('Term'), ), ) ;
+
                 $sql = "SELECT * FROM sfschool_extended_care_source where id=%1";
                 $dao = CRM_Core_DAO::executeQuery( $sql, $params );
                 while( $dao->fetch() ) {
@@ -135,33 +135,33 @@ class SFS_Form_Class extends CRM_Core_Form
                 }
             }
             $this->assign( 'classDetail', $classDetail );
-            
+
             if ( $this->_action & CRM_Core_Action::DISABLE ) {
                 $buttonLabel = ts('Disable');
             } else {
                 $buttonLabel = ts('Enable');
             }
-            $this->addButtons(array( 
-                                    array ( 'type'      => 'submit', 
-                                            'name'      => $buttonLabel, 
-                                            'spacing'   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', 
-                                            'isDefault' => true   ), 
-                                    array ( 'type'      => 'cancel', 
-                                            'name'      => ts('Cancel') ), 
-                                     ) 
+            $this->addButtons(array(
+                                    array ( 'type'      => 'submit',
+                                            'name'      => $buttonLabel,
+                                            'spacing'   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+                                            'isDefault' => true   ),
+                                    array ( 'type'      => 'cancel',
+                                            'name'      => ts('Cancel') ),
+                                     )
                               );
             return;
         }
-        
+
         $options = array( );
-        
+
         $sql = "SELECT column_name,option_group_id FROM civicrm_custom_field WHERE column_name IN('term', 'day_of_week', 'session' , 'grade')";
-        
+
         $dao = CRM_Core_DAO::executeQuery( $sql );
         while( $dao->fetch( ) ) {
             $options[$dao->column_name] = CRM_Core_OptionGroup::valuesByID($dao->option_group_id);
         }
-        
+
         $this->add( 'select', 'term',  ts( 'Term' ), array(''=>'-select')+$options['term'] , true );
         $this->add( 'select', 'day_of_week', ts( 'Day Of Week:' ), array( '' => '-select' ) + $options['day_of_week'], true );
         $this->add( 'select', 'session', ts( 'Session:' ), array(''=>'-select') + $options['session'], true );
@@ -179,7 +179,7 @@ class SFS_Form_Class extends CRM_Core_Form
         $this->add( 'text', 'additional_rows', ts( 'Additional Rows:' ) );
         $this->addRule( 'additional_rows', ts('Please enter valid Rows'), 'positiveInteger' );
         $this->addRule( 'max_participants', ts('Please enter valid Max Participants'), 'positiveInteger' );
-        
+
         $this->addButtons( array(
                                  array ( 'type'       => 'submit',
                                          'name'       => ts('Save'),
@@ -187,8 +187,8 @@ class SFS_Form_Class extends CRM_Core_Form
                                  array ( 'type'       => 'cancel',
                                          'name'       => ts('Cancel') ),
                                  )
-                           );    
-        
+                           );
+
         if ( $this->_action & CRM_Core_Action::ADD ) {
             $this->add('checkbox', 'is_active', ts('Enabled?'));
         }
@@ -196,9 +196,9 @@ class SFS_Form_Class extends CRM_Core_Form
         $this->assign( 'elements', $this->_customFields );
 
     }
-    
-    public  function postProcess() 
-    { 
+
+    public  function postProcess()
+    {
         $mappingColumns = array( 'term', 'name', 'day_of_week', 'session' );
         $class_source   = 'class_source';
         $student_class  = 'student_class';
@@ -207,43 +207,43 @@ class SFS_Form_Class extends CRM_Core_Form
             $addQuery[]  = $class_source.".".$field."=".$student_class.".".$field;
         }
         $addQuery = implode( ' AND ', $addQuery )." AND {$class_source}.id=%1";
-        
+
         if ($this->_action & CRM_Core_Action::DISABLE ) {
-            if ( $this->_indexID )  { 
+            if ( $this->_indexID )  {
                 $queryParams = array( 1 => array( $this->_indexID, 'Integer' ) );
                 $sql = "UPDATE sfschool_extended_care_source SET is_active=0 WHERE id=%1";
                 CRM_Core_DAO::executeQuery( $sql, $queryParams );
                 CRM_Core_Session::setStatus( ts('Class has been has been Disabled.') );
-                
+
                 //update student Data
                 $curentDate = date('Y-m-d');
-                $query = "UPDATE civicrm_value_extended_care {$student_class} 
+                $query = "UPDATE civicrm_value_extended_care {$student_class}
                            INNER JOIN sfschool_extended_care_source {$class_source} ON  ( {$addQuery} )
                            SET {$student_class}.end_date='{$curentDate}' , {$student_class}.has_cancelled=1
                            ";
                 CRM_Core_DAO::executeQuery( $query, $queryParams );
-            } 
-            
+            }
+
         } elseif ( $this->_action & CRM_Core_Action::ENABLE ) {
             if ( $this->_indexID )  {
                 $queryParams = array( 1 => array( $this->_indexID, 'Integer' ) );
                 $sql         = "UPDATE sfschool_extended_care_source SET is_active=1 WHERE id=%1";
                 CRM_Core_DAO::executeQuery( $sql, $queryParams );
                 CRM_Core_Session::setStatus( ts('Class has been has been Enabled.') );
-                
+
                 //update student Data
-                $query = "UPDATE civicrm_value_extended_care {$student_class} 
+                $query = "UPDATE civicrm_value_extended_care {$student_class}
                            INNER JOIN sfschool_extended_care_source {$class_source} ON ( {$addQuery} )
                            SET {$student_class}.end_date=NULL , {$student_class}.has_cancelled=0
                            ";
                 CRM_Core_DAO::executeQuery( $query, $queryParams );
             }
-            
+
         } elseif ( $this->_action & ( CRM_Core_Action::ADD | CRM_Core_Action::UPDATE ) ) {
             $params      = $this->controller->exportValues( $this->_name );
             $clauses     = array( );
             $count       = 1;
-            
+
             foreach( $this->_customFields as $field => $type ) {
                 $value = CRM_Utils_Array::value( $field , $params );
                 if( $value ) {
@@ -251,12 +251,12 @@ class SFS_Form_Class extends CRM_Core_Form
                         if( !empty( $value ) ) {
                             $value = CRM_Utils_Date::processDate( $params[$field], $params[$field . '_time'] );
                         }
-                    } 
+                    }
                     $clauses[$field] = "{$field} = %{$count}";
                     $queryParams[$count++] = array( $value , $type);
                 }
             }
-            
+
             if( !empty( $clauses ) ) {
                 if ( $this->_action & CRM_Core_Action::ADD ) {
                     if ( !array_key_exists( 'is_active', $clauses ) ) {
@@ -272,10 +272,10 @@ class SFS_Form_Class extends CRM_Core_Form
                             } else {
                                 $clauses[$field] = "{$field} = NULL";
                             }
-                        } 
+                        }
                     }
                 }
-                
+
                 $clauses = implode( " , ", $clauses );
                 if ( $this->_action & CRM_Core_Action::ADD ) {
                     // add new class
@@ -290,7 +290,7 @@ class SFS_Form_Class extends CRM_Core_Form
                 CRM_Core_DAO::executeQuery( $sql, $queryParams );
                 CRM_Core_Session::setStatus( $statusMsg );
             }
-        } 
+        }
         CRM_Utils_System::redirect( CRM_Utils_System::url('civicrm/sfschool/extended/class', "reset=1") );
     }
-}   
+}

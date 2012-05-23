@@ -33,11 +33,11 @@
  *
  */
 
-require_once 'SFS/Form/Family.php';
+require_once 'SCH/Form/Family.php';
 require_once 'CRM/Contact/BAO/Contact.php';
 require_once 'api/v2/Relationship.php';
 
-class SFS_Form_Family_Household extends SFS_Form_Family {
+class SCH_Form_Family_Household extends SCH_Form_Family {
     const
         BLOCK_NUM = 4,
         RELATION_TABLE = 'civicrm_value_parent_relationship_data';
@@ -49,14 +49,14 @@ class SFS_Form_Family_Household extends SFS_Form_Family {
 
         require_once 'CRM/Core/BAO/CustomGroup.php';
 
-        $this->_parentRelDataId = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup', 
+        $this->_parentRelDataId = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup',
                                                                self::RELATION_TABLE, 'id', 'table_name' );
 
-        $this->_relTypeId       = CRM_Core_DAO::getFieldValue( 'CRM_Contact_DAO_RelationshipType', 
+        $this->_relTypeId       = CRM_Core_DAO::getFieldValue( 'CRM_Contact_DAO_RelationshipType',
                                                                'Child of', 'id', 'name_a_b'     );
     }
 
-    function setDefaultValues( ) 
+    function setDefaultValues( )
     {
         $defaults = array( );
 
@@ -74,11 +74,11 @@ class SFS_Form_Family_Household extends SFS_Form_Family {
                     continue;
                 }
 
-                
+
                 $params['id'] = $params['contact_id'] = $relationship['cid'];
                 $params['noRelationships'] = $params['noNotes'] = $params['noGroups'] = true;
                 CRM_Contact_BAO_Contact::retrieve( $params, $data );
-                
+
                 foreach ( $data as $dataKey => $dataVal ) {
                     if ( ! in_array($dataKey, $dataFields) ) {
                         unset($data[$dataKey]);
@@ -137,7 +137,7 @@ class SFS_Form_Family_Household extends SFS_Form_Family {
 
                 $defaults["contact"][$parentIndex] = $data;
                 $defaults["address"][$parentIndex] = $data['address'][1];
-                
+
                 $blockId++;
             }
         }
@@ -151,10 +151,10 @@ class SFS_Form_Family_Household extends SFS_Form_Family {
 
             if ( empty( $defaults["contact"][$blockId]['phone'][1] ) ) {
                 $defaults["contact"][$blockId]['phone'][1] = $defaults["contact"][$blockId + 1]['phone'][1];
-                unset($defaults["contact"][$blockId]['phone'][1]['id'], 
+                unset($defaults["contact"][$blockId]['phone'][1]['id'],
                       $defaults["contact"][$blockId]['phone'][1]['contact_id']);
             }
-            
+
             // if still empty, add some address defaults
             if ( empty( $defaults["address"][$blockId] ) ) {
                 $defaults["address[$blockId][city]"]              = 'San Francisco';
@@ -177,19 +177,19 @@ class SFS_Form_Family_Household extends SFS_Form_Family {
             $this->addElement('text', "contact[$blockId][last_name]" ,   ts('Last Name'), $attributes['last_name' ] );
 
             // email
-            $this->addElement('text', "contact[$blockId][email][1][email]", 
+            $this->addElement('text', "contact[$blockId][email][1][email]",
                               ts('Email'), CRM_Core_DAO::getAttribute('CRM_Core_DAO_Email', 'email'));
-           
+
             $this->addRule( "contact[$blockId][email][1][email]", ts('Email is not valid.'), 'email' );
 
             // phone
-            $this->addElement('text', "contact[$blockId][phone][1][phone]", 
+            $this->addElement('text', "contact[$blockId][phone][1][phone]",
                               ts('Home Phone'), CRM_Core_DAO::getAttribute('CRM_Core_DAO_Phone', 'phone'));
 
-            $this->addElement('text', "contact[$blockId][phone][2][phone]", 
+            $this->addElement('text', "contact[$blockId][phone][2][phone]",
                               ts('Work Phone'), CRM_Core_DAO::getAttribute('CRM_Core_DAO_Phone', 'phone'));
-            
-            $this->addElement('text', "contact[$blockId][phone][3][phone]", 
+
+            $this->addElement('text', "contact[$blockId][phone][3][phone]",
                               ts('Cell Phone'), CRM_Core_DAO::getAttribute('CRM_Core_DAO_Phone', 'phone'));
 
             // address
@@ -200,12 +200,12 @@ class SFS_Form_Family_Household extends SFS_Form_Family {
         parent::buildQuickForm( );
     }
 
-    function postProcess() 
+    function postProcess()
     {
         $params = $this->controller->exportValues( $this->_name );
 
         require_once 'CRM/Dedupe/Finder.php';
-        require_once 'SFS/Utils/Query.php';
+        require_once 'SCH/Utils/Query.php';
 
         $locationTypeIds = array_flip(CRM_Core_PseudoConstant::locationType());
         $phoneTypeIds    = array_flip(CRM_Core_PseudoConstant::phoneType());
@@ -221,18 +221,18 @@ class SFS_Form_Family_Household extends SFS_Form_Family {
                                                                'relationship_type_id' => $this->_relTypeId );
                 if ( $dupeId = $this->findDupe( $dedupeParams ) ) {
                     $params['contact'][$blockId]['contact_id'] = $dupeId;
-                } 
+                }
 
                 if ( isset($this->_parentIds[$blockId]) && !in_array($dupeId, $this->_parentIds) ) {
                     // drop old relationship
                     $dropContactId = $this->_parentIds[$blockId];
-                } 
+                }
 
                 if ( $dropContactId == $this->_parentId ) {
-                    CRM_Core_Error::fatal( ts( "Current parent can't be changed to some other parent." ) );   
+                    CRM_Core_Error::fatal( ts( "Current parent can't be changed to some other parent." ) );
                 }
-                
-                $fromBlockId = ( $blockId % 2 == 0 ) ? ( $blockId - 1 ) : $blockId; 
+
+                $fromBlockId = ( $blockId % 2 == 0 ) ? ( $blockId - 1 ) : $blockId;
 
                 if ( isset( $params['address'][$blockId] ) ) {
                     $params['contact'][$blockId]['address'][1] = $params['address'][$blockId];
@@ -260,10 +260,10 @@ class SFS_Form_Family_Household extends SFS_Form_Family {
                 $householdId = CRM_Contact_BAO_Contact::createProfileContact( $params['contact'][$blockId],
                                                                               CRM_Core_DAO::$_nullArray );
 
-                $subType = SFS_Utils_Query::getSubType($householdId);
+                $subType = SCH_Utils_Query::getSubType($householdId);
                 if ( $subType != 'Parent' &&
                      $subType != 'Staff' ) {
-                    $createParent = 
+                    $createParent =
                         "INSERT INTO " .
                         self::SCHOOL_INFO_TABLE .
                         " SET entity_id = %1, subtype = 'Parent', extended_care_status_2011 = 'Regular', extended_care_status_2010 = 'Regular'";
@@ -272,8 +272,8 @@ class SFS_Form_Family_Household extends SFS_Form_Family {
                 }
 
                 // create relationship if doesn't already exist
-                $relationships = civicrm_get_relationships( array( 'contact_id' => $this->_studentId ), 
-                                                            array( 'contact_id' => $householdId ), 
+                $relationships = civicrm_get_relationships( array( 'contact_id' => $this->_studentId ),
+                                                            array( 'contact_id' => $householdId ),
                                                             array('Child of') );
 
                 $relationshipId = null;
@@ -282,17 +282,17 @@ class SFS_Form_Family_Household extends SFS_Form_Family {
                                         'contact_id_b'         => $householdId,
                                         'relationship_type_id' => $this->_relTypeId,
                                         'start_date'           => date('Ymd'),
-                                        'is_permission_b_a'    => 1, 
+                                        'is_permission_b_a'    => 1,
                                         'is_active'            => 1,
                                         );
                     $relationship = civicrm_relationship_create( $relParams );
-                    
+
                     $relationshipId = $relationship['result']['id'];
-                    
+
                 } else {
                     foreach ( $relationships['result'] as $relId => $dontCare ) {
                         if ( isset($this->_indexMapper[$relId] ) ) {
-                            $relationshipId = $relId; 
+                            $relationshipId = $relId;
                         }
                     }
                 }

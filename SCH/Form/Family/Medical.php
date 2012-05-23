@@ -33,30 +33,30 @@
  *
  */
 
-require_once 'SFS/Form/Family.php';
+require_once 'SCH/Form/Family.php';
 require_once 'CRM/Core/BAO/CustomField.php';
 require_once 'api/v2/Relationship.php';
 
-class SFS_Form_Family_Medical extends SFS_Form_Family {
+class SCH_Form_Family_Medical extends SCH_Form_Family {
 
-    protected $_infoElementMapper  = array( 'Allergies' => array( 'Nuts'    => 'nuts_specifics', 
-                                                                  'Dairy'   => 'dairy_products_specifics' , 
-                                                                  'Insects' => 'insects_specifics' , 
-                                                                  'Animals' => 'animals_specifics', 
-                                                                  'Medicine'=> 'medicine_specifics', 
-                                                                  'Other'   => 'other_specifics'), 
-                                            'Medical'   => array( 'Asthma'  => 'asthma_specifics', 
+    protected $_infoElementMapper  = array( 'Allergies' => array( 'Nuts'    => 'nuts_specifics',
+                                                                  'Dairy'   => 'dairy_products_specifics' ,
+                                                                  'Insects' => 'insects_specifics' ,
+                                                                  'Animals' => 'animals_specifics',
+                                                                  'Medicine'=> 'medicine_specifics',
+                                                                  'Other'   => 'other_specifics'),
+                                            'Medical'   => array( 'Asthma'  => 'asthma_specifics',
                                                                   'Other'   => 'other') );
-    
+
     function preProcess( ) {
         parent::preProcess();
 
         require_once 'CRM/Core/BAO/CustomGroup.php';
 
-        $this->_medDetailId = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup', 
-                                                           SFS_Form_Family::MEDICAL_DETAILS_TABLE, 'id', 'table_name' );
-        $this->_medInfoId   = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup', 
-                                                           SFS_Form_Family::MEDICAL_INFO_TABLE, 'id', 'table_name' );
+        $this->_medDetailId = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup',
+                                                           SCH_Form_Family::MEDICAL_DETAILS_TABLE, 'id', 'table_name' );
+        $this->_medInfoId   = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup',
+                                                           SCH_Form_Family::MEDICAL_INFO_TABLE, 'id', 'table_name' );
         $detailGroupTree    = CRM_Core_BAO_CustomGroup::getTree( 'Contact',
                                                                  $this,
                                                                  $this->_studentId,
@@ -69,12 +69,12 @@ class SFS_Form_Family_Medical extends SFS_Form_Family {
         }
 
         // relationship / counselor part
-        $this->_relDataId = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup', 
-                                                         SFS_Form_Family::RELATION_TABLE, 'id', 'table_name' );
-        $this->_relTypeId = CRM_Core_DAO::getFieldValue( 'CRM_Contact_DAO_RelationshipType', 
+        $this->_relDataId = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup',
+                                                         SCH_Form_Family::RELATION_TABLE, 'id', 'table_name' );
+        $this->_relTypeId = CRM_Core_DAO::getFieldValue( 'CRM_Contact_DAO_RelationshipType',
                                                          'Child Of', 'id', 'name_a_b' );
-        $relationships = civicrm_get_relationships( array( 'contact_id' => $this->_studentId ), 
-                                                    array( 'contact_id' => $this->_parentId ), 
+        $relationships = civicrm_get_relationships( array( 'contact_id' => $this->_studentId ),
+                                                    array( 'contact_id' => $this->_parentId ),
                                                     array('Child of') );
         if ( !$relationships['is_error'] && is_array($relationships['result']) ) {
             foreach ( $relationships['result'] as $rid => $rFields ) {
@@ -84,7 +84,7 @@ class SFS_Form_Family_Medical extends SFS_Form_Family {
         } else {
             CRM_Core_Error::fatal();
         }
-        
+
         $relGroupTree = CRM_Core_BAO_CustomGroup::getTree( 'Relationship',
                                                            $this,
                                                            $this->_relId,
@@ -97,18 +97,18 @@ class SFS_Form_Family_Medical extends SFS_Form_Family {
             }
         }
     }
-    
-    function setDefaultValues( ) 
+
+    function setDefaultValues( )
     {
         $defaults = array( );
 
         // 1. set defaults for medical details
         $isAllergy = $isCondition = null;
-        $query = "SELECT * FROM ". SFS_Form_Family::MEDICAL_DETAILS_TABLE . " WHERE entity_id = %1"; 
+        $query = "SELECT * FROM ". SCH_Form_Family::MEDICAL_DETAILS_TABLE . " WHERE entity_id = %1";
         $contactParams = array( 1 => array( $this->_studentId, 'Integer' ) );
         $dao = CRM_Core_DAO::executeQuery( $query, $contactParams );
         while( $dao->fetch( ) ) {
-            if ( isset($this->_infoElementMapper[$dao->medical_type]) && 
+            if ( isset($this->_infoElementMapper[$dao->medical_type]) &&
                  isset($this->_infoElementMapper[$dao->medical_type][$dao->name]) ) {
                 $isAllergy   = $dao->medical_type == 'Allergies' ? 1 : $isAllergy;
                 $isCondition = $dao->medical_type == 'Medical' ? 1 : $isCondition;
@@ -122,7 +122,7 @@ class SFS_Form_Family_Medical extends SFS_Form_Family {
             $defaults[$colName] = $infoCustomDefaults[$eleName];
         }
         if ( empty( $infoCustomDefaults ) ) {
-            $relationships = civicrm_get_relationships( array( 'contact_id' => $this->_studentId ), 
+            $relationships = civicrm_get_relationships( array( 'contact_id' => $this->_studentId ),
                                                         null, array( 'Sibling of' ) );
             if ( ! $relationships['is_error'] ) {
                 foreach ( $relationships['result'] as $relVal ) {
@@ -165,7 +165,7 @@ class SFS_Form_Family_Medical extends SFS_Form_Family {
         foreach ( $this->_infoGroupTree as $gId => $groupTree ) {
             foreach ( $groupTree['fields'] as $fId => $fieldTree ) {
                 if ( ! in_array($fieldTree['column_name'], array('child_insured', 'medical_authorization')) ) {
-                    CRM_Core_BAO_CustomField::addQuickFormElement($this, $fieldTree['column_name'], 
+                    CRM_Core_BAO_CustomField::addQuickFormElement($this, $fieldTree['column_name'],
                                                                   $fieldTree['id'], false, $fieldTree['is_required']);
                 }
                 $this->_infoMapper[$fieldTree['column_name']] = $fieldTree['element_name'];
@@ -195,7 +195,7 @@ class SFS_Form_Family_Medical extends SFS_Form_Family {
         $buttons   = array();
         $buttons[] = array ( 'type'      => 'next',
                              'name'      => ts('Save and Next'),
-                             'spacing'   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', 
+                             'spacing'   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
                              'js'        => array( 'onclick' => 'return confirmClicks();') );
 
         $buttons[] = array ( 'type'      => 'cancel',
@@ -203,7 +203,7 @@ class SFS_Form_Family_Medical extends SFS_Form_Family {
 
         $this->addButtons( $buttons );
 
-        $this->addFormRule( array( 'SFS_Form_Family_Medical', 'formRule' ) );
+        $this->addFormRule( array( 'SCH_Form_Family_Medical', 'formRule' ) );
     }
 
     static function formRule( $params, $files ) {
@@ -223,7 +223,7 @@ class SFS_Form_Family_Medical extends SFS_Form_Family {
         return empty( $errors ) ? true : $errors;
     }
 
-    function postProcess() 
+    function postProcess()
     {
         $params = $this->controller->exportValues( $this->_name );
         require_once 'CRM/Core/BAO/CustomValueTable.php';
@@ -247,9 +247,9 @@ class SFS_Form_Family_Medical extends SFS_Form_Family {
                 }
             }
         }
-           
+
         // always delete previous entries and add new ones
-        $query = "DELETE FROM " . SFS_Form_Family::MEDICAL_DETAILS_TABLE . " WHERE entity_id = %1";
+        $query = "DELETE FROM " . SCH_Form_Family::MEDICAL_DETAILS_TABLE . " WHERE entity_id = %1";
         $contactParams = array( 1 => array( $this->_studentId, 'Integer') );
         CRM_Core_DAO::executeQuery( $query, $contactParams );
 
@@ -266,7 +266,7 @@ class SFS_Form_Family_Medical extends SFS_Form_Family {
                 $customParams[$eleName] = $params[$colName];
             }
         }
-        $customFields = 
+        $customFields =
             CRM_Core_BAO_CustomField::getFields( 'Individual' );
         CRM_Core_BAO_CustomValueTable::postProcess( $customParams,
                                                     $customFields,
@@ -275,8 +275,8 @@ class SFS_Form_Family_Medical extends SFS_Form_Family {
                                                     'Individual' );
 
         // 3. _____relationship data______
-        $customParams = array( $this->_relationMapper['counselor_authorization'] 
-                               => CRM_Utils_Array::value( 'counselor_authorization', 
+        $customParams = array( $this->_relationMapper['counselor_authorization']
+                               => CRM_Utils_Array::value( 'counselor_authorization',
                                                           $params, "null" ) );
         $customFields = CRM_Core_BAO_CustomField::getFields( 'Relationship', false, true, $this->_relTypeId );
         CRM_Core_BAO_CustomValueTable::postProcess( $customParams,

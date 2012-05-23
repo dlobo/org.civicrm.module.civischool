@@ -33,7 +33,7 @@
  *
  */
 
-class SFS_Utils_ExtendedCareFees {
+class SCH_Utils_ExtendedCareFees {
 
     static function &feeDetails( $startDate,
                                  $endDate,

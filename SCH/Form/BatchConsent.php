@@ -35,7 +35,7 @@
 
 require_once 'CRM/Core/Form.php';
 
-class SFS_Form_BatchConsent extends CRM_Core_Form {
+class SCH_Form_BatchConsent extends CRM_Core_Form {
 
     protected $_date;
 
@@ -76,12 +76,12 @@ AND        c.last_name LIKE '{$this->_character}%'
 AND        s.is_currently_enrolled = 1
 ORDER BY   c.last_name, s.grade_sis desc, c.id, p.id
 ";
-        
+
         $dao = CRM_Core_DAO::executeQuery( $query );
 
         require_once 'CRM/Utils/Date.php';
         list( $dateDefault, $ignore ) = CRM_Utils_Date::setDateDefaults( '2010-05-01' );
-        
+
         $defaults   = array( );
         $dateString = 'Date';
         $this->_nameValues = array( );
@@ -94,7 +94,7 @@ ORDER BY   c.last_name, s.grade_sis desc, c.id, p.id
                                                    'studentID'   => $dao->student_id,
                                                    'currentDate' => '&nbsp;');
             if ( $dao->econsent_signed ) {
-                $this->_nameValues[$dateName]['currentDate'] = 
+                $this->_nameValues[$dateName]['currentDate'] =
                     CRM_Utils_Date::customFormat( substr( $dao->econsent_signed_date, 0, 10 ) );
             }
         }
@@ -102,21 +102,21 @@ ORDER BY   c.last_name, s.grade_sis desc, c.id, p.id
         $this->setDefaults( $defaults );
         $this->assign( 'nameValues', $this->_nameValues );
 
-        $this->addButtons(array( 
-                                array ( 'type'      => 'refresh', 
+        $this->addButtons(array(
+                                array ( 'type'      => 'refresh',
                                         'name'      => ts( 'Process' ),
-                                        'spacing'   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', 
-                                        'isDefault' => true   ), 
-                                array ( 'type'      => 'cancel', 
-                                        'name'      => ts('Cancel') ), 
+                                        'spacing'   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+                                        'isDefault' => true   ),
+                                array ( 'type'      => 'cancel',
+                                        'name'      => ts('Cancel') ),
                                  )
                           );
-        
-        $this->addFormRule( array( 'SFS_Form_BatchConsent', 'formRule' ), $this );
+
+        $this->addFormRule( array( 'SCH_Form_BatchConsent', 'formRule' ), $this );
     }
 
-    static function formRule( $fields, $files, $form ) 
-    {  
+    static function formRule( $fields, $files, $form )
+    {
         $errors = array( );
         return $errors;
     }

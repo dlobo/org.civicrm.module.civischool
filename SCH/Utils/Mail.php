@@ -33,11 +33,11 @@
  *
  */
 
-class SFS_Utils_Mail {
+class SCH_Utils_Mail {
 
     const
-        SFS_FROM_EMAIL = "SFS Parent Portal <info.portal@sfschool.org>",
-        SFS_BCC_EMAIL  = "SFS Parent Archival <archive.portal@sfschool.org>";
+        SCH_FROM_EMAIL = "SCH Parent Portal <info.portal@sfschool.org>",
+        SCH_BCC_EMAIL  = "SCH Parent Archival <archive.portal@sfschool.org>";
 
     static function sendMailToParents( $childID,
                                        $subjectTPL,
@@ -47,15 +47,15 @@ class SFS_Utils_Mail {
                                        $onlyEnrolled = true ) {
 
         // make sure that the child is currently enrolled
-        require_once 'SFS/Utils/Query.php';
+        require_once 'SCH/Utils/Query.php';
         if ( $onlyEnrolled &&
-             ! SFS_Utils_Query::isCurrentlyEnrolled( $childID ) ) {
+             ! SCH_Utils_Query::isCurrentlyEnrolled( $childID ) ) {
             return;
         }
 
-        require_once 'SFS/Utils/Relationship.php';
+        require_once 'SCH/Utils/Relationship.php';
         $parentInfo = array( );
-        SFS_Utils_Relationship::getParents( $childID, $parentInfo, false );
+        SCH_Utils_Relationship::getParents( $childID, $parentInfo, false );
 
         // make sure we unset the older parents
         for ( $count = 1 ; $count < 5; $count++ ) {
@@ -92,9 +92,9 @@ class SFS_Utils_Mail {
             return;
         }
 
-        require_once 'SFS/Utils/Query.php';
+        require_once 'SCH/Utils/Query.php';
         list( $templateVars['childName'],
-              $templateVars['childEmail'] ) = SFS_Utils_Query::getNameAndEmail( $childID );
+              $templateVars['childEmail'] ) = SCH_Utils_Query::getNameAndEmail( $childID );
 
         $template = CRM_Core_Smarty::singleton( );
         $template->assign( $templateVars );
@@ -102,13 +102,13 @@ class SFS_Utils_Mail {
         require_once 'CRM/Utils/Mail.php';
         require_once 'CRM/Utils/String.php';
 
-        $params = array( 'from'    => self::SFS_FROM_EMAIL,
+        $params = array( 'from'    => self::SCH_FROM_EMAIL,
                          'toName'  => $toDisplayName,
                          'toEmail' => $toEmail,
                          'subject' => $template->fetch( $subjectTPL ),
                          'text'    => $template->fetch( $messageTPL ),
                          'cc'      => $cc,
-                         'bcc'     => self::SFS_BCC_EMAIL );
+                         'bcc'     => self::SCH_BCC_EMAIL );
         CRM_Utils_Mail::send( $params );
     }
 

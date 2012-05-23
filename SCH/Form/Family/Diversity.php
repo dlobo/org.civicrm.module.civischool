@@ -33,23 +33,23 @@
  *
  */
 
-require_once 'SFS/Form/Family.php';
+require_once 'SCH/Form/Family.php';
 require_once 'CRM/Core/BAO/CustomField.php';
 
-class SFS_Form_Family_Diversity extends SFS_Form_Family {
-    
+class SCH_Form_Family_Diversity extends SCH_Form_Family {
+
     protected $_raceEthnicityMap;
-    
+
     function preProcess( ) {
         parent::preProcess();
         $this->_raceEthnicityMap = array( );
     }
 
-    function setDefaultValues( ) 
+    function setDefaultValues( )
     {
         require_once 'CRM/Core/BAO/CustomGroup.php';
         $defaults = $defaultsCustom = array( );
-        $groupID  = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup', SFS_Form_Family::RACE_ETHNICITY_TABLE, 'id', 'table_name' );
+        $groupID  = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup', SCH_Form_Family::RACE_ETHNICITY_TABLE, 'id', 'table_name' );
 
         $groupTree = CRM_Core_BAO_CustomGroup::getTree( 'Individual',
                                                         $this,
@@ -58,7 +58,7 @@ class SFS_Form_Family_Diversity extends SFS_Form_Family {
                                                         );
         $groupTree = CRM_Core_BAO_CustomGroup::formatGroupTree( $groupTree, 1, $this );
         CRM_Core_BAO_CustomGroup::setDefaults( $groupTree, $defaultsCustom );
-        
+
         if ( !empty($defaultsCustom ) ) {
             $mappedFields = array_flip($this->_raceEthnicityMap);
             foreach( $defaultsCustom as $field => $value )  {
@@ -76,17 +76,17 @@ class SFS_Form_Family_Diversity extends SFS_Form_Family {
 
     function formRule( $params, $files ) {
         $errors   = array( );
-        $sections = array( ''                  => t('Race'), 
+        $sections = array( ''                  => t('Race'),
                            '_hispanic'         => ts('Hispanic American/Latino') ,
                            '_asian'            => ts('Asian American') );
 
         foreach( $sections as $section => $sectionTitle ) {
-            if ( CRM_Utils_Array::value( 'other', $params["race{$section}"] ) && 
+            if ( CRM_Utils_Array::value( 'other', $params["race{$section}"] ) &&
                  ! CRM_Utils_Array::value( "race{$section}_other", $params ) ) {
                 $errors["race{$section}_other"] = ts('Other %1 is require Field.',array( 1 => $sectionTitle));
             }
         }
-        
+
         return $errors;
     }
 
@@ -97,7 +97,7 @@ class SFS_Form_Family_Diversity extends SFS_Form_Family {
 SELECT     f.id, f. label, f.column_name, f.data_type
 FROM       civicrm_custom_field f
 INNER JOIN civicrm_custom_group g ON f.custom_group_id = g.id
-WHERE      g.table_name = '". SFS_Form_Family::RACE_ETHNICITY_TABLE ."'
+WHERE      g.table_name = '". SCH_Form_Family::RACE_ETHNICITY_TABLE ."'
 AND        f.column_name like 'race%'
 ";
         $dao = CRM_Core_DAO::executeQuery( $sql );
@@ -105,7 +105,7 @@ AND        f.column_name like 'race%'
         $fieldNames = array( );
         while ( $dao->fetch( ) ) {
             $fieldNames[] = $dao->column_name;
-           
+
             CRM_Core_BAO_CustomField::addQuickFormElement( $this,
                                                            $dao->column_name,
                                                            $dao->id,
@@ -119,14 +119,14 @@ AND        f.column_name like 'race%'
 
         parent::buildQuickForm( );
 
-        $this->addFormRule( array( 'SFS_Form_Family_Diversity', 'formRule' ) ); 
+        $this->addFormRule( array( 'SCH_Form_Family_Diversity', 'formRule' ) );
     }
 
-    function postProcess( ) 
+    function postProcess( )
     {
         $params = $this->controller->exportValues( $this->_name );
         require_once 'CRM/Core/BAO/CustomValueTable.php';
-        
+
         $customData = array( );
         foreach ( $this->_raceEthnicityMap as $column_name => $field ) {
             if ( array_key_exists($column_name, $params) ) {
@@ -134,7 +134,7 @@ AND        f.column_name like 'race%'
             }
         }
 
-        $customFields = 
+        $customFields =
             CRM_Core_BAO_CustomField::getFields( 'Individual', false, true, $this->_studentId );
 
         CRM_Core_BAO_CustomValueTable::postProcess( $customData,

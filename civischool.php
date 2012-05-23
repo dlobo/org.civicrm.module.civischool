@@ -5,24 +5,24 @@ define( 'CIVICRM_PROFILE_STUDENT_ID', 4    );
 define( 'CIVICRM_CUSTOM_STUDENT_ID' , 2    );
 define( 'CIVICRM_SCHOOL_YEAR'       , 2011 );
 
-function sfschool_civicrm_config( &$config ) {
+function civischool_civicrm_config( &$config ) {
     $template =& CRM_Core_Smarty::singleton( );
 
-    $sfschoolRoot = 
+    $schoolRoot =
         dirname( __FILE__ ) . DIRECTORY_SEPARATOR .
         '..'                . DIRECTORY_SEPARATOR .
         '..'                . DIRECTORY_SEPARATOR;
 
-    $sfschoolDir = $sfschoolRoot . 'templates';
+    $schoolDir = $schoolRoot . 'templates';
 
     if ( is_array( $template->template_dir ) ) {
-        array_unshift( $template->template_dir, $sfschoolDir );
+        array_unshift( $template->template_dir, $schoolDir );
     } else {
-        $template->template_dir = array( $sfschoolDir, $template->template_dir );
+        $template->template_dir = array( $schoolDir, $template->template_dir );
     }
 
     // also fix php include path
-    $include_path = $sfschoolRoot . PATH_SEPARATOR . get_include_path( );
+    $include_path = $schoolRoot . PATH_SEPARATOR . get_include_path( );
     set_include_path( $include_path );
 
     // assign the profile ids
@@ -33,15 +33,15 @@ function sfschool_civicrm_config( &$config ) {
     date_default_timezone_set('America/Los_Angeles');
 }
 
-function sfschool_civicrm_pageRun( &$page ) {
+function civischool_civicrm_pageRun( &$page ) {
     $name = $page->getVar( '_name' );
     if ( $name == 'CRM_Profile_Page_Dynamic' ) {
         $gid = $page->getVar( '_gid' );
         switch ( $gid ) {
         case CIVICRM_PROFILE_PARENT_ID:
-            return _sfschool_civicrm_pageRun_Profile_Page_Dynamic_3( $page, $gid );
+            return _civischool_civicrm_pageRun_Profile_Page_Dynamic_3( $page, $gid );
         case CIVICRM_PROFILE_STUDENT_ID:
-            return _sfschool_civicrm_pageRun_Profile_Page_Dynamic_4( $page, $gid );
+            return _civischool_civicrm_pageRun_Profile_Page_Dynamic_4( $page, $gid );
         }
     } else if ( $name == 'CRM_Contact_Page_View_CustomData' ) {
         if ( $page->getVar( '_groupId' ) != CIVICRM_CUSTOM_STUDENT_ID ) {
@@ -51,9 +51,9 @@ function sfschool_civicrm_pageRun( &$page ) {
         // get the details from smarty
         $smarty  =& CRM_Core_Smarty::singleton( );
         $details =& $smarty->get_template_vars( 'viewCustomData' );
-        
-        require_once 'SFS/Utils/ExtendedCare.php';
-         SFS_Utils_ExtendedCare::sortDetails( $details );
+
+        require_once 'SCH/Utils/ExtendedCare.php';
+         SCH_Utils_ExtendedCare::sortDetails( $details );
 
          // CRM_Core_Error::debug( 'POST', $details );
         $smarty->assign_by_ref( 'viewCustomData', $details );
@@ -61,78 +61,78 @@ function sfschool_civicrm_pageRun( &$page ) {
 
 }
 
-function _sfschool_civicrm_pageRun_Profile_Page_Dynamic_3( &$page, $gid ) {
+function _civischool_civicrm_pageRun_Profile_Page_Dynamic_3( &$page, $gid ) {
     $parentID = $page->getVar( '_id' );
     $values = array( );
 
-    require_once 'SFS/Utils/Query.php';
-    SFS_Utils_Query::checkSubType( $parentID, array( 'Parent', 'Staff' ) );
+    require_once 'SCH/Utils/Query.php';
+    SCH_Utils_Query::checkSubType( $parentID, array( 'Parent', 'Staff' ) );
 
-    require_once 'SFS/Utils/Relationship.php';
-    SFS_Utils_Relationship::getChildren( $parentID,
+    require_once 'SCH/Utils/Relationship.php';
+    SCH_Utils_Relationship::getChildren( $parentID,
                                          $values,
                                          true );
     $childrenIDs = array_keys( $values );
 
-    require_once 'SFS/Utils/Conference.php';
-    SFS_Utils_Conference::getValues( $childrenIDs, $values, false, $parentID );
+    require_once 'SCH/Utils/Conference.php';
+    SCH_Utils_Conference::getValues( $childrenIDs, $values, false, $parentID );
 
-    require_once 'SFS/Utils/ReportCard.php';
-    SFS_Utils_ReportCard::getValues( $childrenIDs, $values );
+    require_once 'SCH/Utils/ReportCard.php';
+    SCH_Utils_ReportCard::getValues( $childrenIDs, $values );
 
-    require_once 'SFS/Utils/ExtendedCare.php';
-    SFS_Utils_ExtendedCare::getValues( $childrenIDs, $values, $parentID );
+    require_once 'SCH/Utils/ExtendedCare.php';
+    SCH_Utils_ExtendedCare::getValues( $childrenIDs, $values, $parentID );
 
     foreach ( $childrenIDs as $childID ) {
-        $values[$childID]['familyURL'] = 
-            CRM_Utils_System::url( "civicrm/sfschool/family/household",
+        $values[$childID]['familyURL'] =
+            CRM_Utils_System::url( "civicrm/school/family/household",
                                    "reset=1&cid={$childID}&pid={$parentID}" );
     }
 
     $page->assign( 'childrenInfo', $values );
 
-    $subType = SFS_Utils_Query::getSubType( $parentID );
+    $subType = SCH_Utils_Query::getSubType( $parentID );
     if ( $subType == 'Staff' ) {
         $ptcValues = array( );
-        SFS_Utils_Conference::getPTCValuesOccupied( $parentID, $ptcValues );
+        SCH_Utils_Conference::getPTCValuesOccupied( $parentID, $ptcValues );
 
         $page->assign( 'ptcValues', $ptcValues );
     }
 
 }
 
-function _sfschool_civicrm_pageRun_Profile_Page_Dynamic_4( &$page, $gid ) {
+function _civischool_civicrm_pageRun_Profile_Page_Dynamic_4( &$page, $gid ) {
     $childID = $page->getVar( '_id' );
 
     $term =  CRM_Utils_Request::retrieve( 'term', 'String',
                                           $page, false, null );
-        
-    require_once 'SFS/Utils/Query.php';
-    SFS_Utils_Query::checkSubType( $childID, 'Student' );
+
+    require_once 'SCH/Utils/Query.php';
+    SCH_Utils_Query::checkSubType( $childID, 'Student' );
 
     $values = array( );
     $values[$childID] =
         array('name'    => CRM_Core_DAO::getFieldValue( 'CRM_Contact_DAO_Contact',
                                                         $childID,
                                                         'display_name' ),
-              'grade'   => SFS_Utils_Query::getGrade( $childID ),
+              'grade'   => SCH_Utils_Query::getGrade( $childID ),
               'parents' => array( ) );
 
-    require_once 'SFS/Utils/Relationship.php';
-    SFS_Utils_Relationship::getParents( $childID,
+    require_once 'SCH/Utils/Relationship.php';
+    SCH_Utils_Relationship::getParents( $childID,
                                         $values[$childID]['parents'],
                                         false );
 
     require_once 'CRM/Core/Permission.php';
-    
-    require_once 'SFS/Utils/ReportCard.php';
-    SFS_Utils_ReportCard::getValues( $childID, $values );
 
-    require_once 'SFS/Utils/Conference.php';
-    SFS_Utils_Conference::getValues( $childID, $values );
+    require_once 'SCH/Utils/ReportCard.php';
+    SCH_Utils_ReportCard::getValues( $childID, $values );
 
-    require_once 'SFS/Utils/ExtendedCare.php';
-    SFS_Utils_ExtendedCare::getValues( $childID, $values, null, $term );
+    require_once 'SCH/Utils/Conference.php';
+    SCH_Utils_Conference::getValues( $childID, $values );
+
+    require_once 'SCH/Utils/ExtendedCare.php';
+    SCH_Utils_ExtendedCare::getValues( $childID, $values, null, $term );
 
     // use the first parent by default (since we are admin)
     $parentIDs = array_keys( $values[$childID]['parents'] );
@@ -140,24 +140,24 @@ function _sfschool_civicrm_pageRun_Profile_Page_Dynamic_4( &$page, $gid ) {
         CRM_Core_Error::fatal( );
     }
 
-    // require_once 'SFS/Utils/ReportCard.php';
-    // SFS_Utils_ReportCard::getValues( $childID, $values, CIVICRM_SCHOOL_YEAR );
+    // require_once 'SCH/Utils/ReportCard.php';
+    // SCH_Utils_ReportCard::getValues( $childID, $values, CIVICRM_SCHOOL_YEAR );
 
-    $values[$childID]['familyURL'] = 
-        CRM_Utils_System::url( "civicrm/sfschool/family/household",
+    $values[$childID]['familyURL'] =
+        CRM_Utils_System::url( "civicrm/school/family/household",
                                "reset=1&cid={$childID}&pid={$parentIDs[0]}" );
 
     $page->assign( 'childInfo', $values[$childID] );
 }
 
-function sfschool_civicrm_buildForm( $formName, &$form ) {
+function civischool_civicrm_buildForm( $formName, &$form ) {
     if ( $formName == 'CRM_Profile_Form_Edit' ) {
         $gid = $form->getVar( '_gid' );
         switch ( $gid ) {
         case 3:
-            return _sfschool_civicrm_buildForm_CRM_Profile_Form_Edit_3( $formName, $form, $gid );
+            return _civischool_civicrm_buildForm_CRM_Profile_Form_Edit_3( $formName, $form, $gid );
         case 4:
-            return _sfschool_civicrm_buildForm_CRM_Profile_Form_Edit_4( $formName, $form, $gid );
+            return _civischool_civicrm_buildForm_CRM_Profile_Form_Edit_4( $formName, $form, $gid );
         }
     } else if ( $formName == 'CRM_Contact_Form_Merge' &&
                 empty( $_POST ) ) {
@@ -184,41 +184,41 @@ WHERE  contact_id = %1
     }
 }
 
-function sfschool_civicrm_validate( $formName, &$fields, &$files, &$form ) {
+function civischool_civicrm_validate( $formName, &$fields, &$files, &$form ) {
     if ( $formName == 'CRM_Profile_Form_Edit' ) {
         $gid = $form->getVar( '_gid' );
         if ( $gid = 3 ) {
-            require_once 'SFS/Utils/Conference.php';
-            return SFS_Utils_Conference::validatePTCForm( $form, $fields );
+            require_once 'SCH/Utils/Conference.php';
+            return SCH_Utils_Conference::validatePTCForm( $form, $fields );
         }
     }
     return null;
 }
-	
-function sfschool_civicrm_postProcess( $class, &$form ) {
+
+function civischool_civicrm_postProcess( $class, &$form ) {
     if ( is_a( $form, 'CRM_Profile_Form_Edit' ) ) {
         $gid = $form->getVar( '_gid' );
         switch ( $gid ) {
         case 3:
-            return sfschool_civicrm_postProcess_CRM_Profile_Form_Edit_3( $class, $form, $gid );
+            return civischool_civicrm_postProcess_CRM_Profile_Form_Edit_3( $class, $form, $gid );
         case 4:
-            return sfschool_civicrm_postProcess_CRM_Profile_Form_Edit_4( $class, $form, $gid );
+            return civischool_civicrm_postProcess_CRM_Profile_Form_Edit_4( $class, $form, $gid );
         }
     }
 }
 
-function _sfschool_civicrm_buildForm_CRM_Profile_Form_Edit_3( $formName, &$form, $gid ) {
+function _civischool_civicrm_buildForm_CRM_Profile_Form_Edit_3( $formName, &$form, $gid ) {
     $staffID   = $form->getVar( '_id' );
 
     // freeze first name, last name and grade
     $elementList = array( 'first_name', 'last_name', 'email-Primary', 'phone-Primary' );
     $form->freeze( $elementList );
 
-    require_once 'SFS/Utils/Conference.php';
-    SFS_Utils_Conference::buildPTCForm( $form, $staffID );
+    require_once 'SCH/Utils/Conference.php';
+    SCH_Utils_Conference::buildPTCForm( $form, $staffID );
 }
 
-function _sfschool_civicrm_buildForm_CRM_Profile_Form_Edit_4( $formName, &$form, $gid ) {
+function _civischool_civicrm_buildForm_CRM_Profile_Form_Edit_4( $formName, &$form, $gid ) {
     // get the custom field if for grade
     require_once 'CRM/Core/BAO/CustomField.php';
     $gradeFieldID = CRM_Core_BAO_CustomField::getCustomFieldID('Grade', 'School Information');
@@ -229,38 +229,38 @@ function _sfschool_civicrm_buildForm_CRM_Profile_Form_Edit_4( $formName, &$form,
 
     $childID   = $form->getVar( '_id' );
 
-    require_once 'SFS/Utils/Conference.php';
-    SFS_Utils_Conference::buildForm( $form, $childID );
+    require_once 'SCH/Utils/Conference.php';
+    SCH_Utils_Conference::buildForm( $form, $childID );
 
     $term =  CRM_Utils_Request::retrieve( 'term', 'String',
                                           $form, false, null );
-        
-    require_once 'SFS/Utils/ExtendedCare.php';
-    SFS_Utils_ExtendedCare::buildForm( $form, $childID, $term );
+
+    require_once 'SCH/Utils/ExtendedCare.php';
+    SCH_Utils_ExtendedCare::buildForm( $form, $childID, $term );
 }
 
-function sfschool_civicrm_postProcess_CRM_Profile_Form_Edit_3( $class, &$form, $gid ) {
+function civischool_civicrm_postProcess_CRM_Profile_Form_Edit_3( $class, &$form, $gid ) {
     $staffID   = $form->getVar( '_id' );
 
-    require_once 'SFS/Utils/Conference.php';
-    SFS_Utils_Conference::postProcessPTC( $form, $staffID );
+    require_once 'SCH/Utils/Conference.php';
+    SCH_Utils_Conference::postProcessPTC( $form, $staffID );
 }
 
 
-function sfschool_civicrm_postProcess_CRM_Profile_Form_Edit_4( $class, &$form, $gid ) {
-    require_once 'SFS/Utils/Conference.php';
-    SFS_Utils_Conference::postProcess( $class, $form, $gid );
+function civischool_civicrm_postProcess_CRM_Profile_Form_Edit_4( $class, &$form, $gid ) {
+    require_once 'SCH/Utils/Conference.php';
+    SCH_Utils_Conference::postProcess( $class, $form, $gid );
 
     $term =  CRM_Utils_Request::retrieve( 'term', 'String',
                                           $form, false, null );
-        
-    require_once 'SFS/Utils/ExtendedCare.php';
-    SFS_Utils_ExtendedCare::postProcess( $class, $form, $gid, $term );
+
+    require_once 'SCH/Utils/ExtendedCare.php';
+    SCH_Utils_ExtendedCare::postProcess( $class, $form, $gid, $term );
 }
 
-function sfschool_civicrm_tabs( &$tabs, $contactID ) {
-    require_once 'SFS/Utils/Query.php';
-    $subType = SFS_Utils_Query::getSubType( $contactID );
+function civischool_civicrm_tabs( &$tabs, $contactID ) {
+    require_once 'SCH/Utils/Query.php';
+    $subType = SCH_Utils_Query::getSubType( $contactID );
 
     // if subType is not student then hide the extended care tab
     if ( $subType == 'Student' ) {
@@ -275,22 +275,22 @@ function sfschool_civicrm_tabs( &$tabs, $contactID ) {
     }
 }
 
-function sfschool_civicrm_xmlMenu( &$files ) {
+function civischool_civicrm_xmlMenu( &$files ) {
     $files[] =
         dirname( __FILE__ ) . DIRECTORY_SEPARATOR .
         '..'                . DIRECTORY_SEPARATOR .
         '..'                . DIRECTORY_SEPARATOR .
-        'SFS'               . DIRECTORY_SEPARATOR .
+        'SCH'               . DIRECTORY_SEPARATOR .
         'xml'               . DIRECTORY_SEPARATOR .
         'Menu'              . DIRECTORY_SEPARATOR .
-        'sfschool.xml';
+        'school.xml';
 }
 
-function sfschool_civicrm_navigationMenu( &$params ) {
-    //  Get the maximum key of $params 
+function civischool_civicrm_navigationMenu( &$params ) {
+    //  Get the maximum key of $params
     $maxKey = ( max( array_keys($params) ) );
-    
-    $params[$maxKey+1] = array ( 
+
+    $params[$maxKey+1] = array (
                        'attributes' => array (
                                               'label'      => 'School',
                                               'name'       => 'School',
@@ -302,13 +302,13 @@ function sfschool_civicrm_navigationMenu( &$params ) {
                                               'navID'      => $maxKey+1,
                                               'active'     => 1
                                               ),
-                       'child' =>  array ( 
+                       'child' =>  array (
                                           '1' => array (
-                                                        'attributes' => array ( 
+                                                        'attributes' => array (
                                                                                'label'      => 'Student Search',
                                                                                'name'       => 'Student Search',
                                                                                'url'        => CRM_Utils_System::url( 'civicrm/profile',
-                                                                                                                      'reset=1&gid=' . 
+                                                                                                                      'reset=1&gid=' .
                                                                                                                       CIVICRM_PROFILE_STUDENT_ID, true,
                                                                                                                       null, false ),
                                                                                'permission' => 'access CiviCRM',
@@ -318,13 +318,13 @@ function sfschool_civicrm_navigationMenu( &$params ) {
                                                                                'navID'      => 1,
                                                                                'active'     => 1
                                                                                 ),
-                                                        'child' => null 
+                                                        'child' => null
                                                         ),
                                           '2' => array (
-                                                        'attributes' => array ( 
+                                                        'attributes' => array (
                                                                                'label'      => 'Extended Care Summary',
                                                                                'name'       => 'Extended Care Summary',
-                                                                               'url'        => CRM_Utils_System::url( 'civicrm/sfschool/extendedCareSummary',
+                                                                               'url'        => CRM_Utils_System::url( 'civicrm/school/extendedCareSummary',
                                                                                                                       'reset=1', true,
                                                                                                                       null, false ),
                                                                                'permission' => 'access CiviCRM',
@@ -334,13 +334,13 @@ function sfschool_civicrm_navigationMenu( &$params ) {
                                                                                'navID'      => 1,
                                                                                'active'     => 1
                                                                                 ),
-                                                        'child' => null 
+                                                        'child' => null
                                                         ),
                                           '3' => array (
-                                                        'attributes' => array ( 
+                                                        'attributes' => array (
                                                                                'label'      => 'Extended Care Class Listings',
                                                                                'name'       => 'Extended Care Class Listings',
-                                                                               'url'        => CRM_Utils_System::url( 'civicrm/sfschool/extended/class',
+                                                                               'url'        => CRM_Utils_System::url( 'civicrm/school/extended/class',
                                                                                                                       'reset=1', true,
                                                                                                                       null, false ),
                                                                                'permission' => 'access CiviCRM',
@@ -350,13 +350,13 @@ function sfschool_civicrm_navigationMenu( &$params ) {
                                                                                'navID'      => 1,
                                                                                'active'     => 1
                                                                                 ),
-                                                        'child' => null 
+                                                        'child' => null
                                                         ),
                                           '4' => array (
-                                                        'attributes' => array ( 
+                                                        'attributes' => array (
                                                                                'label'      => 'Extended Care Class Detail',
                                                                                'name'       => 'Extended Care Class Detail',
-                                                                               'url'        => CRM_Utils_System::url( 'civicrm/report/sfschool/extended/roster',
+                                                                               'url'        => CRM_Utils_System::url( 'civicrm/report/school/extended/roster',
                                                                                                                       'reset=1', true,
                                                                                                                       null, false ),
                                                                                'permission' => 'access CiviCRM',
@@ -366,10 +366,10 @@ function sfschool_civicrm_navigationMenu( &$params ) {
                                                                                'navID'      => 1,
                                                                                'active'     => 1
                                                                                 ),
-                                                        'child' => null 
+                                                        'child' => null
                                                         ),
                                           '5' => array (
-                                                        'attributes' => array ( 
+                                                        'attributes' => array (
                                                                                'label'      => 'Reports',
                                                                                'name'       => 'Reports',
                                                                                'url'        => CRM_Utils_System::url( 'civicrm/report/list',
@@ -382,13 +382,13 @@ function sfschool_civicrm_navigationMenu( &$params ) {
                                                                                'navID'      => 1,
                                                                                'active'     => 1
                                                                                 ),
-                                                        'child' => null 
+                                                        'child' => null
                                                         ),
                                           '6' => array (
-                                                        'attributes' => array ( 
+                                                        'attributes' => array (
                                                                                'label'      => 'Afternoon Signout',
                                                                                'name'       => 'Afternoon Signout',
-                                                                               'url'        => CRM_Utils_System::url( 'civicrm/sfschool/signout',
+                                                                               'url'        => CRM_Utils_System::url( 'civicrm/school/signout',
                                                                                                                       'reset=1', true,
                                                                                                                       null, false ),
                                                                                'permission' => 'access CiviCRM',
@@ -398,13 +398,13 @@ function sfschool_civicrm_navigationMenu( &$params ) {
                                                                                'navID'      => 1,
                                                                                'active'     => 1
                                                                                 ),
-                                                        'child' => null 
+                                                        'child' => null
                                                         ),
                                           '7' => array (
-                                                        'attributes' => array ( 
+                                                        'attributes' => array (
                                                                                'label'      => 'Afternoon SignIn',
                                                                                'name'       => 'Afternoon SignIn',
-                                                                               'url'        => CRM_Utils_System::url( 'civicrm/sfschool/signin',
+                                                                               'url'        => CRM_Utils_System::url( 'civicrm/school/signin',
                                                                                                                       'reset=1', true,
                                                                                                                       null, false ),
                                                                                'permission' => 'access CiviCRM',
@@ -414,13 +414,13 @@ function sfschool_civicrm_navigationMenu( &$params ) {
                                                                                'navID'      => 1,
                                                                                'active'     => 1
                                                                                 ),
-                                                        'child' => null 
+                                                        'child' => null
                                                         ),
                                           '8' => array (
-                                                        'attributes' => array ( 
+                                                        'attributes' => array (
                                                                                'label'      => 'Morning SignIn',
                                                                                'name'       => 'Morning SignIn',
-                                                                               'url'        => CRM_Utils_System::url( 'civicrm/sfschool/morning',
+                                                                               'url'        => CRM_Utils_System::url( 'civicrm/school/morning',
                                                                                                                       'reset=1', true,
                                                                                                                       null, false ),
                                                                                'permission' => 'access CiviCRM',
@@ -430,13 +430,13 @@ function sfschool_civicrm_navigationMenu( &$params ) {
                                                                                'navID'      => 1,
                                                                                'active'     => 1
                                                                                 ),
-                                                        'child' => null 
+                                                        'child' => null
                                                         ),
                                           '9' => array (
-                                                        'attributes' => array ( 
+                                                        'attributes' => array (
                                                                                'label'      => 'Setup Parent teacher conference',
                                                                                'name'       => 'Setup Parent teacher conference',
-                                                                               'url'        => CRM_Utils_System::url( 'civicrm/sfschool/conference',
+                                                                               'url'        => CRM_Utils_System::url( 'civicrm/school/conference',
                                                                                                                       'reset=1', true,
                                                                                                                       null, false ),
                                                                                'permission' => 'access CiviCRM',
@@ -446,13 +446,13 @@ function sfschool_civicrm_navigationMenu( &$params ) {
                                                                                'navID'      => 1,
                                                                                'active'     => 1
                                                                                 ),
-                                                        'child' => null 
+                                                        'child' => null
                                                         ),
                                           '10' => array (
-                                                        'attributes' => array ( 
+                                                        'attributes' => array (
                                                                                'label'      => 'Batch Consent Form',
                                                                                'name'       => 'Batch Consent Form',
-                                                                               'url'        => CRM_Utils_System::url( 'civicrm/sfschool/batchConsent',
+                                                                               'url'        => CRM_Utils_System::url( 'civicrm/school/batchConsent',
                                                                                                                       'reset=1', true,
                                                                                                                       null, false ),
                                                                                'permission' => 'access CiviCRM',
@@ -462,8 +462,8 @@ function sfschool_civicrm_navigationMenu( &$params ) {
                                                                                'navID'      => 1,
                                                                                'active'     => 1
                                                                                 ),
-                                                        'child' => null 
+                                                        'child' => null
                                                          ),
                                            )
-                                 );    
+                                 );
 }

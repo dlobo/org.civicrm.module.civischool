@@ -33,7 +33,7 @@
  *
  */
 
-class SFS_Utils_Conference {
+class SCH_Utils_Conference {
     const
         ADVISOR_RELATIONSHIP_TYPE_ID = 10,
         CONFERENCE_ACTIVITY_TYPE_ID  = 20,
@@ -49,7 +49,7 @@ class SFS_Utils_Conference {
             return;
         }
 
-        
+
         // add scheduling information if any
         $sql = "
 SELECT     r.contact_id_b, a.id as activity_id, a.activity_date_time, a.subject, a.location, aac.display_name, aac.nick_name, aac.id as advisor_id
@@ -121,39 +121,39 @@ ORDER BY   a.activity_date_time asc
     }
 
     function sendConferenceEmail( $activityID, $advisorID, $childID, $dateTime = null ) {
-        require_once 'SFS/Utils/Query.php';
+        require_once 'SCH/Utils/Query.php';
         $templateVars = array( );
         list( $templateVars['advisorName'],
-              $templateVars['advisorEmail'] ) = SFS_Utils_Query::getNameAndEmail( $advisorID );
+              $templateVars['advisorEmail'] ) = SCH_Utils_Query::getNameAndEmail( $advisorID );
 
         if ( $dateTime == null ) {
             $dateTime = CRM_Core_DAO::getFieldValue( 'CRM_Activity_DAO_Activity',
                                                      $activityID,
                                                      'activity_date_time' );
         }
-        
+
         $templateVars['dateTime'] = CRM_Utils_Date::customFormat( $dateTime,
                                                                   "%l:%M %P on %b %E%f" );
 
         // now send a message to the parents about what they did
-        require_once 'SFS/Utils/Mail.php';
-        SFS_Utils_Mail::sendMailToParents( $childID,
-                                           'SFS/Mail/Conference/Subject.tpl',
-                                           'SFS/Mail/Conference/Message.tpl',
+        require_once 'SCH/Utils/Mail.php';
+        SCH_Utils_Mail::sendMailToParents( $childID,
+                                           'SCH/Mail/Conference/Subject.tpl',
+                                           'SCH/Mail/Conference/Message.tpl',
                                            $templateVars );
     }
 
     function sendNotScheduledReminderEmail( $advisorID, $childID ) {
-        require_once 'SFS/Utils/Query.php';
+        require_once 'SCH/Utils/Query.php';
         $templateVars = array( );
         list( $templateVars['advisorName'],
-              $templateVars['advisorEmail'] ) = SFS_Utils_Query::getNameAndEmail( $advisorID );
+              $templateVars['advisorEmail'] ) = SCH_Utils_Query::getNameAndEmail( $advisorID );
 
         // now send a message to the parents about what they did
-        require_once 'SFS/Utils/Mail.php';
-        SFS_Utils_Mail::sendMailToParents( $childID,
-                                           'SFS/Mail/Conference/NotScheduledSubject.tpl',
-                                           'SFS/Mail/Conference/NotScheduledMessage.tpl',
+        require_once 'SCH/Utils/Mail.php';
+        SCH_Utils_Mail::sendMailToParents( $childID,
+                                           'SCH/Mail/Conference/NotScheduledSubject.tpl',
+                                           'SCH/Mail/Conference/NotScheduledMessage.tpl',
                                            $templateVars );
     }
 
@@ -287,14 +287,14 @@ GROUP BY r.contact_id_b
 
     static function createConferenceSchedule( ) {
         require_once 'CRM/Utils/Request.php';
-    
+
         // we need the admin id, teacher id, date, start time and end time
         $adminID   = CRM_Utils_Request::retrieve( 'adminID',
-                                                  'Integer', 
+                                                  'Integer',
                                                   CRM_Core_DAO::$_nullObject,
                                                   true );
         $teacherID = CRM_Utils_Request::retrieve( 'teacherID',
-                                                  'Integer', 
+                                                  'Integer',
                                                   CRM_Core_DAO::$_nullObject,
                                                   true );
         $date      = CRM_Utils_Request::retrieve( 'date',
@@ -455,7 +455,7 @@ GROUP BY r.contact_id_b
                 $time = "0{$time}";
 
             }
-            
+
             // skip 8:00 am slot for middle school
             if ( $time != '08' ) {
                 self::createConference( $adminID, $teacherID,
@@ -686,7 +686,7 @@ ORDER BY c.display_name
 
         $params = array( 1 => array( $staffID, 'Integer' ),
                          2 => array( self::ADVISOR_RELATIONSHIP_TYPE_ID, 'Integer' ) );
-        
+
         $dao = CRM_Core_DAO::executeQuery( $sql, $params );
         $values = array( );
         while ( $dao->fetch( ) ) {
@@ -736,13 +736,13 @@ ORDER BY c.display_name
                     array( 'size'=> 4,'maxlength' => 8 ) );
         $form->add( 'select', 'slot_contact_id', null, $needToScheduleIDs );
 
-        $form->addRule('slot_duration', 
-                       ts('Please enter the duration as number of minutes (integers only).'), 'positiveInteger');  
+        $form->addRule('slot_duration',
+                       ts('Please enter the duration as number of minutes (integers only).'), 'positiveInteger');
     }
 
     static function validatePTCForm( &$form, &$fields ) {
         $errors = array( );
-        
+
         $selectedIDs = array( );
         foreach ( $fields as $name => $value ) {
             $match = preg_match( '/^(select_|delete_|cancel_)(\d+)_?(\d+)?$/', $name, $matches );

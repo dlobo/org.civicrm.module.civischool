@@ -35,7 +35,7 @@
 
 require_once 'CRM/Core/Form.php';
 
-class SFS_Form_ConferenceReminder extends CRM_Core_Form {
+class SCH_Form_ConferenceReminder extends CRM_Core_Form {
 
     function preProcess( ) {
         parent::preProcess( );
@@ -45,8 +45,8 @@ class SFS_Form_ConferenceReminder extends CRM_Core_Form {
 
         // get the details of who is having a conference in the next 7 days
         // and the grades
-        require_once 'SFS/Utils/Conference.php';
-        $details = SFS_Utils_Conference::getReminderDetails( );
+        require_once 'SCH/Utils/Conference.php';
+        $details = SCH_Utils_Conference::getReminderDetails( );
 
         foreach ( $details as $name => $grade ) {
             $string[] = "{$name} (Grade: {$grade})";
@@ -54,20 +54,20 @@ class SFS_Form_ConferenceReminder extends CRM_Core_Form {
         $this->assign( 'conferenceTeachers',
                        implode( ', ', $string ) );
 
-        $this->addButtons(array( 
-                                array ( 'type'      => 'refresh', 
+        $this->addButtons(array(
+                                array ( 'type'      => 'refresh',
                                         'name'      => ts( 'Send Reminder' ),
-                                        'spacing'   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', 
-                                        'isDefault' => true   ), 
-                                array ( 'type'      => 'cancel', 
-                                        'name'      => ts('Cancel') ), 
+                                        'spacing'   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+                                        'isDefault' => true   ),
+                                array ( 'type'      => 'cancel',
+                                        'name'      => ts('Cancel') ),
                                  )
                           );
     }
 
     function postProcess( ) {
-        SFS_Utils_Conference::sendReminderEmail( );
-        
+        SCH_Utils_Conference::sendReminderEmail( );
+
         require_once 'CRM/Core/Session.php';
         CRM_Core_Session::setStatus( "Reminder emails have been sent to all the parents" );
 

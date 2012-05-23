@@ -33,15 +33,15 @@
  *
  */
 
-require_once 'SFS/Form/Family.php';
+require_once 'SCH/Form/Family.php';
 
-class SFS_Form_Family_Release extends SFS_Form_Family {
+class SCH_Form_Family_Release extends SCH_Form_Family {
     function preProcess( ) {
         parent::preProcess();
 
         require_once 'CRM/Core/BAO/CustomGroup.php';
-        $this->_schoolInfoId = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup', 
-                                                            SFS_Form_Family::SCHOOL_INFO_TABLE, 'id', 'table_name' );
+        $this->_schoolInfoId = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup',
+                                                            SCH_Form_Family::SCHOOL_INFO_TABLE, 'id', 'table_name' );
         $groupTree = CRM_Core_BAO_CustomGroup::getTree( 'Contact',
                                                         $this,
                                                         $this->_studentId,
@@ -59,7 +59,7 @@ class SFS_Form_Family_Release extends SFS_Form_Family {
         }
     }
 
-    function setDefaultValues( ) 
+    function setDefaultValues( )
     {
         $defaults = array( );
 
@@ -74,12 +74,12 @@ class SFS_Form_Family_Release extends SFS_Form_Family {
     }
 
     function buildQuickForm( ) {
-        require_once 'SFS/Utils/Query.php';
+        require_once 'SCH/Utils/Query.php';
         $this->add( 'checkbox', 'media_authorization', ts('Media Release'), null, false );
         $this->add( 'checkbox', 'activity_authorization', ts('Activity Acknowledgement'), null, true );
         $this->add( 'checkbox', 'handbook_authorization', ts('Handbook Acknowledgement'), null, true );
-        
-        $grade =  SFS_Utils_Query::getGrade($this->_studentId);
+
+        $grade =  SCH_Utils_Query::getGrade($this->_studentId);
         if ( intval($grade) >= 6 ) {
             $releaseAuthorization[ ] = HTML_QuickForm::createElement('radio', null, '', '<strong>&nbsp;'.ts('I have read and agree to the statement noted above.').'</strong>', 1);
             $releaseAuthorization[ ] = HTML_QuickForm::createElement('radio', null, '', '<strong>&nbsp;'.ts('My child is to remain on campus until picked up by an authorized adult.').'</strong>', 0);
@@ -90,16 +90,16 @@ class SFS_Form_Family_Release extends SFS_Form_Family {
         $buttons   = array();
         $buttons[] = array ( 'type'      => 'next',
                              'name'      => ts('Save and Next'),
-                             'spacing'   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', 
+                             'spacing'   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
                              'js'        => array( 'onclick' => 'return confirmClicks();') );
-        
+
         $buttons[] = array ( 'type'      => 'cancel',
                              'name'      => ts('Cancel') );
-        
+
         $this->addButtons( $buttons );
     }
 
-    function postProcess() 
+    function postProcess()
     {
         require_once 'CRM/Core/BAO/CustomValueTable.php';
         $params = $this->controller->exportValues( $this->_name );
@@ -109,7 +109,7 @@ class SFS_Form_Family_Release extends SFS_Form_Family {
             $customParams[$elementName] = $params[$colName];
         }
 
-        $customFields = 
+        $customFields =
             CRM_Core_BAO_CustomField::getFields( 'Contact', false, false, $this->_studentId );
         CRM_Core_BAO_CustomValueTable::postProcess( $customParams,
                                                     $customFields,

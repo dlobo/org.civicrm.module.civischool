@@ -35,53 +35,53 @@
 
 require_once 'CRM/Report/Form.php';
 
-class SFS_Report_Form_Roster extends CRM_Report_Form {
-    
+class SCH_Report_Form_Roster extends CRM_Report_Form {
+
     // set custom table name
     protected $_schoolInfo          = 'civicrm_value_school_information';
-    
+
     function __construct( ) {
-        
+
         $fields = array( );
         $query  = "
-SELECT column_name, label , option_group_id 
-FROM   civicrm_custom_field 
-WHERE  is_active = 1 
-AND    column_name='grade' 
+SELECT column_name, label , option_group_id
+FROM   civicrm_custom_field
+WHERE  is_active = 1
+AND    column_name='grade'
 AND    custom_group_id = (
   SELECT id FROM civicrm_custom_group WHERE table_name='{$this->_schoolInfo}'
  )
 ";
         $dao_column = CRM_Core_DAO::executeQuery( $query );
-        
+
         while ( $dao_column->fetch( ) ) {
-            $fields[$dao_column->column_name] = array('required'   => true, 
+            $fields[$dao_column->column_name] = array('required'   => true,
                                                       'title'      => $dao_column->label,
                                                       'no_display' => true
                                                       );
             $op_group_id = $dao_column->option_group_id;
         }
-        
+
         $filters = array( );
         // filter for Grade
         $options = array( );
         $query   = "SELECT label , value FROM civicrm_option_value WHERE option_group_id =".$op_group_id."  AND is_active=1";
         $dao     = CRM_Core_DAO::executeQuery( $query );
-        
+
         while( $dao->fetch( ) ) {
-            $options[$dao->value] = $dao->label; 
+            $options[$dao->value] = $dao->label;
         }
         $filters['grade'] = array( 'title'        => ts('Grade'),
                                    'operatorType' => CRM_Report_Form::OP_SELECT,
                                    'options'      => array( '' => '-select-' ) + $options ,
                                    'type'         => CRM_Utils_Type::T_STRING
                                    );
-        
-        $this->_columns = 
-            array( 
+
+        $this->_columns =
+            array(
                   'civicrm_contact' =>
                   array( 'dao'       => 'CRM_Contact_DAO_Contact',
-                         'fields'    => 
+                         'fields'    =>
                          array( 'sort_name' =>
                                 array(
                                       'no_display' => true,
@@ -93,7 +93,7 @@ AND    custom_group_id = (
                                       'no_display' => true,
                                       'required'   => true,
                                                     ),
-                                ), 
+                                ),
                          'alias' => 'cs'
                          ),
 
@@ -106,7 +106,7 @@ AND    custom_group_id = (
 
                   'civicrm_contact_parent1' =>
                   array( 'dao'       => 'CRM_Contact_DAO_Contact',
-                         'fields'    => 
+                         'fields'    =>
                          array( 'display_name' =>
                                 array(
                                       'no_display' => true,
@@ -115,10 +115,10 @@ AND    custom_group_id = (
                                 ),
                          'alias' => 'cp1'
                          ),
-                  
+
                   'civicrm_contact_parent2' =>
                   array( 'dao'       => 'CRM_Contact_DAO_Contact',
-                         'fields'    => 
+                         'fields'    =>
                          array( 'display_name' =>
                                 array(
                                       'no_display' => true,
@@ -130,7 +130,7 @@ AND    custom_group_id = (
 
                   'civicrm_email_parent1' =>
                   array( 'dao'       => 'CRM_Core_DAO_Email',
-                         'fields'    => 
+                         'fields'    =>
                          array( 'email' =>
                                 array(
                                       'no_display' => true,
@@ -142,7 +142,7 @@ AND    custom_group_id = (
 
                   'civicrm_email_parent2' =>
                   array( 'dao'       => 'CRM_Core_DAO_Email',
-                         'fields'    => 
+                         'fields'    =>
                          array( 'email' =>
                                 array(
                                       'no_display' => true,
@@ -154,7 +154,7 @@ AND    custom_group_id = (
 
                   'civicrm_phone_parent1' =>
                   array( 'dao'       => 'CRM_Core_DAO_Phone',
-                         'fields'    => 
+                         'fields'    =>
                          array( 'phone' =>
                                 array(
                                       'no_display' => true,
@@ -166,7 +166,7 @@ AND    custom_group_id = (
 
                   'civicrm_phone_parent2' =>
                   array( 'dao'       => 'CRM_Core_DAO_Phone',
-                         'fields'    => 
+                         'fields'    =>
                          array( 'phone' =>
                                 array(
                                       'no_display' => true,
@@ -179,13 +179,13 @@ AND    custom_group_id = (
                   'civicrm_address_parent1' =>
                    array( 'dao'       => 'CRM_Core_DAO_Address',
                           'fields'    =>
-                          array( 'street_address'    => 
+                          array( 'street_address'    =>
                                  array( 'no_display' => true,
                                         'required'   => true, ),
-                                 'city'              => 
+                                 'city'              =>
                                  array( 'no_display' => true,
                                         'required'   => true, ),
-                                 'state_province_id' => 
+                                 'state_province_id' =>
                                  array( 'no_display' => true,
                                         'required'   => true, ),
                                  'postal_code' =>
@@ -198,13 +198,13 @@ AND    custom_group_id = (
                   'civicrm_address_parent2' =>
                    array( 'dao'       => 'CRM_Core_DAO_Address',
                           'fields'    =>
-                          array( 'street_address'    => 
+                          array( 'street_address'    =>
                                  array( 'no_display' => true,
                                         'required'   => true, ),
-                                 'city'              => 
+                                 'city'              =>
                                  array( 'no_display' => true,
                                         'required'   => true, ),
-                                 'state_province_id' => 
+                                 'state_province_id' =>
                                  array( 'no_display' => true,
                                       'required'   => true, ),
                                  'postal_code' =>
@@ -214,7 +214,7 @@ AND    custom_group_id = (
                           'alias' => 'cp2add'
                           ),
                    );
-    
+
         parent::__construct( );
     }
 
@@ -222,67 +222,67 @@ AND    custom_group_id = (
         $this->_csvSupported = false;
         parent::preProcess( );
     }
-    
+
     function select(  ) {
-    
+
         $fieldArray = array( 'civicrm_contact',$this->_customTable );
         $select = $this->_columnHeaders =  array( );
 
         foreach ( $this->_columns as $tableName => $table ) {
- 
+
            if ( array_key_exists('fields', $table) ) {
                 foreach ( $table['fields'] as $fieldName => $field ) {
                     if ( CRM_Utils_Array::value( 'required', $field ) ||
                          CRM_Utils_Array::value( $fieldName, $this->_params['fields'] ) ) {
-                            
+
                             $select[] = "{$field['dbAlias']} as {$tableName}_{$fieldName}";
                             $this->_columnHeaders["{$tableName}_{$fieldName}"]['type']  = CRM_Utils_Array::value( 'type', $field );
                             $this->_columnHeaders["{$tableName}_{$fieldName}"]['title'] = $field['title'];
-                        
+
                     }
                 }
             }
         }
-        
+
         $this->_select = "SELECT " . implode( ",\n", $select ) . " ";
     }
-    
-    
+
+
     function from( ) {
-        
+
         $alias = $this->_aliases[$this->_schoolInfo];
-        
-        $this->_from = "FROM 
+
+        $this->_from = "FROM
                          civicrm_contact {$this->_aliases['civicrm_contact']}
 
-                         INNER JOIN civicrm_value_school_information $alias ON 
+                         INNER JOIN civicrm_value_school_information $alias ON
                                 {$this->_aliases['civicrm_contact']}.id = $alias.entity_id
 
-                         INNER JOIN civicrm_relationship r1 ON 
+                         INNER JOIN civicrm_relationship r1 ON
                                 r1.contact_id_a = {$this->_aliases['civicrm_contact']}.id
 
-                         INNER JOIN civicrm_relationship r2 ON 
+                         INNER JOIN civicrm_relationship r2 ON
                                 r2.contact_id_a = {$this->_aliases['civicrm_contact']}.id
 
-                         LEFT  JOIN civicrm_contact {$this->_aliases['civicrm_contact_parent1']} ON 
+                         LEFT  JOIN civicrm_contact {$this->_aliases['civicrm_contact_parent1']} ON
                                {$this->_aliases['civicrm_contact_parent1']}.id = r1.contact_id_b
 
-                         LEFT  JOIN civicrm_email {$this->_aliases['civicrm_email_parent1']}  ON 
+                         LEFT  JOIN civicrm_email {$this->_aliases['civicrm_email_parent1']}  ON
                                {$this->_aliases['civicrm_email_parent1']}.contact_id = {$this->_aliases['civicrm_contact_parent1']}.id AND {$this->_aliases['civicrm_email_parent1']}.is_primary = 1
 
-                         LEFT  JOIN civicrm_phone {$this->_aliases['civicrm_phone_parent1']} ON 
+                         LEFT  JOIN civicrm_phone {$this->_aliases['civicrm_phone_parent1']} ON
                                {$this->_aliases['civicrm_phone_parent1']}.contact_id = {$this->_aliases['civicrm_contact_parent1']}.id AND {$this->_aliases['civicrm_phone_parent1']}.is_primary = 1
-                         
+
                          LEFT  JOIN civicrm_address {$this->_aliases['civicrm_address_parent1']} ON
                                 {$this->_aliases['civicrm_address_parent1']}.contact_id = {$this->_aliases['civicrm_contact_parent1']}.id AND {$this->_aliases['civicrm_address_parent1']}.is_primary=1
 
-                         LEFT  JOIN civicrm_contact {$this->_aliases['civicrm_contact_parent2']} ON 
+                         LEFT  JOIN civicrm_contact {$this->_aliases['civicrm_contact_parent2']} ON
                                {$this->_aliases['civicrm_contact_parent2']}.id = r2.contact_id_b
 
-                         LEFT  JOIN civicrm_email {$this->_aliases['civicrm_email_parent2']}  ON 
+                         LEFT  JOIN civicrm_email {$this->_aliases['civicrm_email_parent2']}  ON
                                {$this->_aliases['civicrm_email_parent2']}.contact_id = {$this->_aliases['civicrm_contact_parent2']}.id AND {$this->_aliases['civicrm_email_parent2']}.is_primary = 1
 
-                         LEFT  JOIN civicrm_phone {$this->_aliases['civicrm_phone_parent2']} ON 
+                         LEFT  JOIN civicrm_phone {$this->_aliases['civicrm_phone_parent2']} ON
                                {$this->_aliases['civicrm_phone_parent2']}.contact_id = {$this->_aliases['civicrm_contact_parent2']}.id AND {$this->_aliases['civicrm_phone_parent2']}.is_primary = 1
 
                          LEFT  JOIN civicrm_address {$this->_aliases['civicrm_address_parent2']} ON
@@ -291,19 +291,19 @@ AND    custom_group_id = (
  ";
 
     }
-    
-    function where( ) { 
+
+    function where( ) {
         $alias = $this->_aliases[$this->_schoolInfo];
         $clauses    = array( );
         $clauses[]  = "$alias.is_currently_enrolled = 1";
         foreach ( $this->_columns as $tableName => $table ) {
-         
+
             if ( array_key_exists('filters', $table) ) {
                 foreach ( $table['filters'] as $fieldName => $field ) {
                     $clause = null;
 
                     //  if ( CRM_Utils_Array::value( 'type', $field ) & CRM_Utils_Type::T_DATE ) {
-                     if ( $field['operatorType'] & CRM_Report_Form::OP_DATE ) { 
+                     if ( $field['operatorType'] & CRM_Report_Form::OP_DATE ) {
                         $relative = CRM_Utils_Array::value( "{$fieldName}_relative", $this->_params );
                         $from     = CRM_Utils_Array::value( "{$fieldName}_from"    , $this->_params );
                         $to       = CRM_Utils_Array::value( "{$fieldName}_to"      , $this->_params );
@@ -312,7 +312,7 @@ AND    custom_group_id = (
                     } else {
                         $op = CRM_Utils_Array::value( "{$fieldName}_op", $this->_params );
                         if ( $op ) {
-                            
+
                             // hack for values type string
                             if ( $op == 'in' ) {
                                 $value  = CRM_Utils_Array::value( "{$fieldName}_value", $this->_params );
@@ -320,7 +320,7 @@ AND    custom_group_id = (
                                     $clause = "( {$field['dbAlias']} IN ('" . implode( '\',\'', $value ) . "' ) )";
                                 }
                             } else {
-                                $clause = 
+                                $clause =
                                     $this->whereClause( $field,
                                                         $op,
                                                         CRM_Utils_Array::value( "{$fieldName}_value", $this->_params ),
@@ -329,28 +329,28 @@ AND    custom_group_id = (
                             }
                         }
                     }
-                    
+
                     if ( ! empty( $clause ) ) {
                         $clauses[] = $clause;
                     }
                 }
             }
         }
-        
+
         if ( empty( $clauses ) ) {
             $this->_where = "WHERE ( 1 ) ";
         } else {
             $this->_where = "WHERE " . implode( ' AND ', $clauses );
         }
-        
+
         $this->_where = $this->_where ." AND r1.relationship_type_id = 1 AND r2.relationship_type_id = 1 AND ( {$this->_aliases['civicrm_contact_parent1']}.id < {$this->_aliases['civicrm_contact_parent2']}.id OR {$this->_aliases['civicrm_contact_parent2']}.id IS NULL ) AND  $alias.subtype = 'Student'";
 
     }
-    
+
     function orderBy( ) {
         $alias = $this->_aliases[$this->_schoolInfo];
         $this->_orderBy = " ORDER BY $alias.grade_sis, $alias.grade, {$this->_aliases['civicrm_contact']}.sort_name";
-        
+
     }
 
     function postProcess( ) {
@@ -362,7 +362,7 @@ AND    custom_group_id = (
         $sql = $this->buildQuery( );
 
         $dao  = CRM_Core_DAO::executeQuery( $sql );
- 
+
         while ( $dao->fetch( ) ) {
             $row = array( );
             foreach ( $this->_columnHeaders as $key => $value ) {
@@ -376,7 +376,7 @@ AND    custom_group_id = (
         foreach( $unsetHeaders as $header ) {
             unset($this->_columnHeaders[$header]);
         }
-        
+
         $this->_columnHeaders['parent_names'] = array( 'type'  => 2 ,
                                                        'title' => 'PARENT' );
         $this->_columnHeaders['parent_info']  = array( 'type'  => 2 ,
@@ -393,55 +393,55 @@ AND    custom_group_id = (
         $this->endPostProcess( $rows );
 
     }
-    
-    
+
+
     function alterDisplay( &$rows ) {
         // custom code to alter rows
         $entryFound = false;
         $parents = array( 'parent1', 'parent2');
-        
+
         foreach ( $rows as $rowNum => $row ) {
- 
+
             if ( array_key_exists('civicrm_contact_id', $row) ) {
-                
+
                 $parentNames = '';
                 $parentInfo  = '';
                 $parentPhone = '';
 
                 if ( $value = $row['civicrm_contact_sort_name'] ) {
-                    $url = CRM_Utils_System::url( 'civicrm/contact/view', 
+                    $url = CRM_Utils_System::url( 'civicrm/contact/view',
                                                   'reset=1&cid=' . $row['civicrm_contact_id'],
                                                   $this->_absoluteUrl );
                     $rows[$rowNum]['civicrm_contact_sort_name_link' ] = $url;
                     $rows[$rowNum]['civicrm_contact_sort_name_hover'] = ts("View Contact details for this contact.");
                 }
-                
+
                 foreach( $parents as $k => $parent ) {
 
                     if ( $value = $row["civicrm_contact_{$parent}_display_name"] ) {
-                        $parentNames = $parentNames."{$value} <br>";  
+                        $parentNames = $parentNames."{$value} <br>";
                     }
                     if ( $value = $row["civicrm_address_{$parent}_street_address"] ) {
-                        $parentInfo = $parentInfo."{$value} &nbsp;";  
+                        $parentInfo = $parentInfo."{$value} &nbsp;";
                     }
                     if ( $value = $row["civicrm_address_{$parent}_city"] ) {
-                        $parentInfo = $parentInfo." {$value} &nbsp;";  
+                        $parentInfo = $parentInfo." {$value} &nbsp;";
                     }
                     if ( $value = $row["civicrm_address_{$parent}_state_province_id"] ) {
                         $value = CRM_Core_PseudoConstant::stateProvince( $value, false );
-                        $parentInfo = $parentInfo." {$value} &nbsp;";  
+                        $parentInfo = $parentInfo." {$value} &nbsp;";
                     }
                     if ( $value = $row["civicrm_address_{$parent}_postal_code"] ) {
-                        $parentInfo = $parentInfo." {$value}";  
+                        $parentInfo = $parentInfo." {$value}";
                     }
                     if ( $value = $row["civicrm_email_{$parent}_email"] ) {
                         if( $parentInfo ) {
-                            $parentInfo .= "<br>"; 
+                            $parentInfo .= "<br>";
                         }
-                        $parentInfo = $parentInfo." {$value}";  
+                        $parentInfo = $parentInfo." {$value}";
                     }
                     if ( $value = $row["civicrm_phone_{$parent}_phone"] ) {
-                        $parentPhone = $parentPhone." {$value} <br>";  
+                        $parentPhone = $parentPhone." {$value} <br>";
                     }
 
                     if( $k == 0 ) {
@@ -458,7 +458,7 @@ AND    custom_group_id = (
             }
 
 
-            // skip looking further in rows, if first row itself doesn't 
+            // skip looking further in rows, if first row itself doesn't
             // have the column we need
             if ( !$entryFound ) {
                 break;

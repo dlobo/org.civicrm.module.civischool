@@ -35,7 +35,7 @@
 
 require_once 'CRM/Core/Page.php';
 
-class SFS_Page_Class extends CRM_Core_Page {
+class SCH_Page_Class extends CRM_Core_Page {
     private static $_actionLinks;
 
     protected $_term;
@@ -44,15 +44,15 @@ class SFS_Page_Class extends CRM_Core_Page {
     {
         // check if variable _actionsLinks is populated
         if (!isset(self::$_actionLinks)) {
-           
+
             self::$_actionLinks = array(
                                         CRM_Core_Action::UPDATE  => array(
                                                                           'name'  => ts('Edit'),
                                                                           'url'   => CRM_Utils_System::currentPath( ),
                                                                           'qs'    => 'reset=1&action=update&id=%%id%%',
-                                                                          'title' => ts('Configure') 
+                                                                          'title' => ts('Configure')
                                                                           ),
-                                        
+
                                         CRM_Core_Action::DISABLE => array(
                                                                           'name'  => ts('Disable'),
                                                                           'url'   => CRM_Utils_System::currentPath( ),
@@ -73,7 +73,7 @@ class SFS_Page_Class extends CRM_Core_Page {
     function run( ) {
 
         $action = CRM_Utils_Request::retrieve('action', 'String',
-                                              $this, false, 0 ); 
+                                              $this, false, 0 );
         $this->assign('action', $action);
 
         $id = CRM_Utils_Request::retrieve('id', 'Positive',
@@ -81,17 +81,17 @@ class SFS_Page_Class extends CRM_Core_Page {
 
         $this->_term =  CRM_Utils_Request::retrieve( 'term', 'String',
                                                      $this, false, null );
-        
+
         if ( $action  && ( array_key_exists( $action, self::actionLinks( ) ) || ( $action & CRM_Core_Action::ADD ) ) ) {
             // set breadcrumb
             $breadCrumb = array( array('title' => ts('Class Information'),
                                        'url'   => CRM_Utils_System::url( CRM_Utils_System::currentPath( ), 'reset=1' )) );
-                                                                         
+
             CRM_Utils_System::appendBreadCrumb( $breadCrumb );
             CRM_Utils_System::setTitle( ts('Configure Class') );
             $session =& CRM_Core_Session::singleton();
             $session->pushUserContext( CRM_Utils_System::url( CRM_Utils_System::currentPath( ), 'reset=1' ) );
-            $controller =& new CRM_Core_Controller_Simple( 'SFS_Form_Class' ,'Configure Class');
+            $controller =& new CRM_Core_Controller_Simple( 'SCH_Form_Class' ,'Configure Class');
             $controller->process( );
             return $controller->run( );
         } else {
@@ -102,7 +102,7 @@ class SFS_Page_Class extends CRM_Core_Page {
     }
 
     function browse($action=null)
-    { 
+    {
         $this->assign( 'editClass', false );
         $permission = false;
         if( CRM_Core_Permission::check( 'access CiviCRM' ) ) {
@@ -111,15 +111,15 @@ class SFS_Page_Class extends CRM_Core_Page {
             $addClassUrl = CRM_Utils_System::url( CRM_Utils_System::currentPath( ),'reset=1&action=add');
             $this->assign( 'addClass', $addClassUrl);
         }
-        
-        require_once 'SFS/Utils/ExtendedCare.php';
+
+        require_once 'SCH/Utils/ExtendedCare.php';
 
         if ( $permission ) {
-            $classInfo = SFS_Utils_ExtendedCare::getClassCount( null, true, $this->_term );
+            $classInfo = SCH_Utils_ExtendedCare::getClassCount( null, true, $this->_term );
         }
 
         $activities =  array( );
-        $activities =& SFS_Utils_ExtendedCare::getActivities( null,
+        $activities =& SCH_Utils_ExtendedCare::getActivities( null,
                                                               CRM_Core_DAO::$_nullObject,
                                                               true,
                                                               $this->_term );
@@ -131,10 +131,10 @@ class SFS_Page_Class extends CRM_Core_Page {
                 foreach ( $sessionValues['details'] as $id => &$idValues ) {
                     if( $permission ) {
                         $idValues['action' ] = CRM_Core_Action::formLink( self::actionLinks(),
-                                                                          $actionEnable, 
+                                                                          $actionEnable,
                                                                           array('id' =>$idValues['index'] ) );
                     }
-                    
+
                     if ( $permission &&
                          isset( $classInfo[$idValues['id']] ) ) {
                         $name = urlencode( $idValues['name'] );
@@ -143,17 +143,17 @@ class SFS_Page_Class extends CRM_Core_Page {
                         $idValues['num_url']      = $url;
                         $idValues['num_students'] = $classInfo[$idValues['id']]['current'];
                     }
-                    $idValues['session'] = SFS_Utils_ExtendedCare::getTime( $idValues['session'] );
+                    $idValues['session'] = SCH_Utils_ExtendedCare::getTime( $idValues['session'] );
                     $values[$day][] =& $idValues;
                 }
             }
         }
-        
+
         $this->assign( 'schedule', $values );
-        
+
         if( $permission ) {
             $disableActivities = array( );
-            $disableActivities =& SFS_Utils_ExtendedCare::getActivities( null,
+            $disableActivities =& SCH_Utils_ExtendedCare::getActivities( null,
                                                                          CRM_Core_DAO::$_nullObject ,
                                                                          false );
             $actionDisable  -= ( CRM_Core_Action::DISABLE + 1 );
@@ -162,7 +162,7 @@ class SFS_Page_Class extends CRM_Core_Page {
                 $values[$day] = array( );
                 foreach ( $valueDay as $session => $valueSession ) {
                     foreach ( $valueSession['details'] as $id => $valueId ) {
-                        $valueId['action' ] = CRM_Core_Action::formLink(self::actionLinks(),$actionDisable, 
+                        $valueId['action' ] = CRM_Core_Action::formLink(self::actionLinks(),$actionDisable,
                                                                         array('id' =>$valueId['index'] ));
                         if ( isset( $classInfo[$valueId['id']] ) ) {
                             $name = urlencode( $valueId['name'] );
@@ -171,7 +171,7 @@ class SFS_Page_Class extends CRM_Core_Page {
                             $valueId['num_url']      = $url;
                             $valueId['num_students'] = $classInfo[$valueId['id']]['current'];
                         }
-                        $valueId['session'] = SFS_Utils_ExtendedCare::getTime( $valueId['session'] );
+                        $valueId['session'] = SCH_Utils_ExtendedCare::getTime( $valueId['session'] );
                         $disable[$day][] = $valueId;
                     }
                 }

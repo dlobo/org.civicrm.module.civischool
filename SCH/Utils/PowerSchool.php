@@ -33,7 +33,7 @@
  *
  */
 
-class SFS_Utils_PowerSchool {
+class SCH_Utils_PowerSchool {
 
     static function export( $time = null, $print = null ) {
 
@@ -65,19 +65,19 @@ ORDER BY   s.grade_sis, c.last_name
         self::generateCSVHeader( $header );
         $content = array( $header );
         $content = array( );
-        
+
         $daoFields = array( 'student_name',
                             'student_first_name',
                             'student_last_name',
                             'student_grade' );
 
-        require_once 'SFS/Page/Family.php';
+        require_once 'SCH/Page/Family.php';
         require_once 'CRM/Utils/String.php';
         $config =& CRM_Core_Config::singleton( );
 
         $currentGrade = null;
         while ( $dao->fetch( ) ) {
-            $page = new SFS_Page_Family( );
+            $page = new SCH_Page_Family( );
             $page->commonRun( $dao->student_id );
 
             $page->_values['birth_date'] = CRM_Utils_Date::customFormat( $dao->student_birth,
@@ -90,7 +90,7 @@ ORDER BY   s.grade_sis, c.last_name
 
             self::initRow( $row, $header );
             self::storeStudentInfo     ( $row, $page->_values );
-        
+
             if ( isset( $page->_values['household'][3] ) ||
                  isset( $page->_values['household'][4] ) ) {
                 self::storeHouseholdInfoTwo( $row, $page->_values );
@@ -125,7 +125,7 @@ ORDER BY   s.grade_sis, c.last_name
     }
 
     static function generateCSVHeader( &$row ) {
-        $row = 
+        $row =
             array(
                   0  => 'Student Number',
                   1  => 'First Name',
@@ -180,7 +180,7 @@ ORDER BY   s.grade_sis, c.last_name
                   50 => 'AllergiesMedical',
                   );
     }
-            
+
     static function initRow( &$row, &$header ) {
         $row = array( );
         for ( $i = 0 ; $i < count($header); $i++ ) {
@@ -306,7 +306,7 @@ ORDER BY   s.grade_sis, c.last_name
                           'Physician Phone'       => 44,
                           'Medical Authorization' => 45,
                           'Child Insured?'        => 51 );
-        
+
         if ( isset( $values['medical']['info'] ) &&
              isset( $values['medical']['info']['details'] ) ) {
             foreach ( $values['medical']['info']['details'] as $dontCare => $details ) {
@@ -324,9 +324,9 @@ ORDER BY   s.grade_sis, c.last_name
         foreach ( $values['medical']['details'] as $dontCare => $details ) {
             if ( ! empty( $details['medical_type'] ) &&
                  ! empty( $details['description'] ) ) {
-                $allergies[] = 
-                    trim( $details['medical_type'] ) . 
-                    "::" . 
+                $allergies[] =
+                    trim( $details['medical_type'] ) .
+                    "::" .
                     trim( preg_replace( '/\s+/', ' ', $details['description'] ) );
             }
         }

@@ -35,7 +35,7 @@
 
 require_once 'CRM/Core/Page.php';
 
-class SFS_Page_Family_Complete extends CRM_Core_Page {
+class SCH_Page_Family_Complete extends CRM_Core_Page {
 
     function run( ) {
         $this->_studentId = CRM_Utils_Request::retrieve( 'cid', 'Positive', $this, true, 0, 'REQUEST' );

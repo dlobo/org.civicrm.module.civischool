@@ -33,7 +33,7 @@
  *
  */
 
-class SFS_Utils_Intake {
+class SCH_Utils_Intake {
 
     static function unscrambleCustomViewData( &$details ) {
         foreach ( $details as $childID => $detail ) {
@@ -94,14 +94,14 @@ AND    ( ( r.relationship_type_id = 1  AND r.contact_id_a = c.id AND r.contact_i
 
     static function buildForm( &$form,
                                $childID ) {
-        
+
         $excare = CRM_Utils_Request::retrieve( 'excare', 'Integer', $form, false, null, $_REQUEST );
         if ( $excare != 1 ) {
             return;
         }
 
-        require_once 'SFS/Utils/Query.php';
-        $grade  = SFS_Utils_Query::getGrade( $childID );
+        require_once 'SCH/Utils/Query.php';
+        $grade  = SCH_Utils_Query::getGrade( $childID );
         if ( ! is_numeric( $grade ) ) {
             return;
         }
@@ -122,5 +122,5 @@ AND    ( ( r.relationship_type_id = 1  AND r.contact_id_a = c.id AND r.contact_i
 
         $activities = self::getActivities( $grade, $classInfo );
 
-    
+
 }

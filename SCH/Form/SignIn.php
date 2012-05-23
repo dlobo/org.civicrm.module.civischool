@@ -35,10 +35,10 @@
 
 require_once 'CRM/Core/Form.php';
 
-class SFS_Form_SignIn extends CRM_Core_Form {
+class SCH_Form_SignIn extends CRM_Core_Form {
 
     protected $_dayOfWeek;
-    
+
     protected $_date;
 
     protected $_time;
@@ -66,17 +66,17 @@ class SFS_Form_SignIn extends CRM_Core_Form {
     function buildQuickForm( ) {
         CRM_Utils_System::setTitle( 'Afternoon SignIn - Extended Care' );
 
-        require_once 'SFS/Utils/ExtendedCare.php';
-        $term = SFS_Utils_ExtendedCare::getTerm( $term );
+        require_once 'SCH/Utils/ExtendedCare.php';
+        $term = SCH_Utils_ExtendedCare::getTerm( $term );
 
         $sql = "
-( 
+(
 SELECT     c.id as contact_id, c.display_name as display_name, s.name as course_name, v.grade as grade,
            0 as sout_id, 0 as signout_time, e.location as course_location
 FROM       civicrm_contact c
 INNER JOIN civicrm_value_school_information v ON v.entity_id = c.id
 INNER JOIN civicrm_value_extended_care s ON ( s.entity_id = c.id AND s.has_cancelled = 0 AND s.day_of_week = '{$this->_dayOfWeek}' )
-INNER JOIN sfschool_extended_care_source e ON ( s.session = e.session AND s.name = e.name AND s.term = e.term AND s.day_of_week = e.day_of_week ) 
+INNER JOIN sfschool_extended_care_source e ON ( s.session = e.session AND s.name = e.name AND s.term = e.term AND s.day_of_week = e.day_of_week )
 WHERE      v.subtype = 'Student'
 AND        v.grade_sis >= 1
 AND        v.is_currently_enrolled = 1
@@ -128,7 +128,7 @@ ORDER BY contact_id, sout_id DESC, course_name, display_name, signout_time
                          3 => array( $term            , 'String' ) );
 
         $dao = CRM_Core_DAO::executeQuery( $sql, $params );
-        
+
         $someSignedIn = false;
         $studentDetails = array( );
         while( $dao->fetch( ) ) {
@@ -155,10 +155,10 @@ ORDER BY contact_id, sout_id DESC, course_name, display_name, signout_time
         $this->assign( 'studentDetails', $studentDetails );
         $this->assign( 'someSignedIn'  , $someSignedIn   );
 
-        require_once 'SFS/Utils/Query.php';
+        require_once 'SCH/Utils/Query.php';
         $students =
-            array( ''  => '- Select Student -' ) + 
-            SFS_Utils_Query::getStudentsByGrade( true, false, true , ''  );
+            array( ''  => '- Select Student -' ) +
+            SCH_Utils_Query::getStudentsByGrade( true, false, true , ''  );
 
         $this->add( 'select',
                     "student_id",
@@ -170,7 +170,7 @@ ORDER BY contact_id, sout_id DESC, course_name, display_name, signout_time
                     ts( 'Student' ),
                     $students );
 
-        $classes = array( '' => '- Select Class -' ) + SFS_Utils_Query::getClasses( );
+        $classes = array( '' => '- Select Class -' ) + SCH_Utils_Query::getClasses( );
 
         $this->add( 'select',
                     "course_name",
@@ -205,12 +205,12 @@ ORDER BY contact_id, sout_id DESC, course_name, display_name, signout_time
 
         $dateParts = array( );
         list($dateParts['H'], $dateParts['i']) = explode( "-", date( "H-i", $time ) );
-        
+
         if ( $dateParts['H'] < 15 ||
              ( $dateParts['H'] == 15 && $dateParts['i'] <= 30 ) ) {
             return 1;
         }
-        
+
         if ( $dateParts['H'] == 15 ||
              ( $dateParts['H'] == 16 && $dateParts['i'] <= 30 ) ) {
             return 2;
@@ -240,15 +240,15 @@ ORDER BY contact_id, sout_id DESC, course_name, display_name, signout_time
                                                   null,
                                                   'REQUEST' );
         list( $cid, $course ) = CRM_Utils_System::explode( ':::', $cidString, 2 );
-        $date      = CRM_Utils_Request::retrieve( 'date'     , 'String', 
+        $date      = CRM_Utils_Request::retrieve( 'date'     , 'String',
                                                   CRM_Core_DAO::$_nullObject,
                                                   false, date( 'Ymd' ),
                                                   'REQUEST' );
-        $time      = CRM_Utils_Request::retrieve( 'time'     , 'String', 
+        $time      = CRM_Utils_Request::retrieve( 'time'     , 'String',
                                                   CRM_Core_DAO::$_nullObject,
                                                   false, date( 'Gi'  ),
                                                   'REQUEST' );
-        $checked   = CRM_Utils_Request::retrieve( 'checked'  , 'String', 
+        $checked   = CRM_Utils_Request::retrieve( 'checked'  , 'String',
                                                   CRM_Core_DAO::$_nullObject,
                                                   false, 'true',
                                                   'REQUEST' );
@@ -301,7 +301,7 @@ AND    is_morning = 0
         if ( $signoutTime ) {
             $params[7] = array( $signoutTime, 'String' );
         }
-        
+
         $sql = null;
         if ( ! $dao->fetch( ) ) {
             if ( $checked != 'false' ) {
@@ -364,15 +364,15 @@ WHERE  id = %6
                                                   true,
                                                   null,
                                                   'REQUEST' );
-        $date      = CRM_Utils_Request::retrieve( 'date'     , 'String', 
+        $date      = CRM_Utils_Request::retrieve( 'date'     , 'String',
                                                   CRM_Core_DAO::$_nullObject,
                                                   false, date( 'Ymd' ),
                                                   'REQUEST' );
-        $time      = CRM_Utils_Request::retrieve( 'time'     , 'String', 
+        $time      = CRM_Utils_Request::retrieve( 'time'     , 'String',
                                                   CRM_Core_DAO::$_nullObject,
                                                   false, date( 'Gi'  ),
                                                   'REQUEST' );
-        $course    = CRM_Utils_Request::retrieve( 'course'  , 'String', 
+        $course    = CRM_Utils_Request::retrieve( 'course'  , 'String',
                                                   CRM_Core_DAO::$_nullObject,
                                                   false, null,
                                                   'REQUEST' );

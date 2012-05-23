@@ -33,60 +33,60 @@
  *
  */
 
-require_once 'SFS/Form/Apply.php';
+require_once 'SCH/Form/Apply.php';
 require_once 'CRM/Core/PseudoConstant.php';
 require_once 'CRM/Contact/BAO/Contact.php';
 require_once 'CRM/Core/BAO/CustomField.php';
 
-class SFS_Form_Apply_Applicant extends SFS_Form_Apply {
-    
+class SCH_Form_Apply_Applicant extends SCH_Form_Apply {
+
     const
-        
+
         CUSTOM_TABLE = 'civicrm_value_school_information';
 
     function preProcess( ) {
 
         parent::preProcess();
-        
+
         require_once 'CRM/Core/BAO/CustomGroup.php';
 
-        $this->_customTable = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup', 
+        $this->_customTable = CRM_Core_DAO::getFieldValue( 'CRM_Core_DAO_CustomGroup',
                                                                self::CUSTOM_TABLE, 'id', 'table_name' );
-        
+
         $groupTree = CRM_Core_BAO_CustomGroup::getTree( 'Individual',
                                                         $this,
-                                                        
+
                                                         $this->_customTable );
-        
-        
+
+
         $this->_detailGroupTree = CRM_Core_BAO_CustomGroup::formatGroupTree( $groupTree, 1, $this );
-        
+
         foreach ( $this->_detailGroupTree as $gid => $groupTree ) {
             foreach ( $groupTree['fields'] as $fid => $fieldTree ) {
                 $this->_detailMapper[] = "custom_{$fid}";
             }
         }
-        
+
         $this->_schoolTableCol  = 'grade';
     }
-    
+
     function setDefaultValues( ) {
-        
+
         $defaults = array( );
-        
+
         $params = array( 'contact_id' => $this->_cid );
         if ( isset( $this->_cid ) ) {
-            
+
             foreach ( $this->_detailGroupTree as $groupId => $groupValue ) {
                 if ( array_key_exists('fields',$groupValue  ) ) {
                     foreach ( $groupValue['fields'] as $key => $value ) {
                         if ( $value['column_name'] == $this->_schoolTableCol ) {
                             $defaults['grade'] = $value['element_value'];
                         }
-                    }   
+                    }
                 }
             }
-            
+
             CRM_Contact_BAO_Contact::retrieve( $params, $data );
             $dataFields = array('first_name', 'last_name' , 'middle_name' , 'nick_name','gender_id','birth_date');
             foreach ( $data as $dataKey => $dataVal ) {
@@ -101,18 +101,18 @@ class SFS_Form_Apply_Applicant extends SFS_Form_Apply {
         $defaults['prefered_name']          = $data['nick_name'];
         $defaults['gender']                 = $data['gender_id'];
         $defaults['dob']                    = $data['birth_date'];
-        
-        return $defaults;        
+
+        return $defaults;
     }
-        
+
     function buildQuickForm( ) {
-        
+
         $this->addElement( 'text', 'applicants_first_name', ts('Applicants First Name:') );
         $this->addElement( 'text', 'applicants_middle_name', ts('Applicants Middle Name:') );
         $this->addElement( 'text', 'applicants_last_name', ts('Applicants Last Name:') );
         $this->addElement( 'text', 'prefered_name', ts('Prefered Name/Nickname:') );
         $this->addElement( 'select', 'gender', ts('Gender:') ,array( '' => ts( '- select -' ) ) +
-                     CRM_Core_PseudoConstant::gender( ));        
+                     CRM_Core_PseudoConstant::gender( ));
         $sql = "
 SELECT     v.label, v.value
 FROM       civicrm_option_value v
@@ -120,27 +120,27 @@ LEFT JOIN civicrm_option_group g ON g.id = v.option_group_id
 WHERE      g.name LIKE '%grade%'
 ";
         $dao = CRM_Core_DAO::executeQuery( $sql );
-        
+
         require_once 'CRM/Core/BAO/CustomField.php';
         require_once 'CRM/Contact/Form/Edit/Address.php';
         $fieldNames = array( );
         while ( $dao->fetch( ) ) {
             $fieldsNames[$dao->label] = $dao->label;
         }
-        
-        $this->addElement('select', 'grade', ts('Applying for Grade:'), array('' => '- Select -') +  $fieldsNames );        
+
+        $this->addElement('select', 'grade', ts('Applying for Grade:'), array('' => '- Select -') +  $fieldsNames );
         $this->addElement( 'text', 'year', ts('For Year:') );
         $this->addDate('dob', ts('Date of Birth:') );
         $this->addElement( 'text', 'current_school', ts('Current School:') );
- 
+
         parent::buildQuickForm( );
     }
 
     function postProcess() {
 
         $params = $this->controller->exportValues( $this->_name );
-        
-        $session =& CRM_Core_Session::singleton( );        
+
+        $session =& CRM_Core_Session::singleton( );
         $contactParams = array( 'first_name'   => $params['applicants_first_name'],
                                 'middle_name'  => $params['applicants_middle_name'],
                                 'last_name'    => $params['applicants_last_name'],
@@ -149,14 +149,14 @@ WHERE      g.name LIKE '%grade%'
                                 'gender_id'    => $params['gender'],
                                 'birth_date'   => $params['dob']
                                 );
-        
+
         $get_old_id = $this->_cid;
         if(isset( $get_old_id )) {
-            $contactParams['contact_id'] = $get_old_id;                
+            $contactParams['contact_id'] = $get_old_id;
         }
-        
+
         require_once 'CRM/Contact/BAO/Contact.php';
-        $contactId = CRM_Contact_BAO_Contact::add( $contactParams );        
+        $contactId = CRM_Contact_BAO_Contact::add( $contactParams );
         if ( $get_old_id ) {
             $cid = $get_old_id;
         } else {
@@ -165,12 +165,12 @@ WHERE      g.name LIKE '%grade%'
         $session->set( $cid );
 
         $customFields = CRM_Core_BAO_CustomField::getFields( 'Individual' );
-        
+
         require_once 'CRM/Core/BAO/CustomValueTable.php';
         $query = "DELETE FROM " . self::CUSTOM_TABLE . " WHERE entity_id = %1";
         $contactParams = array( 1 => array( $cid, 'Integer') );
 
-        $customParams = array($this->_detailMapper[1]. '_-1' => CRM_Utils_Array::value( 'grade', 
+        $customParams = array($this->_detailMapper[1]. '_-1' => CRM_Utils_Array::value( 'grade',
                                                             $params));
         CRM_Core_DAO::executeQuery( $query, $contactParams );
 
@@ -178,7 +178,7 @@ WHERE      g.name LIKE '%grade%'
                                                     $customFields,
                                                     'civicrm_contact',
                                                     $cid,
-                                                    'Contact' );        
+                                                    'Contact' );
 
         parent::endPostProcess( );
     }

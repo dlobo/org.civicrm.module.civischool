@@ -33,12 +33,12 @@
  *
  */
 
-require_once 'SFS/Form/Apply.php';
+require_once 'SCH/Form/Apply.php';
 
-class SFS_Form_Apply_Additional extends SFS_Form_Apply {
+class SCH_Form_Apply_Additional extends SCH_Form_Apply {
 
     const
-        
+
         CUSTOM_TABLE = 'civicrm_value_family_information';
 
     function buildQuickForm( ) {
@@ -55,13 +55,13 @@ AND        f.column_name like 'file_path%'
         require_once 'CRM/Core/BAO/CustomField.php';
         $fieldNames = array( );
         while ( $dao->fetch( ) ) {
-            $fieldsNames[] = $dao->column_name;           
+            $fieldsNames[] = $dao->column_name;
             $test = CRM_Core_BAO_CustomField::addQuickFormElement( $this,
                                                            $dao->column_name,
                                                            $dao->id );
-            
+
         }
-        
+
         $this->assign( 'fieldNames', $fieldsNames );
 
         $this->add( 'text', 'how_do_hear', ts('How do you hear about IDEAL?') );
@@ -70,7 +70,7 @@ AND        f.column_name like 'file_path%'
         parent::buildQuickForm( );
     }
 
-    function postProcess() 
+    function postProcess()
     {
         parent::endPostProcess( );
     }

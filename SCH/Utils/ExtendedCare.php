@@ -33,7 +33,7 @@
  *
  */
 
-class SFS_Utils_ExtendedCare {
+class SCH_Utils_ExtendedCare {
     const
         TERM_POSITION = 0,
         MIN_GRADE_POSITION = 1,
@@ -64,8 +64,8 @@ class SFS_Utils_ExtendedCare {
             return;
         }
 
-        require_once 'SFS/Utils/Query.php';
-        $grade  = SFS_Utils_Query::getGrade( $childID );
+        require_once 'SCH/Utils/Query.php';
+        $grade  = SCH_Utils_Query::getGrade( $childID );
         if ( ! is_numeric( $grade ) ) {
             return;
         }
@@ -268,7 +268,7 @@ AND    %2 <= max_grade
         }
 
         if ( $_term === null ) {
-            $_term = defined( 'SFSCHOOL_TERM' ) ? SFSCHOOL_TERM : self::TERM;
+            $_term = defined( 'SCHCHOOL_TERM' ) ? SCHCHOOL_TERM : self::TERM;
         }
         return $_term;
     }
@@ -336,8 +336,8 @@ AND    %2 <= max_grade
             return;
         }
 
-        require_once 'SFS/Utils/Query.php';
-        $grade  = SFS_Utils_Query::getGrade( $childID );
+        require_once 'SCH/Utils/Query.php';
+        $grade  = SCH_Utils_Query::getGrade( $childID );
         if ( ! is_numeric( $grade ) ) {
             return;
         }
@@ -399,10 +399,10 @@ AND    %2 <= max_grade
         $templateVars['extendedCareCoordinatorEmail'] = self::COORDINATOR_EMAIL;
 
         // now send a message to the parents about what they did
-        require_once 'SFS/Utils/Mail.php';
-        SFS_Utils_Mail::sendMailToParents( $childID,
-                                           'SFS/Mail/ExtendedCare/Subject.tpl',
-                                           'SFS/Mail/ExtendedCare/Message.tpl',
+        require_once 'SCH/Utils/Mail.php';
+        SCH_Utils_Mail::sendMailToParents( $childID,
+                                           'SCH/Mail/ExtendedCare/Subject.tpl',
+                                           'SCH/Mail/ExtendedCare/Message.tpl',
                                            $templateVars,
                                            self::COORDINATOR_EMAIL );
     }
@@ -1046,7 +1046,7 @@ ORDER BY entity_id
         $params = array( 1 => array( $startDate, 'String' ),
                          2 => array( $endDate  , 'String' ) );
 
-        require_once 'SFS/Utils/Mail.php';
+        require_once 'SCH/Utils/Mail.php';
 
         $currentEntityID = null;
         $days = array( );
@@ -1059,9 +1059,9 @@ ORDER BY entity_id
                 $templateVars['days'] = implode( "\n", $days );
 
                 // now send a message to the parents about what they did
-                SFS_Utils_Mail::sendMailToParents( $currentEntityID,
-                                                   'SFS/Mail/ExtendedCare/NotSignedOutSubject.tpl',
-                                                   'SFS/Mail/ExtendedCare/NotSignedOutMessage.tpl',
+                SCH_Utils_Mail::sendMailToParents( $currentEntityID,
+                                                   'SCH/Mail/ExtendedCare/NotSignedOutSubject.tpl',
+                                                   'SCH/Mail/ExtendedCare/NotSignedOutMessage.tpl',
                                                    $templateVars,
                                                    self::COORDINATOR_EMAIL );
                 $days = array( );
@@ -1078,8 +1078,8 @@ ORDER BY entity_id
             return false;
         }
 
-        require_once 'SFS/Utils/Date.php';
-        $dateParts = SFS_Utils_Date::unformat( $time );
+        require_once 'SCH/Utils/Date.php';
+        $dateParts = SCH_Utils_Date::unformat( $time );
 
         if ( (int ) $dateParts['H'] <= 7 && (int ) $dateParts['i'] <= 55 ) {
             return true;
@@ -1093,8 +1093,8 @@ ORDER BY entity_id
             return null;
         }
 
-        require_once 'SFS/Utils/Date.php';
-        $dateParts = SFS_Utils_Date::unformat( $time );
+        require_once 'SCH/Utils/Date.php';
+        $dateParts = SCH_Utils_Date::unformat( $time );
 
         if ( $dateParts['H'] < 15 ||
              ( $dateParts['H'] == 15 && $dateParts['i'] <= 35 ) ) {
@@ -1151,8 +1151,8 @@ ORDER BY entity_id
                                                  false,
                                                  $studentID );
 
-        require_once 'SFS/Utils/ExtendedCareFees.php';
-        $feeDetails = SFS_Utils_ExtendedCareFees::feeDetails( $startDate,
+        require_once 'SCH/Utils/ExtendedCareFees.php';
+        $feeDetails = SCH_Utils_ExtendedCareFees::feeDetails( $startDate,
                                                               $endDate  ,
                                                               null      ,
                                                               false     ,
@@ -1195,7 +1195,7 @@ ORDER BY entity_id
     static function sendBalanceInvoiceEmail( $cutoff = 10 ) {
         $details = self::balanceDetails( );
 
-        require_once 'SFS/Utils/Mail.php';
+        require_once 'SCH/Utils/Mail.php';
         foreach ( $details as $id =>& $value ) {
             if ( $value['balanceDue'] < $cutoff ) {
                 continue;
@@ -1210,9 +1210,9 @@ ORDER BY entity_id
             }
 
             // now send a message to the parents about what they did
-            SFS_Utils_Mail::sendMailToParents( $id,
-                                               'SFS/Mail/ExtendedCare/InvoiceSubject.tpl',
-                                               'SFS/Mail/ExtendedCare/InvoiceMessage.tpl',
+            SCH_Utils_Mail::sendMailToParents( $id,
+                                               'SCH/Mail/ExtendedCare/InvoiceSubject.tpl',
+                                               'SCH/Mail/ExtendedCare/InvoiceMessage.tpl',
                                                $value,
                                                null );
 

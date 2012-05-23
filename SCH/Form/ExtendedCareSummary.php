@@ -35,11 +35,11 @@
 
 require_once 'CRM/Core/Form.php';
 
-class SFS_Form_ExtendedCareSummary extends CRM_Core_Form {
+class SCH_Form_ExtendedCareSummary extends CRM_Core_Form {
     protected $_startDate;
 
     protected $_endDate;
-    
+
     protected $_includeMorning;
 
     protected $_showDetails;
@@ -65,21 +65,21 @@ class SFS_Form_ExtendedCareSummary extends CRM_Core_Form {
         $this->add('checkbox', 'not_signed_out' , ts( 'Show ONLY signed In but not signed out?' ) );
         $this->add('checkbox', 'show_balances'  , ts( 'Show Charges and Payments (all other options are ignored)' ) );
 
-        require_once 'SFS/Utils/Query.php';
-        $students = array( '' => '- Select Student -' ) + SFS_Utils_Query::getStudentsByGrade( true, false );
-        
+        require_once 'SCH/Utils/Query.php';
+        $students = array( '' => '- Select Student -' ) + SCH_Utils_Query::getStudentsByGrade( true, false );
+
         $this->add( 'select',
                     "student_id",
                     ts( 'Student' ),
                     $students );
 
-        $this->addButtons(array( 
-                                array ( 'type'      => 'submit', 
+        $this->addButtons(array(
+                                array ( 'type'      => 'submit',
                                         'name'      => ts( 'Process' ),
-                                        'spacing'   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', 
-                                        'isDefault' => true   ), 
-                                array ( 'type'      => 'cancel', 
-                                        'name'      => ts('Cancel') ), 
+                                        'spacing'   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+                                        'isDefault' => true   ),
+                                array ( 'type'      => 'cancel',
+                                        'name'      => ts('Cancel') ),
                                  )
                           );
     }
@@ -89,9 +89,9 @@ class SFS_Form_ExtendedCareSummary extends CRM_Core_Form {
                            'show_details'    => $this->_showDetails,
                            'not_signed_out'  => $this->_notSignedOut );
 
-        list($defaults['start_date'], $defaults['start_date_time']) = 
+        list($defaults['start_date'], $defaults['start_date_time']) =
             CRM_Utils_Date::setDateDefaults($this->_startDate);
-        list($defaults['end_date'], $defaults['end_date_time']) = 
+        list($defaults['end_date'], $defaults['end_date_time']) =
             CRM_Utils_Date::setDateDefaults($this->_endDate);
         return $defaults;
     }
@@ -107,13 +107,13 @@ class SFS_Form_ExtendedCareSummary extends CRM_Core_Form {
         $showDetails    = CRM_Utils_Array::value( 'show_details'   , $params, false );
         $notSignedOut   = CRM_Utils_Array::value( 'not_signed_out' , $params, false );
         $showBalances   = CRM_Utils_Array::value( 'show_balances', $params, false   );
-         
-        require_once 'SFS/Utils/ExtendedCare.php';
+
+        require_once 'SCH/Utils/ExtendedCare.php';
         if ( $showBalances ) {
             $showDetails = false;
-            $summary =& SFS_Utils_ExtendedCare::balanceDetails( );
+            $summary =& SCH_Utils_ExtendedCare::balanceDetails( );
         } else {
-            $summary =& SFS_Utils_ExtendedCare::signoutDetails( $startDate     ,
+            $summary =& SCH_Utils_ExtendedCare::signoutDetails( $startDate     ,
                                                                 $endDate       ,
                                                                 $includeMorning,
                                                                 $showDetails   ,

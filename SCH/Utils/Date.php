@@ -33,18 +33,18 @@
  *
  */
 
-class SFS_Utils_Date {
+class SCH_Utils_Date {
 
     /**
-     * given a string in mysql format, transform the string 
+     * given a string in mysql format, transform the string
      * into qf format
      *
      * @param string $date a mysql type date string
      *
      * @return array       a qf formatted date array
      * @static
-     */     
-    static function &unformat( $date, $separator = '-' ) 
+     */
+    static function &unformat( $date, $separator = '-' )
     {
         $value = array( );
         if ( empty( $date ) ) {
@@ -59,8 +59,8 @@ class SFS_Utils_Date {
             $year = substr( $date, 0, 4 );
             $mon  = substr( $date, 4, 2 );
             $day  = substr( $date, 6, 2 );
-        } 
-        
+        }
+
         if( strlen( $day ) > 2 ) {
             if( substr_compare( $day,':', 3 ) ) {
                 $time = substr( $day, 3, 8 );
@@ -68,7 +68,7 @@ class SFS_Utils_Date {
                 list( $hr, $min, $sec ) = explode( ':', $time, 3 );
             }
         }
-        
+
         if ( is_numeric( $year ) && $year > 0 ) {
             $value['Y'] = $year;
         }
@@ -101,7 +101,7 @@ class SFS_Utils_Date {
                 $value['a'] = 'am';
             }
         }
-        
+
         if ( isset( $min ) && is_numeric( $min ) && $min >= 0 ) {
             $value['i'] = $min;
         }

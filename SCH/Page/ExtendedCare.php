@@ -35,7 +35,7 @@
 
 require_once 'CRM/Core/Page.php';
 
-class SFS_Page_ExtendedCare extends CRM_Core_Page {
+class SCH_Page_ExtendedCare extends CRM_Core_Page {
 
     private static $_actionLinks;
 
@@ -43,15 +43,15 @@ class SFS_Page_ExtendedCare extends CRM_Core_Page {
     {
         // check if variable _actionsLinks is populated
         if (!isset(self::$_actionLinks)) {
-           
+
             self::$_actionLinks = array(
                                         CRM_Core_Action::UPDATE  => array(
                                                                           'name'  => ts('Edit'),
                                                                           'url'   => CRM_Utils_System::currentPath( ),
                                                                           'qs'    => 'reset=1&action=update&objectID=%%objectID%%&id=%%id%%&object=%%object%%',
-                                                                          'title' => ts('Update') 
+                                                                          'title' => ts('Update')
                                                                           ),
-                                        
+
                                         CRM_Core_Action::DELETE => array(
                                                                           'name'  => ts('Delete'),
                                                                           'url'   => CRM_Utils_System::currentPath( ),
@@ -70,7 +70,7 @@ class SFS_Page_ExtendedCare extends CRM_Core_Page {
                                            true );
 
         $action = CRM_Utils_Request::retrieve('action', 'String',
-                                              $this, false, 'browse' ); 
+                                              $this, false, 'browse' );
         $this->assign('action', $action);
 
         $currentYear  = date( 'Y' );
@@ -81,7 +81,7 @@ class SFS_Page_ExtendedCare extends CRM_Core_Page {
         // this hack is to allow us to go back to last year
         // and see stuff
         // $currentYear--;
-        
+
         // for this year ONLY lets start from december
         $currentMonth = '09';
         $startDate = CRM_Utils_Request::retrieve( 'startDate',
@@ -98,13 +98,13 @@ class SFS_Page_ExtendedCare extends CRM_Core_Page {
                        CRM_Core_DAO::getFieldValue( 'CRM_Contact_DAO_Contact',
                                                     $id,
                                                     'display_name' ) );
-        
+
         $actionPermission = false;
         if ( CRM_Core_Permission::check( 'access CiviCRM' ) && CRM_Core_Permission::check( 'administer CiviCRM' ) ) {
             $actionPermission = true;
         }
         $this->assign( 'enableActions', $actionPermission );
-        
+
         if ( $action & CRM_Core_Action::VIEW ) {
             $this->view( $id, $startDate, $endDate, $actionPermission , false );
         } elseif ( $action & ( CRM_Core_Action::ADD | CRM_Core_Action::UPDATE | CRM_Core_Action::DELETE ) ) {
@@ -113,7 +113,7 @@ class SFS_Page_ExtendedCare extends CRM_Core_Page {
         } else {
             $this->browse( $id, $startDate, $endDate, $actionPermission );
         }
-        
+
         parent::run( );
     }
 
@@ -121,29 +121,29 @@ class SFS_Page_ExtendedCare extends CRM_Core_Page {
         $addcurrentPath = "reset=1&id={$id}";
         isset( $startDate )? $addcurrentPath .= "&startDate={$startDate}" : null;
         isset( $endDate )? $addcurrentPath .= "&endDate={$endDate}" : null;
-        
+
         // set breadcrumb
         $breadCrumb = array( array('title' => ts('Browse Activities'),
                                    'url'   => CRM_Utils_System::url( CRM_Utils_System::currentPath( ), $addcurrentPath )) );
-        
+
         CRM_Utils_System::appendBreadCrumb( $breadCrumb );
         $session =& CRM_Core_Session::singleton();
         $session->pushUserContext( CRM_Utils_System::url( CRM_Utils_System::currentPath( ), $addcurrentPath ) );
-        $controller =& new CRM_Core_Controller_Simple( 'SFS_Form_ExtendedCare' ,'Edit Activity block');
+        $controller =& new CRM_Core_Controller_Simple( 'SCH_Form_ExtendedCare' ,'Edit Activity block');
         $controller->process( );
-        $controller->run( ); 
+        $controller->run( );
     }
-    
+
     function view( $id, $startDate, $endDate, $actionPermission , $calledByBrowse = false ) {
-        require_once 'SFS/Utils/ExtendedCare.php';
+        require_once 'SCH/Utils/ExtendedCare.php';
 
         $showSignoutDetails = true;
 
         if( $calledByBrowse ) {
             // show recent 10 activities
-            $details = SFS_Utils_ExtendedCare::signoutDetails( null, null, true, true, false, $id, 10 ); 
+            $details = SCH_Utils_ExtendedCare::signoutDetails( null, null, true, true, false, $id, 10 );
 
-        } else { 
+        } else {
             $month = CRM_Utils_Request::retrieve( 'month','String',$this, false, date('m') );
             $year  = CRM_Utils_Request::retrieve( 'year','String',$this, false, date('Y') );
 
@@ -152,34 +152,34 @@ class SFS_Page_ExtendedCare extends CRM_Core_Page {
 
             $backButtonUrl= CRM_Utils_System::url( CRM_Utils_System::currentPath( ), "reset=1&id={$id}&startDate={$startDate}&endDate={$endDate}" );
             $this->assign( 'backButtonUrl', $backButtonUrl );
-            
-            $details = SFS_Utils_ExtendedCare::signoutDetails( $detailStartDate,
+
+            $details = SCH_Utils_ExtendedCare::signoutDetails( $detailStartDate,
                                                                $detailEndDate,
                                                                true,
                                                                true,
                                                                false,
                                                                $id );
         }
-            
+
         $signoutDetails = array_pop( $details );
-                
+
         if ( ! empty( $signoutDetails ) && $actionPermission ) {
             foreach( $signoutDetails['details'] as $key => $value ) {
                 $signoutDetails['details'][$key]['action'] = CRM_Core_Action::formLink( self::actionLinks(),
-                                                                                        null, 
+                                                                                        null,
                                                                                         array( 'objectID' => $key,
                                                                                                'id'       => $id ,
                                                                                                'object'   => 'signout' ) );
             }
         }
         $this->assign_by_ref( 'signoutDetail', $signoutDetails );
-        
+
     }
-    
+
     function browse( $id, $startDate, $endDate, $actionPermission ) {
-        require_once 'SFS/Utils/ExtendedCare.php';
-        require_once 'SFS/Utils/ExtendedCareFees.php';
-        
+        require_once 'SCH/Utils/ExtendedCare.php';
+        require_once 'SCH/Utils/ExtendedCareFees.php';
+
         $this->view( $id, $startDate, $endDate, $actionPermission, true );
 
         if( date('Ymd') <= date( 'Ymd',strtotime($endDate) ) ) {
@@ -194,7 +194,7 @@ class SFS_Page_ExtendedCare extends CRM_Core_Page {
             }
         }
 
-        $details = SFS_Utils_ExtendedCareFees::feeDetails( $startDate,
+        $details = SCH_Utils_ExtendedCareFees::feeDetails( $startDate,
                                                            $endDateNew,
                                                            null,
                                                            false,
@@ -203,12 +203,12 @@ class SFS_Page_ExtendedCare extends CRM_Core_Page {
                                                            null );
         $feeDetails = array_pop( $details );
 
-        $monthlySignout = SFS_Utils_ExtendedCare::signoutDetailsPerMonth( $startDate, $endDate, $id );
+        $monthlySignout = SCH_Utils_ExtendedCare::signoutDetailsPerMonth( $startDate, $endDate, $id );
 
         if ( ! empty( $feeDetails ) && $actionPermission ) {
             foreach( $feeDetails['details'] as $key => $value ) {
                 $feeDetails['details'][$key]['action'] = CRM_Core_Action::formLink( self::actionLinks(),
-                                                                                    null, 
+                                                                                    null,
                                                                                     array( 'objectID' => $key,
                                                                                            'id'       => $id ,
                                                                                            'object'   => 'fee' ) );
@@ -220,21 +220,21 @@ class SFS_Page_ExtendedCare extends CRM_Core_Page {
             $detailLink = array( CRM_Core_Action::VIEW  => array('name'  => ts('View Details'),
                                                                  'url'   => CRM_Utils_System::currentPath( ),
                                                                  'qs'    => 'reset=1&action=view&id=%%id%%&year=%%year%%&month=%%month%%',
-                                                                 'title' => ts('View Details') 
+                                                                 'title' => ts('View Details')
                                                                  ) );
             foreach( $monthlySignout as $month => $detail ) {
                 $monthlySignout[$month]['action'] = CRM_Core_Action::formLink( $detailLink,
-                                                                               null, 
+                                                                               null,
                                                                                array( 'id'       => $id ,
                                                                                       'year'     => $detail['year'],
                                                                                       'month'    => $detail['month'] ));
-                
+
             }
         }
         $this->assign_by_ref( 'monthlySignout', $monthlySignout );
 
         // get remaining balance
-        $balanceDetails = SFS_Utils_ExtendedCare::balanceDetails( $id );
+        $balanceDetails = SCH_Utils_ExtendedCare::balanceDetails( $id );
 
         if ( ! empty( $balanceDetails ) ) {
             $balanceDetails = array_pop( $balanceDetails );

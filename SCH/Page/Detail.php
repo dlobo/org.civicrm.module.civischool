@@ -35,7 +35,7 @@
 
 require_once 'CRM/Core/Page.php';
 
-class SFS_Page_Detail extends CRM_Core_Page {
+class SCH_Page_Detail extends CRM_Core_Page {
 
     function run( ) {
         $name    = CRM_Utils_Request::retrieve('name',
@@ -62,9 +62,9 @@ AND    s.session = %4
 AND    s.has_cancelled = 0
 AND    s.entity_id = c.id
 ";
-        require_once 'SFS/Utils/ExtendedCare.php';
+        require_once 'SCH/Utils/ExtendedCare.php';
         $params = array( 1 => array( $name, 'String' ),
-                         2 => array( SFS_Utils_ExtendedCare::getTerm( ),
+                         2 => array( SCH_Utils_ExtendedCare::getTerm( ),
                                      'String' ),
                          3 => array( $day, 'String' ),
                          4 => array( $sess, 'String' ) );
@@ -83,7 +83,7 @@ AND    s.entity_id = c.id
         $this->assign_by_ref( 'values', $values );
 
         $classDetails = array( 'name' => $name,
-                               'time' => SFS_Utils_ExtendedCare::getTime( $sess ),
+                               'time' => SCH_Utils_ExtendedCare::getTime( $sess ),
                                'day'  => $day );
         $this->assign( $classDetails );
 

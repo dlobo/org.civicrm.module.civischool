@@ -33,15 +33,15 @@
  *
  */
 
-require_once 'SFS/Form/Apply.php';
+require_once 'SCH/Form/Apply.php';
 require_once 'CRM/Core/PseudoConstant.php';
 
-class SFS_Form_Apply_Children extends SFS_Form_Apply {
+class SCH_Form_Apply_Children extends SCH_Form_Apply {
 
     const
-        
+
         CUSTOM_TABLE = 'civicrm_value_family_information';
-    
+
 
     function buildQuickForm( ) {
 
@@ -66,12 +66,12 @@ AND column_name IN ('child_age','child_school','is_child_applying')
                                                                $dao->id );
             }
         }
-        $this->assign( 'fieldNames', $fieldsNames );  
+        $this->assign( 'fieldNames', $fieldsNames );
 
         parent::buildQuickForm( );
     }
 
-    function postProcess() 
+    function postProcess()
     {
         parent::endPostProcess( );
     }

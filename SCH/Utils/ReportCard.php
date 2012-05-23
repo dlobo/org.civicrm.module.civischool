@@ -34,7 +34,7 @@
  *
  */
 
-class SFS_Utils_ReportCard {
+class SCH_Utils_ReportCard {
 
     static function getValues( $childrenIDs, &$values, $schoolYear = '2011-2012' ) {
         if ( empty( $childrenIDs ) ) {
@@ -86,7 +86,7 @@ ORDER BY  c.id
 
         $title  = "Download Report Card for Year: {$dao->year}, Grade: {$dao->grade}, ";
         $title .= $dao->term == 'S1' ? 'Fall Semester' : 'Spring Semester';
-        
+
         return array( 'url'   => $url,
                       'title' => $title );
     }
