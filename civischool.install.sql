@@ -1,4 +1,4 @@
-CREATE TABLE `sfschool_extended_care_source` (
+CREATE TABLE `school_extended_care_source` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Default MySQL primary key',
   `term` varchar(16) COLLATE utf8_unicode_ci DEFAULT 'Fall 2009',
   `min_grade` int(10) unsigned DEFAULT '1',
