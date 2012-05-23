@@ -1,0 +1,3 @@
+.resizable-textarea .form-textarea {
+ height: expression('30px') !important;
+}

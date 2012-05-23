@@ -1,0 +1,239 @@
+<?php
+
+function sfschool_help( $section = null ) {
+    switch ($section) { 
+    case 'admin/modules#description': 
+        return t('Implements hooks for CiviCRM to customize the SFSchool site');
+    default :
+        return;
+    } 
+}
+
+function _sfschool_initialize( ) {
+    static $_initialized = false;
+
+    if ( $_initialized ) {
+        return;
+    }
+
+    $_initialized = true;
+
+    $template =& CRM_Core_Smarty::singleton( );
+
+    $sfschoolRoot = 
+        dirname( __FILE__ ) . DIRECTORY_SEPARATOR .
+        '..'                . DIRECTORY_SEPARATOR .
+        '..'                . DIRECTORY_SEPARATOR;
+
+    $sfschoolDir = $sfschoolRoot . 'templates';
+
+    if ( is_array( $template->template_dir ) ) {
+        $template->template_dir = array( $sfschoolDir ) + $template->template_dir;                            
+    } else {
+        $template->template_dir = array( $sfschoolDir, $template->template_dir );
+    }
+
+    // also fix php include path
+    $include_path = $sfschoolRoot . PATH_SEPARATOR . get_include_path( );
+    set_include_path( $include_path );
+                
+}
+
+function sfschool_civicrm_pageRun( &$page ) {
+    _sfschool_initialize( );
+
+    $name = $page->getVar( '_name' );
+    if ( $name == 'CRM_Profile_Page_Dynamic' ) {
+        $gid = $page->getVar( '_gid' );
+        switch ( $gid ) {
+        case 3:
+            return _sfschool_civicrm_pageRun_Profile_Page_Dynamic_3( $page, $gid );
+        case 4:
+            return _sfschool_civicrm_pageRun_Profile_Page_Dynamic_4( $page, $gid );
+        case 5:
+            return _sfschool_civicrm_pageRun_Profile_Page_Dynamic_5( $page, $gid );
+        }
+    } else if ( $name == 'CRM_Contact_Page_View_CustomData' ) {
+        $gid = $page->getVar( '_groupId' );
+        switch ( $gid ) {
+        case 2:
+            return _sfschool_civicrm_pageRun_Contact_Page_View_CustomData_2( $page, $gid );
+        case 4:
+            return _sfschool_civicrm_pageRun_Contact_Page_View_CustomData_4( $page, $gid );
+        }
+    }
+
+}
+
+function _sfschool_civicrm_pageRun_Profile_Page_Dynamic_3( &$page, $gid ) {
+    $parentID = $page->getVar( '_id' );
+    $values = array( );
+
+    require_once 'SFS/Utils/Query.php';
+    SFS_Utils_Query::checkSubType( $parentID, array( 'Parent', 'Staff' ) );
+
+    require_once 'SFS/Utils/Relationship.php';
+    SFS_Utils_Relationship::getChildren( $parentID,
+                                              $values,
+                                              true );
+
+    $childrenIDs = array_keys( $values );
+
+    require_once 'SFS/Utils/Conference.php';
+    SFS_Utils_Conference::getValues( $childrenIDs, $values, false, $parentID );
+
+    require_once 'SFS/Utils/ExtendedCare.php';
+    SFS_Utils_ExtendedCare::getValues( $childrenIDs, $values, $parentID );
+
+    $page->assign( 'childrenInfo', $values );
+}
+
+
+
+function _sfschool_civicrm_pageRun_Profile_Page_Dynamic_4( &$page, $gid ) {
+    $childID = $page->getVar( '_id' );
+
+    require_once 'SFS/Utils/Query.php';
+    SFS_Utils_Query::checkSubType( $childID, 'Student' );
+
+    $values = array( );
+    $values[$childID] =
+        array('name'    => CRM_Core_DAO::getFieldValue( 'CRM_Contact_DAO_Contact',
+                                                        $childID,
+                                                        'display_name' ),
+              'grade'   => SFS_Utils_Query::getGrade( $childID ),
+              'parents' => array( ) );
+
+    require_once 'SFS/Utils/Relationship.php';
+    SFS_Utils_Relationship::getParents( $childID,
+                                             $values[$childID]['parents'],
+                                             false );
+
+    require_once 'SFS/Utils/Conference.php';
+    SFS_Utils_Conference::getValues( $childID, $values );
+
+    require_once 'SFS/Utils/ExtendedCare.php';
+    SFS_Utils_ExtendedCare::getValues( $childID, $values );
+
+    $page->assign( 'childInfo', $values[$childID] );
+}
+
+function sfschool_civicrm_buildForm( $formName, &$form ) {
+    _sfschool_initialize( );
+
+    if ( $formName == 'CRM_Profile_Form_Edit' ) {
+        $gid = $form->getVar( '_gid' );
+        switch ( $gid ) {
+        case 4:
+            return _sfschool_civicrm_buildForm_CRM_Profile_Form_Edit_4( $formName, $form, $gid );
+        case 5:
+            return _sfschool_civicrm_buildForm_CRM_Profile_Form_Edit_5( $formName, $form, $gid );
+        }
+    }
+}
+
+function sfschool_civicrm_postProcess( $class, &$form ) {
+    _sfschool_initialize( );
+
+    if ( is_a( $form, 'CRM_Profile_Form_Edit' ) ) {
+        $gid = $form->getVar( '_gid' );
+        if ( $gid == 4 ) {
+            sfschool_civicrm_postProcess_CRM_Profile_Form_Edit_4( $class, $form, $gid );
+            return;
+        }
+    }
+}
+
+function _sfschool_civicrm_buildForm_CRM_Profile_Form_Edit_4( $formName, &$form, $gid ) {
+    // freeze first name, last name and grade
+    $elementList = array( 'first_name', 'last_name', 'custom_2' );
+    $form->freeze( $elementList );
+
+    $childID   = $form->getVar( '_id' );
+
+    require_once 'SFS/Utils/Conference.php';
+    SFS_Utils_Conference::buildForm( $form, $childID );
+
+    require_once 'SFS/Utils/ExtendedCare.php';
+    SFS_Utils_ExtendedCare::buildForm( $form, $childID );
+}
+
+function sfschool_civicrm_postProcess_CRM_Profile_Form_Edit_4( $class, &$form, $gid ) {
+    require_once 'SFS/Utils/Conference.php';
+    SFS_Utils_Conference::postProcess( $class, $form, $gid );
+
+    require_once 'SFS/Utils/ExtendedCare.php';
+    SFS_Utils_ExtendedCare::postProcess( $class, $form, $gid );
+}
+
+function sfschool_civicrm_tabs( &$tabs, $contactID ) {
+    _sfschool_initialize( );
+
+    require_once 'SFS/Utils/Query.php';
+    $subType = SFS_Utils_Query::getSubType( $contactID );
+
+    // if subType is not student then hide the extended care tab
+    if ( $subType == 'Student' ) {
+        return;
+    }
+
+    foreach ( $tabs as $tabID => $tabValue ) {
+        if ( $tabValue['title'] == 'Extended Care' ||
+             $tabValue['title'] == 'Extended Care Signout' ) {
+            unset( $tabs[$tabID] );
+        }
+    }
+}
+
+function sfschool_civicrm_xmlMenu( &$files ) {
+    $files[] =
+        dirname( __FILE__ ) . DIRECTORY_SEPARATOR .
+        '..'                . DIRECTORY_SEPARATOR .
+        '..'                . DIRECTORY_SEPARATOR .
+        'SFS'               . DIRECTORY_SEPARATOR .
+        'xml'               . DIRECTORY_SEPARATOR .
+        'Menu'              . DIRECTORY_SEPARATOR .
+        'sfschool.xml';
+}
+
+function _sfschool_civicrm_pageRun_Contact_Page_View_CustomData_2( &$page, $gid ) {
+    // get the details from smarty
+    $smarty  =& CRM_Core_Smarty::singleton( );
+    $details =& $smarty->get_template_vars( 'viewCustomData' );
+    
+    require_once 'SFS/Utils/ExtendedCare.php';
+    SFS_Utils_ExtendedCare::sortDetails( $details );
+    
+    $smarty->assign_by_ref( 'viewCustomData', $details );
+}
+
+function _sfschool_civicrm_pageRun_Contact_Page_View_CustomData_4( &$page, $gid ) {
+    // get the details from smarty
+    $smarty  =& CRM_Core_Smarty::singleton( );
+    $details =& $smarty->get_template_vars( 'viewCustomData' );
+    
+    require_once 'SFS/Utils/Intake.php';
+    SFS_Utils_Intake::unscrambleCustomViewData( $details );
+    
+    $smarty->assign_by_ref( 'viewCustomData', $details );
+}
+ 
+function _sfschool_civicrm_pageRun_Profile_Page_Dynamic_5( &$page, $gid ) {
+    // get the details from smarty
+    $smarty =& CRM_Core_Smarty::singleton( );
+    $row    =& $smarty->get_template_vars( 'row' );
+    
+    $childID = $page->getVar( '_id' ); 
+
+   require_once 'SFS/Utils/Intake.php';
+   SFS_Utils_Intake::unscrambleProfileRow( $row, $childID );
+    
+    $smarty->assign_by_ref( 'row', $row );
+}
+
+function _sfschool_civicrm_buildForm_CRM_Profile_Form_Edit_5( $formName, &$form, $gid ) {
+    $childID   = $form->getVar( '_id' );
+
+    require_once 'SFS/Utils/Intake.php';
+    SFS_Utils_Intake::buildForm( $form, $childID );
+}

@@ -1,0 +1,4781 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+
+<CustomData>
+  <CustomGroups>
+    <CustomGroup>
+      <name>School_Information</name>
+      <title>School Information</title>
+      <extends>Contact</extends>
+      <style>Tab</style>
+      <collapse_display>0</collapse_display>
+      <help_pre></help_pre>
+      <help_post></help_post>
+      <weight>1</weight>
+      <is_active>1</is_active>
+      <table_name>civicrm_value_school_information</table_name>
+      <is_multiple>0</is_multiple>
+      <collapse_adv_display>0</collapse_adv_display>
+    </CustomGroup>
+    <CustomGroup>
+      <name>Extended_Care</name>
+      <title>Extended Care</title>
+      <extends>Individual</extends>
+      <style>Tab</style>
+      <collapse_display>0</collapse_display>
+      <help_pre></help_pre>
+      <help_post></help_post>
+      <weight>2</weight>
+      <is_active>1</is_active>
+      <table_name>civicrm_value_extended_care</table_name>
+      <is_multiple>1</is_multiple>
+      <collapse_adv_display>0</collapse_adv_display>
+    </CustomGroup>
+    <CustomGroup>
+      <name>Extended_Care_Signout</name>
+      <title>Extended Care Signout</title>
+      <extends>Individual</extends>
+      <style>Tab</style>
+      <collapse_display>0</collapse_display>
+      <help_pre></help_pre>
+      <help_post></help_post>
+      <weight>3</weight>
+      <is_active>1</is_active>
+      <table_name>civicrm_value_extended_care_signout</table_name>
+      <is_multiple>1</is_multiple>
+      <collapse_adv_display>0</collapse_adv_display>
+    </CustomGroup>
+    <CustomGroup>
+      <name>Extended_Care_Fee_Tracker</name>
+      <title>Extended Care Fee Tracker</title>
+      <extends>Individual</extends>
+      <style>Tab</style>
+      <collapse_display>0</collapse_display>
+      <help_pre></help_pre>
+      <help_post></help_post>
+      <weight>4</weight>
+      <is_active>1</is_active>
+      <table_name>civicrm_value_extended_care_fee_tracker</table_name>
+      <is_multiple>1</is_multiple>
+      <collapse_adv_display>0</collapse_adv_display>
+    </CustomGroup>
+    <CustomGroup>
+      <name>Parent_Relationship_Data</name>
+      <title>Parent Relationship Data</title>
+      <extends>Relationship</extends>
+      <extends_entity_column_value_option_group>relationship_type</extends_entity_column_value_option_group>
+      <extends_entity_column_value_option_value></extends_entity_column_value_option_value>
+      <extends_entity_column_value>:;:;:;1:;:;:;</extends_entity_column_value>
+      <style>Inline</style>
+      <collapse_display>1</collapse_display>
+      <help_pre></help_pre>
+      <help_post></help_post>
+      <weight>5</weight>
+      <is_active>1</is_active>
+      <table_name>civicrm_value_parent_relationship_data</table_name>
+      <is_multiple>0</is_multiple>
+      <collapse_adv_display>0</collapse_adv_display>
+      <created_date>0000-00-00 00:00:00</created_date>
+    </CustomGroup>
+    <CustomGroup>
+      <name>Emergency_Contact_Data</name>
+      <title>Emergency Contact Data</title>
+      <extends>Relationship</extends>
+      <extends_entity_column_value_option_group>relationship_type</extends_entity_column_value_option_group>
+      <extends_entity_column_value_option_value></extends_entity_column_value_option_value>
+      <extends_entity_column_value>:;:;:;12:;:;:;</extends_entity_column_value>
+      <style>Inline</style>
+      <collapse_display>1</collapse_display>
+      <help_pre></help_pre>
+      <help_post></help_post>
+      <weight>6</weight>
+      <is_active>1</is_active>
+      <table_name>civicrm_value_emergency_contact_data</table_name>
+      <is_multiple>0</is_multiple>
+      <collapse_adv_display>0</collapse_adv_display>
+      <created_date>0000-00-00 00:00:00</created_date>
+    </CustomGroup>
+    <CustomGroup>
+      <name>Race</name>
+      <title>Race</title>
+      <extends>Individual</extends>
+      <style>Tab</style>
+      <collapse_display>1</collapse_display>
+      <help_pre></help_pre>
+      <help_post></help_post>
+      <weight>7</weight>
+      <is_active>1</is_active>
+      <table_name>civicrm_value_race</table_name>
+      <is_multiple>0</is_multiple>
+      <collapse_adv_display>0</collapse_adv_display>
+      <created_date>0000-00-00 00:00:00</created_date>
+    </CustomGroup>
+    <CustomGroup>
+      <name>Medical_Information</name>
+      <title>Medical Information</title>
+      <extends>Individual</extends>
+      <style>Tab</style>
+      <collapse_display>1</collapse_display>
+      <help_pre></help_pre>
+      <help_post></help_post>
+      <weight>8</weight>
+      <is_active>1</is_active>
+      <table_name>civicrm_value_medical_information</table_name>
+      <is_multiple>0</is_multiple>
+      <collapse_adv_display>0</collapse_adv_display>
+      <created_date>0000-00-00 00:00:00</created_date>
+    </CustomGroup>
+    <CustomGroup>
+      <name>Medical_Details</name>
+      <title>Medical Details</title>
+      <extends>Contact</extends>
+      <style>Tab</style>
+      <collapse_display>1</collapse_display>
+      <help_pre></help_pre>
+      <help_post></help_post>
+      <weight>9</weight>
+      <is_active>1</is_active>
+      <table_name>civicrm_value_medical_details</table_name>
+      <is_multiple>1</is_multiple>
+      <collapse_adv_display>0</collapse_adv_display>
+      <created_date>0000-00-00 00:00:00</created_date>
+    </CustomGroup>
+  </CustomGroups>
+  <CustomFields>
+    <CustomField>
+      <label>SubType</label>
+      <data_type>String</data_type>
+      <html_type>Select</html_type>
+      <default_value>Student</default_value>
+      <is_required>1</is_required>
+      <is_searchable>1</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>1</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>16</text_length>
+      <date_format>M:;:;:;d:;:;:;Y</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>subtype</column_name>
+      <option_group_name>subtype_20090727221943</option_group_name>
+      <custom_group_name>School_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Grade</label>
+      <data_type>String</data_type>
+      <html_type>Select</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>5</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>16</text_length>
+      <date_format>M:;:;:;d:;:;:;Y</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>grade</column_name>
+      <option_group_name>grade_20090727222519</option_group_name>
+      <custom_group_name>School_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Grade SIS</label>
+      <data_type>Int</data_type>
+      <html_type>Text</html_type>
+      <is_required>0</is_required>
+      <is_searchable>1</is_searchable>
+      <is_search_range>1</is_search_range>
+      <weight>7</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <date_format>M:;:;:;d:;:;:;Y</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>grade_sis</column_name>
+      <custom_group_name>School_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Extended Care Status</label>
+      <data_type>String</data_type>
+      <html_type>Select</html_type>
+      <default_value>Regular</default_value>
+      <is_required>0</is_required>
+      <is_searchable>1</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>8</weight>
+      <help_post>Status for computing the blocks for extended care. This does not apply to activity blocks (music classes etc)</help_post>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>16</text_length>
+      <date_format>M:;:;:;d:;:;:;Y</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>extended_care_status</column_name>
+      <option_group_name>extended_care_status_20091123074847</option_group_name>
+      <custom_group_name>School_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Activity Authorization</label>
+      <data_type>Boolean</data_type>
+      <html_type>Radio</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>9</weight>
+      <help_post>Handbook and Activities Authorization</help_post>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>activity_authorization</column_name>
+      <custom_group_name>School_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Media Authorization</label>
+      <data_type>Boolean</data_type>
+      <html_type>Radio</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>10</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>media_authorization</column_name>
+      <custom_group_name>School_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Middle School Release Authorization</label>
+      <data_type>Boolean</data_type>
+      <html_type>Radio</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>11</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>ms_release_authorization</column_name>
+      <custom_group_name>School_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Handbook Authorization</label>
+      <data_type>Boolean</data_type>
+      <html_type>Radio</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>12</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>handbook_authorization</column_name>
+      <custom_group_name>School_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Updated By</label>
+      <data_type>ContactReference</data_type>
+      <html_type>Autocomplete-Select</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>13</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>updated_by</column_name>
+      <custom_group_name>School_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Updated Date</label>
+      <data_type>Date</data_type>
+      <html_type>Select Date</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>14</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <start_date_years>5</start_date_years>
+      <end_date_years>5</end_date_years>
+      <date_format>mm/dd/yy</date_format>
+      <time_format>1</time_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>updated_date</column_name>
+      <custom_group_name>School_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Notified Date</label>
+      <data_type>Date</data_type>
+      <html_type>Select Date</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>15</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <start_date_years>5</start_date_years>
+      <end_date_years>5</end_date_years>
+      <date_format>mm/dd/yy</date_format>
+      <time_format>1</time_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>notified_date</column_name>
+      <custom_group_name>School_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Currently Enrolled</label>
+      <data_type>Boolean</data_type>
+      <html_type>Radio</html_type>
+      <default_value>1</default_value>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>16</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>is_currently_enrolled</column_name>
+      <custom_group_name>School_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Name</label>
+      <data_type>String</data_type>
+      <html_type>Text</html_type>
+      <is_required>1</is_required>
+      <is_searchable>1</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>9</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <date_format>M:;:;:;d:;:;:;Y</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>name</column_name>
+      <custom_group_name>Extended_Care</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Term</label>
+      <data_type>String</data_type>
+      <html_type>Select</html_type>
+      <default_value>Fall 2009</default_value>
+      <is_required>1</is_required>
+      <is_searchable>1</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>3</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>16</text_length>
+      <date_format>M:;:;:;d:;:;:;Y</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>term</column_name>
+      <option_group_name>term_4_20090815095158</option_group_name>
+      <custom_group_name>Extended_Care</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Instructor</label>
+      <data_type>String</data_type>
+      <html_type>Text</html_type>
+      <is_required>1</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>11</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>64</text_length>
+      <date_format>M:;:;:;d:;:;:;Y</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>instructor</column_name>
+      <custom_group_name>Extended_Care</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Fee Block</label>
+      <data_type>Float</data_type>
+      <html_type>Text</html_type>
+      <default_value>1</default_value>
+      <is_required>1</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>12</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <date_format>M:;:;:;d:;:;:;Y</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>fee_block</column_name>
+      <custom_group_name>Extended_Care</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Start Date</label>
+      <data_type>Date</data_type>
+      <html_type>Select Date</html_type>
+      <is_required>1</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>13</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <start_date_years>1</start_date_years>
+      <end_date_years>1</end_date_years>
+      <date_format>mm/dd/yy</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>start_date</column_name>
+      <custom_group_name>Extended_Care</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>End Date</label>
+      <data_type>Date</data_type>
+      <html_type>Select Date</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>14</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <start_date_years>1</start_date_years>
+      <end_date_years>1</end_date_years>
+      <date_format>mm/dd/yy</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>end_date</column_name>
+      <custom_group_name>Extended_Care</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Description</label>
+      <data_type>String</data_type>
+      <html_type>Text</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>10</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <date_format>M:;:;:;d:;:;:;Y</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>description</column_name>
+      <custom_group_name>Extended_Care</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Day of Week</label>
+      <data_type>String</data_type>
+      <html_type>Select</html_type>
+      <is_required>1</is_required>
+      <is_searchable>1</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>6</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <date_format>M:;:;:;d:;:;:;Y</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>day_of_week</column_name>
+      <option_group_name>day_of_week_10_20090815095426</option_group_name>
+      <custom_group_name>Extended_Care</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Session</label>
+      <data_type>String</data_type>
+      <html_type>Select</html_type>
+      <default_value>First</default_value>
+      <is_required>1</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>8</weight>
+      <help_post>The First Session runs from 3:30 - 4:30
+The Second Session runs from 4:30 - 5:30</help_post>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>32</text_length>
+      <date_format>M:;:;:;d:;:;:;Y</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>session</column_name>
+      <option_group_name>session_20090810110024</option_group_name>
+      <custom_group_name>Extended_Care</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Has Cancelled</label>
+      <data_type>Boolean</data_type>
+      <html_type>Radio</html_type>
+      <default_value>0</default_value>
+      <is_required>0</is_required>
+      <is_searchable>1</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>15</weight>
+      <help_post>Has the student dropped the class?</help_post>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <date_format>M:;:;:;d:;:;:;Y</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>has_cancelled</column_name>
+      <custom_group_name>Extended_Care</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Pickup Person Name</label>
+      <data_type>String</data_type>
+      <html_type>Text</html_type>
+      <is_required>1</is_required>
+      <is_searchable>1</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>2</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <date_format>M:;:;:;d:;:;:;Y</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>pickup_person_name</column_name>
+      <custom_group_name>Extended_Care_Signout</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Sign In Time</label>
+      <data_type>Date</data_type>
+      <html_type>Select Date</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>4</weight>
+      <is_active>1</is_active>
+      <is_view>1</is_view>
+      <text_length>255</text_length>
+      <start_date_years>1</start_date_years>
+      <end_date_years>1</end_date_years>
+      <date_format>mm/dd/yy</date_format>
+      <time_format>1</time_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>signin_time</column_name>
+      <custom_group_name>Extended_Care_Signout</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Sign Out Time</label>
+      <data_type>Date</data_type>
+      <html_type>Select Date</html_type>
+      <is_required>0</is_required>
+      <is_searchable>1</is_searchable>
+      <is_search_range>1</is_search_range>
+      <weight>5</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <start_date_years>1</start_date_years>
+      <end_date_years>1</end_date_years>
+      <date_format>mm/dd/yy</date_format>
+      <time_format>1</time_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>signout_time</column_name>
+      <custom_group_name>Extended_Care_Signout</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Class</label>
+      <data_type>String</data_type>
+      <html_type>Text</html_type>
+      <is_required>0</is_required>
+      <is_searchable>1</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>6</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>64</text_length>
+      <date_format>M:;:;:;d:;:;:;Y</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>class</column_name>
+      <custom_group_name>Extended_Care_Signout</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Morning Care</label>
+      <data_type>Boolean</data_type>
+      <html_type>Radio</html_type>
+      <is_required>0</is_required>
+      <is_searchable>1</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>7</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>64</text_length>
+      <date_format>M:;:;:;d:;:;:;Y</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>is_morning</column_name>
+      <custom_group_name>Extended_Care_Signout</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>At School Meeting?</label>
+      <data_type>Boolean</data_type>
+      <html_type>Radio</html_type>
+      <default_value>0</default_value>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>8</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <date_format>M:;:;:;d:;:;:;Y</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>at_school_meeting</column_name>
+      <custom_group_name>Extended_Care_Signout</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Fee Type</label>
+      <data_type>String</data_type>
+      <html_type>Select</html_type>
+      <is_required>1</is_required>
+      <is_searchable>1</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>2</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>16</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>fee_type</column_name>
+      <option_group_name>fee_type_20100112111703</option_group_name>
+      <custom_group_name>Extended_Care_Fee_Tracker</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Description</label>
+      <data_type>String</data_type>
+      <html_type>Text</html_type>
+      <is_required>1</is_required>
+      <is_searchable>1</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>7</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>description</column_name>
+      <custom_group_name>Extended_Care_Fee_Tracker</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Fee Date</label>
+      <data_type>Date</data_type>
+      <html_type>Select Date</html_type>
+      <is_required>1</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>10</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <start_date_years>1</start_date_years>
+      <end_date_years>1</end_date_years>
+      <date_format>mm/dd/yy</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>fee_date</column_name>
+      <custom_group_name>Extended_Care_Fee_Tracker</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Total Blocks</label>
+      <data_type>Float</data_type>
+      <html_type>Text</html_type>
+      <is_required>1</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>13</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>total_blocks</column_name>
+      <custom_group_name>Extended_Care_Fee_Tracker</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Category</label>
+      <data_type>String</data_type>
+      <html_type>Select</html_type>
+      <default_value>Standard Fee</default_value>
+      <is_required>1</is_required>
+      <is_searchable>1</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>4</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>32</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>category</column_name>
+      <option_group_name>category_20100113090942</option_group_name>
+      <custom_group_name>Extended_Care_Fee_Tracker</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>eConsent Signed</label>
+      <data_type>Boolean</data_type>
+      <html_type>Radio</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>1</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>econsent_signed</column_name>
+      <custom_group_name>Parent_Relationship_Data</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>eConsent Signed Date</label>
+      <data_type>Date</data_type>
+      <html_type>Select Date</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>2</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <start_date_years>10</start_date_years>
+      <end_date_years>10</end_date_years>
+      <date_format>mm/dd/yy</date_format>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>econsent_signed_date</column_name>
+      <custom_group_name>Parent_Relationship_Data</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Parent Index</label>
+      <data_type>Int</data_type>
+      <html_type>Text</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>3</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>parent_index</column_name>
+      <custom_group_name>Parent_Relationship_Data</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Counselor Authorization</label>
+      <data_type>Boolean</data_type>
+      <html_type>Radio</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>4</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>counselor_authorization</column_name>
+      <custom_group_name>Parent_Relationship_Data</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Relationship</label>
+      <data_type>String</data_type>
+      <html_type>Text</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>1</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>64</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>relationship</column_name>
+      <custom_group_name>Emergency_Contact_Data</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Relationship name</label>
+      <data_type>String</data_type>
+      <html_type>Text</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>2</weight>
+      <help_pre>The child typically knows the "emergency contact" by this name</help_pre>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>64</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>relationship_name</column_name>
+      <custom_group_name>Emergency_Contact_Data</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Race</label>
+      <data_type>String</data_type>
+      <html_type>CheckBox</html_type>
+      <is_required>0</is_required>
+      <is_searchable>1</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>9</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <options_per_line>1</options_per_line>
+      <text_length>64</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>race</column_name>
+      <option_group_name>race_20100512113503</option_group_name>
+      <custom_group_name>Race</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Other Race or Ethnicity</label>
+      <data_type>String</data_type>
+      <html_type>Text</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>10</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <options_per_line>1</options_per_line>
+      <text_length>64</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>race_other</column_name>
+      <custom_group_name>Race</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Hispanic American/Latino</label>
+      <data_type>String</data_type>
+      <html_type>CheckBox</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>11</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <options_per_line>1</options_per_line>
+      <text_length>64</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>race_hispanic</column_name>
+      <option_group_name>hispanic_american_latino_20100512113755</option_group_name>
+      <custom_group_name>Race</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Other Hispanic/Latino</label>
+      <data_type>String</data_type>
+      <html_type>Text</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>12</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <options_per_line>1</options_per_line>
+      <text_length>64</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>race_hispanic_other</column_name>
+      <custom_group_name>Race</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Asian American</label>
+      <data_type>String</data_type>
+      <html_type>CheckBox</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>13</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <options_per_line>1</options_per_line>
+      <text_length>64</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>race_asian</column_name>
+      <option_group_name>asian_american_20100512114639</option_group_name>
+      <custom_group_name>Race</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Other Asian</label>
+      <data_type>String</data_type>
+      <html_type>Text</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>14</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <options_per_line>1</options_per_line>
+      <text_length>64</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>race_asian_other</column_name>
+      <custom_group_name>Race</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Family Structure</label>
+      <data_type>String</data_type>
+      <html_type>CheckBox</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>15</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <options_per_line>1</options_per_line>
+      <text_length>64</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>race_family_structure</column_name>
+      <option_group_name>family_structure_20100512114846</option_group_name>
+      <custom_group_name>Race</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Insurance Company</label>
+      <data_type>String</data_type>
+      <html_type>Text</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>16</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>insurance_company</column_name>
+      <custom_group_name>Medical_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Group Number</label>
+      <data_type>String</data_type>
+      <html_type>Text</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>17</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>64</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>group_number</column_name>
+      <custom_group_name>Medical_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Policy Number</label>
+      <data_type>String</data_type>
+      <html_type>Text</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>18</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>64</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>policy_number</column_name>
+      <custom_group_name>Medical_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Physician Name</label>
+      <data_type>String</data_type>
+      <html_type>Text</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>19</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>physician_name</column_name>
+      <custom_group_name>Medical_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Physician Number</label>
+      <data_type>String</data_type>
+      <html_type>Text</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>20</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>32</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>physician_number</column_name>
+      <custom_group_name>Medical_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Child Insured?</label>
+      <data_type>Boolean</data_type>
+      <html_type>Radio</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>21</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>child_insured</column_name>
+      <custom_group_name>Medical_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Medical Authorization</label>
+      <data_type>Boolean</data_type>
+      <html_type>Radio</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>22</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>medical_authorization</column_name>
+      <custom_group_name>Medical_Information</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Medical Type</label>
+      <data_type>String</data_type>
+      <html_type>Select</html_type>
+      <is_required>1</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>1</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>16</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>medical_type</column_name>
+      <option_group_name>medical_type_20100525110732</option_group_name>
+      <custom_group_name>Medical_Details</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Name</label>
+      <data_type>String</data_type>
+      <html_type>Select</html_type>
+      <is_required>1</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>2</weight>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>32</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>4</note_rows>
+      <column_name>name</column_name>
+      <option_group_name>name_20100525110853</option_group_name>
+      <custom_group_name>Medical_Details</custom_group_name>
+    </CustomField>
+    <CustomField>
+      <label>Details</label>
+      <data_type>Memo</data_type>
+      <html_type>TextArea</html_type>
+      <is_required>0</is_required>
+      <is_searchable>0</is_searchable>
+      <is_search_range>0</is_search_range>
+      <weight>3</weight>
+      <attributes>rows=4, cols=60</attributes>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <text_length>255</text_length>
+      <note_columns>60</note_columns>
+      <note_rows>8</note_rows>
+      <column_name>details</column_name>
+      <custom_group_name>Medical_Details</custom_group_name>
+    </CustomField>
+  </CustomFields>
+  <OptionGroups>
+    <OptionGroup>
+      <name>activity_type</name>
+      <description>Activity Type</description>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+    </OptionGroup>
+    <OptionGroup>
+      <name>event_type</name>
+      <description>Event Type</description>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+    </OptionGroup>
+    <OptionGroup>
+      <name>mapping_type</name>
+      <description>Mapping Type</description>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+    </OptionGroup>
+    <OptionGroup>
+      <name>subtype_20090727221943</name>
+      <label>SubType</label>
+      <is_active>1</is_active>
+    </OptionGroup>
+    <OptionGroup>
+      <name>grade_20090727222519</name>
+      <label>Grade</label>
+      <is_active>1</is_active>
+    </OptionGroup>
+    <OptionGroup>
+      <name>extended_care_status_20091123074847</name>
+      <label>Extended Care Status</label>
+      <is_active>1</is_active>
+    </OptionGroup>
+    <OptionGroup>
+      <name>term_4_20090815095158</name>
+      <label>Term</label>
+      <is_active>1</is_active>
+    </OptionGroup>
+    <OptionGroup>
+      <name>day_of_week_10_20090815095426</name>
+      <label>Day of Week</label>
+      <is_active>1</is_active>
+    </OptionGroup>
+    <OptionGroup>
+      <name>session_20090810110024</name>
+      <label>Session</label>
+      <is_active>1</is_active>
+    </OptionGroup>
+    <OptionGroup>
+      <name>fee_type_20100112111703</name>
+      <label>Fee Type</label>
+      <is_active>1</is_active>
+    </OptionGroup>
+    <OptionGroup>
+      <name>category_20100113090942</name>
+      <label>Category</label>
+      <is_active>1</is_active>
+    </OptionGroup>
+    <OptionGroup>
+      <name>race_20100512113503</name>
+      <label>Race</label>
+      <is_active>1</is_active>
+    </OptionGroup>
+    <OptionGroup>
+      <name>hispanic_american_latino_20100512113755</name>
+      <label>Hispanic American/Latino</label>
+      <is_active>1</is_active>
+    </OptionGroup>
+    <OptionGroup>
+      <name>asian_american_20100512114639</name>
+      <label>Asian American</label>
+      <is_active>1</is_active>
+    </OptionGroup>
+    <OptionGroup>
+      <name>family_structure_20100512114846</name>
+      <label>Family Structure</label>
+      <is_active>1</is_active>
+    </OptionGroup>
+    <OptionGroup>
+      <name>medical_type_20100525110732</name>
+      <label>Medical Type</label>
+      <is_active>1</is_active>
+    </OptionGroup>
+    <OptionGroup>
+      <name>name_20100525110853</name>
+      <label>Name</label>
+      <is_active>1</is_active>
+    </OptionGroup>
+  </OptionGroups>
+  <RelationshipTypes>
+    <RelationshipType>
+      <name_a_b>Child of</name_a_b>
+      <label_a_b>Child of</label_a_b>
+      <name_b_a>Parent of</name_b_a>
+      <label_b_a>Parent of</label_b_a>
+      <description>Parent/child relationship.</description>
+      <contact_type_a>Individual</contact_type_a>
+      <contact_type_b>Individual</contact_type_b>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+    </RelationshipType>
+    <RelationshipType>
+      <name_a_b>Spouse of</name_a_b>
+      <label_a_b>Spouse of</label_a_b>
+      <name_b_a>Spouse of</name_b_a>
+      <label_b_a>Spouse of</label_b_a>
+      <description>Spousal relationship.</description>
+      <contact_type_a>Individual</contact_type_a>
+      <contact_type_b>Individual</contact_type_b>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+    </RelationshipType>
+    <RelationshipType>
+      <name_a_b>Sibling of</name_a_b>
+      <label_a_b>Sibling of</label_a_b>
+      <name_b_a>Sibling of</name_b_a>
+      <label_b_a>Sibling of</label_b_a>
+      <description>Sibling relationship.</description>
+      <contact_type_a>Individual</contact_type_a>
+      <contact_type_b>Individual</contact_type_b>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+    </RelationshipType>
+    <RelationshipType>
+      <name_a_b>Employee of</name_a_b>
+      <label_a_b>Employee of</label_a_b>
+      <name_b_a>Employer of</name_b_a>
+      <label_b_a>Employer of</label_b_a>
+      <description>Employment relationship.</description>
+      <contact_type_a>Individual</contact_type_a>
+      <contact_type_b>Organization</contact_type_b>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+    </RelationshipType>
+    <RelationshipType>
+      <name_a_b>Volunteer for</name_a_b>
+      <label_a_b>Volunteer for</label_a_b>
+      <name_b_a>Volunteer is</name_b_a>
+      <label_b_a>Volunteer is</label_b_a>
+      <description>Volunteer relationship.</description>
+      <contact_type_a>Individual</contact_type_a>
+      <contact_type_b>Organization</contact_type_b>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+    </RelationshipType>
+    <RelationshipType>
+      <name_a_b>Head of Household for</name_a_b>
+      <label_a_b>Head of Household for</label_a_b>
+      <name_b_a>Head of Household is</name_b_a>
+      <label_b_a>Head of Household is</label_b_a>
+      <description>Head of household.</description>
+      <contact_type_a>Individual</contact_type_a>
+      <contact_type_b>Household</contact_type_b>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+    </RelationshipType>
+    <RelationshipType>
+      <name_a_b>Household Member of</name_a_b>
+      <label_a_b>Household Member of</label_a_b>
+      <name_b_a>Household Member is</name_b_a>
+      <label_b_a>Household Member is</label_b_a>
+      <description>Household membership.</description>
+      <contact_type_a>Individual</contact_type_a>
+      <contact_type_b>Household</contact_type_b>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+    </RelationshipType>
+    <RelationshipType>
+      <name_a_b>Case Coordinator is</name_a_b>
+      <label_a_b>Case Coordinator is</label_a_b>
+      <name_b_a>Case Coordinator</name_b_a>
+      <label_b_a>Case Coordinator</label_b_a>
+      <description>Case Coordinator</description>
+      <contact_type_a>Individual</contact_type_a>
+      <contact_type_b>Individual</contact_type_b>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+    </RelationshipType>
+    <RelationshipType>
+      <name_a_b>Supervised by</name_a_b>
+      <label_a_b>Supervised by</label_a_b>
+      <name_b_a>Supervisor</name_b_a>
+      <label_b_a>Supervisor</label_b_a>
+      <description>Immediate workplace supervisor</description>
+      <contact_type_a>Individual</contact_type_a>
+      <contact_type_b>Individual</contact_type_b>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+    </RelationshipType>
+    <RelationshipType>
+      <name_a_b>Advisee</name_a_b>
+      <label_a_b>Advisee</label_a_b>
+      <name_b_a>Advisor</name_b_a>
+      <label_b_a>Advisor</label_b_a>
+      <contact_type_a>Individual</contact_type_a>
+      <contact_type_b>Individual</contact_type_b>
+      <is_active>1</is_active>
+    </RelationshipType>
+    <RelationshipType>
+      <name_a_b>Student</name_a_b>
+      <label_a_b>Student</label_a_b>
+      <name_b_a>Teacher</name_b_a>
+      <label_b_a>Teacher</label_b_a>
+      <description>Student_Teacher</description>
+      <contact_type_a>Individual</contact_type_a>
+      <contact_type_b>Individual</contact_type_b>
+      <is_active>1</is_active>
+    </RelationshipType>
+    <RelationshipType>
+      <name_a_b>Emergency Contact Of</name_a_b>
+      <label_a_b>Emergency Contact Of</label_a_b>
+      <name_b_a>Emergency Contact For</name_b_a>
+      <label_b_a>Emergency Contact For</label_b_a>
+      <description>Emergency Contact Relationship</description>
+      <contact_type_a>Individual</contact_type_a>
+      <contact_type_b>Individual</contact_type_b>
+      <is_active>1</is_active>
+    </RelationshipType>
+  </RelationshipTypes>
+  <LocationTypes>
+    <LocationType>
+      <name>Home</name>
+      <vcard_name>HOME</vcard_name>
+      <description>Place of residence</description>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <is_default>1</is_default>
+    </LocationType>
+    <LocationType>
+      <name>Work</name>
+      <vcard_name>WORK</vcard_name>
+      <description>Work location</description>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+    </LocationType>
+    <LocationType>
+      <name>Main</name>
+      <description>Main office location</description>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+    </LocationType>
+    <LocationType>
+      <name>Other</name>
+      <description>Other location</description>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+    </LocationType>
+    <LocationType>
+      <name>Billing</name>
+      <description>Billing Address location</description>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+    </LocationType>
+  </LocationTypes>
+  <OptionValues>
+    <OptionValue>
+      <label>Assign Case Role</label>
+      <value>23</value>
+      <name>Assign Case Role</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>23</weight>
+      <description></description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Bulk Email</label>
+      <value>21</value>
+      <name>Bulk Email</name>
+      <filter>1</filter>
+      <is_default>0</is_default>
+      <weight>21</weight>
+      <description>Bulk Email Sent.</description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Change Case Start Date</label>
+      <value>19</value>
+      <name>Change Case Start Date</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>19</weight>
+      <description></description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Change Case Status</label>
+      <value>16</value>
+      <name>Change Case Status</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>16</weight>
+      <description></description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Change Case Tags</label>
+      <value>30</value>
+      <name>Change Case Tags</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>30</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Change Case Type</label>
+      <value>15</value>
+      <name>Change Case Type</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>15</weight>
+      <description></description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Contribution</label>
+      <value>6</value>
+      <name>Contribution</name>
+      <filter>1</filter>
+      <weight>6</weight>
+      <description>Online or offline contribution.</description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Email</label>
+      <value>3</value>
+      <name>Email</name>
+      <filter>1</filter>
+      <weight>3</weight>
+      <description>Email sent.</description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Event Registration</label>
+      <value>5</value>
+      <name>Event Registration</name>
+      <filter>1</filter>
+      <weight>5</weight>
+      <description>Online or offline event registration.</description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Follow up</label>
+      <value>14</value>
+      <name>Follow up</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>14</weight>
+      <description></description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Inbound Email</label>
+      <value>12</value>
+      <name>Inbound Email</name>
+      <filter>1</filter>
+      <weight>12</weight>
+      <description>Inbound Email.</description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Link Cases</label>
+      <value>29</value>
+      <name>Link Cases</name>
+      <filter>0</filter>
+      <weight>29</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Meeting</label>
+      <value>1</value>
+      <name>Meeting</name>
+      <filter>0</filter>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Membership Renewal</label>
+      <value>8</value>
+      <name>Membership Renewal</name>
+      <filter>1</filter>
+      <weight>8</weight>
+      <description>Online or offline membership renewal.</description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Membership Renewal Reminder</label>
+      <value>18</value>
+      <name>Membership Renewal Reminder</name>
+      <filter>1</filter>
+      <weight>18</weight>
+      <description>offline membership renewal reminder.</description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Membership Signup</label>
+      <value>7</value>
+      <name>Membership Signup</name>
+      <filter>1</filter>
+      <weight>7</weight>
+      <description>Online or offline membership signup.</description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Merge Case</label>
+      <value>27</value>
+      <name>Merge Case</name>
+      <filter>0</filter>
+      <weight>27</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Open Case</label>
+      <value>13</value>
+      <name>Open Case</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>13</weight>
+      <description></description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Parent Teacher Conference</label>
+      <value>20</value>
+      <name>Parent Teacher Conference</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>20</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Phone Call</label>
+      <value>2</value>
+      <name>Phone Call</name>
+      <filter>0</filter>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Pledge Acknowledgment</label>
+      <value>10</value>
+      <name>Pledge Acknowledgment</name>
+      <filter>1</filter>
+      <weight>10</weight>
+      <description>Send Pledge Acknowledgment.</description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Pledge Reminder</label>
+      <value>11</value>
+      <name>Pledge Reminder</name>
+      <filter>1</filter>
+      <weight>11</weight>
+      <description>Send Pledge Reminder.</description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Print PDF Letter</label>
+      <value>23</value>
+      <name>Print PDF Letter</name>
+      <filter>1</filter>
+      <weight>23</weight>
+      <description>Print PDF Letter.</description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Reassigned Case</label>
+      <value>28</value>
+      <name>Reassigned Case</name>
+      <filter>0</filter>
+      <weight>28</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Remove Case Role</label>
+      <value>26</value>
+      <name>Remove Case Role</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>26</weight>
+      <description></description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Text Message (SMS)</label>
+      <value>4</value>
+      <name>SMS</name>
+      <filter>1</filter>
+      <weight>4</weight>
+      <description>Text message (SMS) sent.</description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Tell a Friend</label>
+      <value>9</value>
+      <name>Tell a Friend</name>
+      <filter>1</filter>
+      <weight>9</weight>
+      <description>Send information about a contribution campaign or event to a friend.</description>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>activity_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Conference</label>
+      <value>1</value>
+      <name>Conference</name>
+      <filter>0</filter>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>event_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Exhibition</label>
+      <value>2</value>
+      <name>Exhibition</name>
+      <filter>0</filter>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>event_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Fundraiser</label>
+      <value>3</value>
+      <name>Fundraiser</name>
+      <filter>0</filter>
+      <weight>3</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>event_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Meeting</label>
+      <value>4</value>
+      <name>Meeting</name>
+      <filter>0</filter>
+      <weight>4</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>event_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Performance</label>
+      <value>5</value>
+      <name>Performance</name>
+      <filter>0</filter>
+      <weight>5</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>event_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Workshop</label>
+      <value>6</value>
+      <name>Workshop</name>
+      <filter>0</filter>
+      <weight>6</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>event_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Export Activities</label>
+      <value>14</value>
+      <name>Export Activity</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>14</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>mapping_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Export Case</label>
+      <value>12</value>
+      <name>Export Case</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>12</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>mapping_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Export Contact</label>
+      <value>7</value>
+      <name>Export Contact</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>7</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>mapping_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Export Contribution</label>
+      <value>8</value>
+      <name>Export Contribution</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>8</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>mapping_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Export Grant</label>
+      <value>13</value>
+      <name>Export Grant</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>13</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>mapping_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Export Membership</label>
+      <value>9</value>
+      <name>Export Membership</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>9</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>mapping_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Export Participant</label>
+      <value>10</value>
+      <name>Export Participant</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>10</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>mapping_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Export Pledge</label>
+      <value>11</value>
+      <name>Export Pledge</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>11</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>mapping_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Import Activity</label>
+      <value>3</value>
+      <name>Import Activity</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>3</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>mapping_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Import Contact</label>
+      <value>2</value>
+      <name>Import Contact</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>mapping_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Import Contribution</label>
+      <value>4</value>
+      <name>Import Contribution</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>4</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>mapping_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Import Membership</label>
+      <value>5</value>
+      <name>Import Membership</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>5</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>mapping_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Import Participant</label>
+      <value>6</value>
+      <name>Import Participant</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>6</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>mapping_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Search Builder</label>
+      <value>1</value>
+      <name>Search Builder</name>
+      <filter>0</filter>
+      <is_default>0</is_default>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>1</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>mapping_type</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Student</label>
+      <value>Student</value>
+      <is_default>0</is_default>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>subtype_20090727221943</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Parent</label>
+      <value>Parent</value>
+      <is_default>0</is_default>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>subtype_20090727221943</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Teacher</label>
+      <value>Teacher</value>
+      <is_default>0</is_default>
+      <weight>3</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>subtype_20090727221943</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Staff</label>
+      <value>Staff</value>
+      <is_default>0</is_default>
+      <weight>4</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>subtype_20090727221943</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>8</label>
+      <value>8</value>
+      <is_default>0</is_default>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>grade_20090727222519</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>7</label>
+      <value>7</value>
+      <is_default>0</is_default>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>grade_20090727222519</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>6</label>
+      <value>6</value>
+      <is_default>0</is_default>
+      <weight>3</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>grade_20090727222519</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>5</label>
+      <value>5</value>
+      <is_default>0</is_default>
+      <weight>4</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>grade_20090727222519</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>4</label>
+      <value>4</value>
+      <is_default>0</is_default>
+      <weight>5</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>grade_20090727222519</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>3</label>
+      <value>3</value>
+      <is_default>0</is_default>
+      <weight>6</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>grade_20090727222519</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>2</label>
+      <value>2</value>
+      <is_default>0</is_default>
+      <weight>7</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>grade_20090727222519</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>1</label>
+      <value>1</value>
+      <is_default>0</is_default>
+      <weight>8</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>grade_20090727222519</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>K S</label>
+      <value>K S</value>
+      <is_default>0</is_default>
+      <weight>9</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>grade_20090727222519</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>PK4 N</label>
+      <value>PK4 N</value>
+      <is_default>0</is_default>
+      <weight>11</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>grade_20090727222519</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>PK3 N</label>
+      <value>PK3 N</value>
+      <is_default>0</is_default>
+      <weight>12</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>grade_20090727222519</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>PK4 S</label>
+      <value>PK4 S</value>
+      <is_default>0</is_default>
+      <weight>13</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>grade_20090727222519</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>PK3 S</label>
+      <value>PK3 S</value>
+      <is_default>0</is_default>
+      <weight>14</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>grade_20090727222519</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>K N</label>
+      <value>K N</value>
+      <is_default>0</is_default>
+      <weight>10</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>grade_20090727222519</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Regular</label>
+      <value>Regular</value>
+      <is_default>0</is_default>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>extended_care_status_20091123074847</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Unlimited</label>
+      <value>Unlimited</value>
+      <is_default>0</is_default>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>extended_care_status_20091123074847</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Staff</label>
+      <value>Staff</value>
+      <is_default>0</is_default>
+      <weight>3</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>extended_care_status_20091123074847</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>SMART</label>
+      <value>SMART</value>
+      <is_default>0</is_default>
+      <weight>4</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>extended_care_status_20091123074847</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Fall 2009</label>
+      <value>Fall 2009</value>
+      <is_default>0</is_default>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>term_4_20090815095158</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Spring 2010</label>
+      <value>Spring 2010</value>
+      <is_default>0</is_default>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>term_4_20090815095158</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Monday</label>
+      <value>Monday</value>
+      <is_default>0</is_default>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>day_of_week_10_20090815095426</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Tuesday</label>
+      <value>Tuesday</value>
+      <is_default>0</is_default>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>day_of_week_10_20090815095426</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Wednesday</label>
+      <value>Wednesday</value>
+      <is_default>0</is_default>
+      <weight>3</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>day_of_week_10_20090815095426</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Thursday</label>
+      <value>Thursday</value>
+      <is_default>0</is_default>
+      <weight>4</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>day_of_week_10_20090815095426</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Friday</label>
+      <value>Friday</value>
+      <is_default>0</is_default>
+      <weight>5</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>day_of_week_10_20090815095426</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>First</label>
+      <value>First</value>
+      <is_default>0</is_default>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>session_20090810110024</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Second</label>
+      <value>Second</value>
+      <is_default>0</is_default>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>session_20090810110024</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Charge</label>
+      <value>Charge</value>
+      <name>Charge</name>
+      <is_default>0</is_default>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>fee_type_20100112111703</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Credit</label>
+      <value>Credit</value>
+      <name>Credit</name>
+      <is_default>0</is_default>
+      <weight>3</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>fee_type_20100112111703</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Payment</label>
+      <value>Payment</value>
+      <name>Payment</name>
+      <is_default>0</is_default>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>fee_type_20100112111703</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Activity Fee</label>
+      <value>Activity Fee</value>
+      <name>Activity_Fee</name>
+      <is_default>0</is_default>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>category_20100113090942</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Carry Over Blocks</label>
+      <value>Carry Over Blocks</value>
+      <name>Carry_Over_Blocks</name>
+      <is_default>0</is_default>
+      <weight>5</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>category_20100113090942</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Free Blocks</label>
+      <value>Free Blocks</value>
+      <name>Free_Blocks</name>
+      <is_default>0</is_default>
+      <weight>4</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>category_20100113090942</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Other</label>
+      <value>Other</value>
+      <name>Other</name>
+      <is_default>0</is_default>
+      <weight>6</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>category_20100113090942</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Paid Blocks</label>
+      <value>Paid Blocks</value>
+      <name>Paid_Blocks</name>
+      <is_default>0</is_default>
+      <weight>3</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>category_20100113090942</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Standard Fee</label>
+      <value>Standard Fee</value>
+      <name>Standard_Fee</name>
+      <is_default>0</is_default>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>category_20100113090942</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Native American or Alaska Native</label>
+      <value>native</value>
+      <is_default>0</is_default>
+      <weight>3</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>race_20100512113503</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Asian American</label>
+      <value>asian</value>
+      <name>Asian_American</name>
+      <is_default>0</is_default>
+      <weight>5</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>race_20100512113503</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Black or African American</label>
+      <value>black</value>
+      <name>Black_or_African_American</name>
+      <is_default>0</is_default>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>race_20100512113503</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Hispanic American/Latino</label>
+      <value>hispanic</value>
+      <name>Hispanic_American_Latino</name>
+      <is_default>0</is_default>
+      <weight>4</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>race_20100512113503</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Other</label>
+      <value>other</value>
+      <name>Other</name>
+      <is_default>0</is_default>
+      <weight>6</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>race_20100512113503</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>White</label>
+      <value>white</value>
+      <name>White</name>
+      <is_default>0</is_default>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>race_20100512113503</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Mexican, Mexican American, Chicano</label>
+      <value>mexican</value>
+      <is_default>0</is_default>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>hispanic_american_latino_20100512113755</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Caribbean</label>
+      <value>caribbean</value>
+      <name>Caribbean</name>
+      <is_default>0</is_default>
+      <weight>4</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>hispanic_american_latino_20100512113755</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Central American</label>
+      <value>central</value>
+      <name>Central_American</name>
+      <is_default>0</is_default>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>hispanic_american_latino_20100512113755</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Other Hispanic/Latino</label>
+      <value>other</value>
+      <name>Other_Hispanic_Latino</name>
+      <is_default>0</is_default>
+      <weight>5</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>hispanic_american_latino_20100512113755</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>South American</label>
+      <value>south</value>
+      <name>South_American</name>
+      <is_default>0</is_default>
+      <weight>3</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>hispanic_american_latino_20100512113755</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Chinese</label>
+      <value>chinese</value>
+      <name>Chinese</name>
+      <is_default>0</is_default>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>asian_american_20100512114639</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Filipino</label>
+      <value>filipino</value>
+      <name>Filipino</name>
+      <is_default>0</is_default>
+      <weight>3</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>asian_american_20100512114639</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Indian</label>
+      <value>indian</value>
+      <name>Indian</name>
+      <is_default>0</is_default>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>asian_american_20100512114639</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Japanese</label>
+      <value>japanese</value>
+      <name>Japanese</name>
+      <is_default>0</is_default>
+      <weight>4</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>asian_american_20100512114639</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Korean</label>
+      <value>korean</value>
+      <name>Korean</name>
+      <is_default>0</is_default>
+      <weight>5</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>asian_american_20100512114639</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Middle Eastern</label>
+      <value>middleeastern</value>
+      <name>Middle_Eastern</name>
+      <is_default>0</is_default>
+      <weight>7</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>asian_american_20100512114639</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Other Asian</label>
+      <value>other</value>
+      <name>Other_Asian</name>
+      <is_default>0</is_default>
+      <weight>9</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>asian_american_20100512114639</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Pacific Islander</label>
+      <value>pacific</value>
+      <name>Pacific_Islander</name>
+      <is_default>0</is_default>
+      <weight>8</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>asian_american_20100512114639</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Vietnamese</label>
+      <value>vietnamese</value>
+      <name>Vietnamese</name>
+      <is_default>0</is_default>
+      <weight>6</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>asian_american_20100512114639</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Adoptive Family</label>
+      <value>adoptive</value>
+      <name>Adoptive_Family</name>
+      <is_default>0</is_default>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>family_structure_20100512114846</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Guardian / Other Relative</label>
+      <value>guardian</value>
+      <name>Guardian__Other_Relative</name>
+      <is_default>0</is_default>
+      <weight>4</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>family_structure_20100512114846</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>LGBT</label>
+      <value>lgbt</value>
+      <name>LGBT</name>
+      <is_default>0</is_default>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>family_structure_20100512114846</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Single Parent</label>
+      <value>single</value>
+      <name>Single_Parent</name>
+      <is_default>0</is_default>
+      <weight>3</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>family_structure_20100512114846</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Allergies</label>
+      <value>Allergies</value>
+      <name>Allergies</name>
+      <is_default>0</is_default>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>medical_type_20100525110732</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Medical</label>
+      <value>Medical</value>
+      <name>Medical</name>
+      <is_default>0</is_default>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>medical_type_20100525110732</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Animals</label>
+      <value>Animals</value>
+      <name>Animals</name>
+      <is_default>0</is_default>
+      <weight>3</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>name_20100525110853</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Asthma</label>
+      <value>Asthma</value>
+      <name>Asthma</name>
+      <is_default>0</is_default>
+      <weight>6</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>name_20100525110853</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Dairy</label>
+      <value>Dairy</value>
+      <name>Dairy</name>
+      <is_default>0</is_default>
+      <weight>2</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>name_20100525110853</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Insects</label>
+      <value>Insects</value>
+      <name>Insects</name>
+      <is_default>0</is_default>
+      <weight>5</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>name_20100525110853</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Medicine</label>
+      <value>Medicine</value>
+      <name>Medicine</name>
+      <is_default>0</is_default>
+      <weight>4</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>name_20100525110853</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Nuts</label>
+      <value>Nuts</value>
+      <name>Nuts</name>
+      <is_default>0</is_default>
+      <weight>1</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>name_20100525110853</option_group_name>
+    </OptionValue>
+    <OptionValue>
+      <label>Other</label>
+      <value>Other</value>
+      <name>Other</name>
+      <is_default>0</is_default>
+      <weight>7</weight>
+      <is_optgroup>0</is_optgroup>
+      <is_reserved>0</is_reserved>
+      <is_active>1</is_active>
+      <option_group_name>name_20100525110853</option_group_name>
+    </OptionValue>
+  </OptionValues>
+  <ProfileGroups>
+    <ProfileGroup>
+      <is_active>1</is_active>
+      <group_type>Individual,Contact</group_type>
+      <title>Name and Address</title>
+      <add_captcha>0</add_captcha>
+      <is_map>0</is_map>
+      <is_edit_link>0</is_edit_link>
+      <is_uf_link>0</is_uf_link>
+      <is_update_dupe>0</is_update_dupe>
+      <is_proximity_search>0</is_proximity_search>
+    </ProfileGroup>
+    <ProfileGroup>
+      <is_active>1</is_active>
+      <group_type>Individual,Contact</group_type>
+      <title>Supporter Profile</title>
+      <help_post><p><strong>The information you provide will NOT be shared with any third party organisations.</strong></p><p>Thank you for getting involved in our campaign!</p></help_post>
+      <add_captcha>0</add_captcha>
+      <is_map>0</is_map>
+      <is_edit_link>0</is_edit_link>
+      <is_uf_link>0</is_uf_link>
+      <is_update_dupe>0</is_update_dupe>
+      <is_cms_user>2</is_cms_user>
+      <is_proximity_search>0</is_proximity_search>
+    </ProfileGroup>
+    <ProfileGroup>
+      <is_active>1</is_active>
+      <group_type>Individual,Contact</group_type>
+      <title>Parent Information</title>
+      <add_captcha>0</add_captcha>
+      <is_map>0</is_map>
+      <is_edit_link>0</is_edit_link>
+      <is_uf_link>0</is_uf_link>
+      <is_update_dupe>0</is_update_dupe>
+      <is_proximity_search>0</is_proximity_search>
+    </ProfileGroup>
+    <ProfileGroup>
+      <is_active>1</is_active>
+      <group_type>Individual,Contact</group_type>
+      <title>Student Information</title>
+      <add_captcha>0</add_captcha>
+      <is_map>0</is_map>
+      <is_edit_link>0</is_edit_link>
+      <is_uf_link>0</is_uf_link>
+      <is_update_dupe>0</is_update_dupe>
+      <is_proximity_search>0</is_proximity_search>
+    </ProfileGroup>
+    <ProfileGroup>
+      <is_active>1</is_active>
+      <group_type>Participant</group_type>
+      <title>Participant Status</title>
+      <add_captcha>0</add_captcha>
+      <is_map>0</is_map>
+      <is_edit_link>0</is_edit_link>
+      <is_uf_link>0</is_uf_link>
+      <is_update_dupe>0</is_update_dupe>
+      <is_cms_user>0</is_cms_user>
+      <is_reserved>1</is_reserved>
+      <name>participant_status</name>
+      <is_proximity_search>0</is_proximity_search>
+    </ProfileGroup>
+    <ProfileGroup>
+      <is_active>1</is_active>
+      <group_type>Individual,Contact</group_type>
+      <title>New Individual</title>
+      <add_captcha>0</add_captcha>
+      <is_map>0</is_map>
+      <is_edit_link>0</is_edit_link>
+      <is_uf_link>0</is_uf_link>
+      <is_update_dupe>0</is_update_dupe>
+      <is_cms_user>0</is_cms_user>
+      <is_reserved>1</is_reserved>
+      <name>new_individual</name>
+      <is_proximity_search>0</is_proximity_search>
+    </ProfileGroup>
+    <ProfileGroup>
+      <is_active>1</is_active>
+      <group_type>Organization,Contact</group_type>
+      <title>New Organization</title>
+      <add_captcha>0</add_captcha>
+      <is_map>0</is_map>
+      <is_edit_link>0</is_edit_link>
+      <is_uf_link>0</is_uf_link>
+      <is_update_dupe>0</is_update_dupe>
+      <is_cms_user>0</is_cms_user>
+      <is_reserved>1</is_reserved>
+      <name>new_organization</name>
+      <is_proximity_search>0</is_proximity_search>
+    </ProfileGroup>
+    <ProfileGroup>
+      <is_active>1</is_active>
+      <group_type>Household,Contact</group_type>
+      <title>New Household</title>
+      <add_captcha>0</add_captcha>
+      <is_map>0</is_map>
+      <is_edit_link>0</is_edit_link>
+      <is_uf_link>0</is_uf_link>
+      <is_update_dupe>0</is_update_dupe>
+      <is_cms_user>0</is_cms_user>
+      <is_reserved>1</is_reserved>
+      <name>new_household</name>
+      <is_proximity_search>0</is_proximity_search>
+    </ProfileGroup>
+  </ProfileGroups>
+  <ProfileFields>
+    <ProfileField>
+      <field_name>first_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <help_post></help_post>
+      <visibility>Public Pages and Listings</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>First Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>last_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <help_post>First and last name will be shared with other visitors to the site.</help_post>
+      <visibility>Public Pages and Listings</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>Last Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>street_address</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>0</is_required>
+      <weight>3</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Street Address (Home)</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>city</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>0</is_required>
+      <weight>4</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>City (Home)</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>postal_code</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>0</is_required>
+      <weight>5</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Postal Code (Home)</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>country</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>0</is_required>
+      <weight>6</weight>
+      <help_post>Your state/province and country of residence will be shared with others so folks can find others in their community.</help_post>
+      <visibility>Public Pages and Listings</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>Country (Home)</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>state_province</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>0</is_required>
+      <weight>7</weight>
+      <help_post></help_post>
+      <visibility>Public Pages and Listings</visibility>
+      <in_selector>1</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>State (Home)</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>first_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>First Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Supporter Profile</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>last_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Last Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Supporter Profile</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>3</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email Address</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Supporter Profile</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>first_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>First Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Parent Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>last_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Last Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Parent Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>3</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Parent Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>phone</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>4</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Phone</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Parent Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>first_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <help_post></help_post>
+      <visibility>Public Pages</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>First Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Student Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>last_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <help_post></help_post>
+      <visibility>Public Pages</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>Last Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Student Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>custom.civicrm_value_school_information.grade</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>3</weight>
+      <help_post></help_post>
+      <visibility>Public Pages</visibility>
+      <in_selector>1</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>Grade</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Student Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>participant_status_id</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Participant Status</label>
+      <field_type>Participant</field_type>
+      <is_reserved>1</is_reserved>
+      <profile_group_name>Participant Status</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>first_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>First Name</label>
+      <field_type>Individual</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Individual</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>last_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Last Name</label>
+      <field_type>Individual</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Individual</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>3</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email Address</label>
+      <field_type>Contact</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Individual</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>organization_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Organization Name</label>
+      <field_type>Organization</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Organization</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email Address</label>
+      <field_type>Contact</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Organization</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>household_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Household Name</label>
+      <field_type>Household</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Household</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email Address</label>
+      <field_type>Contact</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Household</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>first_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <help_post></help_post>
+      <visibility>Public Pages and Listings</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>First Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>last_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <help_post>First and last name will be shared with other visitors to the site.</help_post>
+      <visibility>Public Pages and Listings</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>Last Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>street_address</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>0</is_required>
+      <weight>3</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Street Address (Home)</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>city</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>0</is_required>
+      <weight>4</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>City (Home)</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>postal_code</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>0</is_required>
+      <weight>5</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Postal Code (Home)</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>country</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>0</is_required>
+      <weight>6</weight>
+      <help_post>Your state/province and country of residence will be shared with others so folks can find others in their community.</help_post>
+      <visibility>Public Pages and Listings</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>Country (Home)</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>state_province</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>0</is_required>
+      <weight>7</weight>
+      <help_post></help_post>
+      <visibility>Public Pages and Listings</visibility>
+      <in_selector>1</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>State (Home)</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>first_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>First Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Supporter Profile</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>last_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Last Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Supporter Profile</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>3</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email Address</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Supporter Profile</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>first_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>First Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Parent Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>last_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Last Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Parent Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>3</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Parent Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>phone</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>4</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Phone</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Parent Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>first_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <help_post></help_post>
+      <visibility>Public Pages</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>First Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Student Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>last_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <help_post></help_post>
+      <visibility>Public Pages</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>Last Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Student Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>custom.civicrm_value_school_information.grade</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>3</weight>
+      <help_post></help_post>
+      <visibility>Public Pages</visibility>
+      <in_selector>1</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>Grade</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Student Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>participant_status_id</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Participant Status</label>
+      <field_type>Participant</field_type>
+      <is_reserved>1</is_reserved>
+      <profile_group_name>Participant Status</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>first_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>First Name</label>
+      <field_type>Individual</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Individual</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>last_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Last Name</label>
+      <field_type>Individual</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Individual</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>3</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email Address</label>
+      <field_type>Contact</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Individual</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>organization_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Organization Name</label>
+      <field_type>Organization</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Organization</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email Address</label>
+      <field_type>Contact</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Organization</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>household_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Household Name</label>
+      <field_type>Household</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Household</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email Address</label>
+      <field_type>Contact</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Household</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>first_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <help_post></help_post>
+      <visibility>Public Pages and Listings</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>First Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>last_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <help_post>First and last name will be shared with other visitors to the site.</help_post>
+      <visibility>Public Pages and Listings</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>Last Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>street_address</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>0</is_required>
+      <weight>3</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Street Address (Home)</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>city</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>0</is_required>
+      <weight>4</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>City (Home)</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>postal_code</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>0</is_required>
+      <weight>5</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Postal Code (Home)</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>country</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>0</is_required>
+      <weight>6</weight>
+      <help_post>Your state/province and country of residence will be shared with others so folks can find others in their community.</help_post>
+      <visibility>Public Pages and Listings</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>Country (Home)</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>state_province</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>0</is_required>
+      <weight>7</weight>
+      <help_post></help_post>
+      <visibility>Public Pages and Listings</visibility>
+      <in_selector>1</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>State (Home)</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Name and Address</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>first_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>First Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Supporter Profile</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>last_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Last Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Supporter Profile</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>3</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email Address</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Supporter Profile</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>first_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>First Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Parent Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>last_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Last Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Parent Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>3</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Parent Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>phone</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>4</weight>
+      <help_post></help_post>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Phone</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Parent Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>first_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <help_post></help_post>
+      <visibility>Public Pages</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>First Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Student Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>last_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <help_post></help_post>
+      <visibility>Public Pages</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>Last Name</label>
+      <field_type>Individual</field_type>
+      <profile_group_name>Student Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>custom.civicrm_value_school_information.grade</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>3</weight>
+      <help_post></help_post>
+      <visibility>Public Pages</visibility>
+      <in_selector>1</in_selector>
+      <is_searchable>1</is_searchable>
+      <label>Grade</label>
+      <field_type>Contact</field_type>
+      <profile_group_name>Student Information</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>participant_status_id</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Participant Status</label>
+      <field_type>Participant</field_type>
+      <is_reserved>1</is_reserved>
+      <profile_group_name>Participant Status</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>first_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>First Name</label>
+      <field_type>Individual</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Individual</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>last_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Last Name</label>
+      <field_type>Individual</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Individual</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>3</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email Address</label>
+      <field_type>Contact</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Individual</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>organization_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Organization Name</label>
+      <field_type>Organization</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Organization</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email Address</label>
+      <field_type>Contact</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Organization</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>household_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Household Name</label>
+      <field_type>Household</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Household</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email Address</label>
+      <field_type>Contact</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Household</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>participant_status_id</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Participant Status</label>
+      <field_type>Participant</field_type>
+      <is_reserved>1</is_reserved>
+      <profile_group_name>Participant Status</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>first_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>First Name</label>
+      <field_type>Individual</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Individual</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>last_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Last Name</label>
+      <field_type>Individual</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Individual</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>3</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email Address</label>
+      <field_type>Contact</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Individual</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>organization_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Organization Name</label>
+      <field_type>Organization</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Organization</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email Address</label>
+      <field_type>Contact</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Organization</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>household_name</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>1</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Household Name</label>
+      <field_type>Household</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Household</profile_group_name>
+    </ProfileField>
+    <ProfileField>
+      <field_name>email</field_name>
+      <is_active>1</is_active>
+      <is_view>0</is_view>
+      <is_required>1</is_required>
+      <weight>2</weight>
+      <visibility>User and User Admin Only</visibility>
+      <in_selector>0</in_selector>
+      <is_searchable>0</is_searchable>
+      <label>Email Address</label>
+      <field_type>Contact</field_type>
+      <is_reserved>0</is_reserved>
+      <profile_group_name>New Household</profile_group_name>
+    </ProfileField>
+  </ProfileFields>
+  <ProfileJoins>
+    <ProfileJoin>
+      <is_active>1</is_active>
+      <module>Profile</module>
+      <weight>4</weight>
+      <profile_group_name>Supporter Profile</profile_group_name>
+    </ProfileJoin>
+    <ProfileJoin>
+      <is_active>1</is_active>
+      <module>Profile</module>
+      <weight>2</weight>
+      <profile_group_name>Parent Information</profile_group_name>
+    </ProfileJoin>
+    <ProfileJoin>
+      <is_active>1</is_active>
+      <module>Profile</module>
+      <weight>1</weight>
+      <profile_group_name>Student Information</profile_group_name>
+    </ProfileJoin>
+    <ProfileJoin>
+      <is_active>1</is_active>
+      <module>Profile</module>
+      <weight>3</weight>
+      <profile_group_name>New Individual</profile_group_name>
+    </ProfileJoin>
+    <ProfileJoin>
+      <is_active>1</is_active>
+      <module>Profile</module>
+      <weight>4</weight>
+      <profile_group_name>New Organization</profile_group_name>
+    </ProfileJoin>
+    <ProfileJoin>
+      <is_active>1</is_active>
+      <module>Profile</module>
+      <weight>5</weight>
+      <profile_group_name>New Household</profile_group_name>
+    </ProfileJoin>
+  </ProfileJoins>
+  <MappingGroups>
+    <MappingGroup>
+      <name>Parent1</name>
+      <mapping_type_name>Import Contact</mapping_type_name>
+    </MappingGroup>
+    <MappingGroup>
+      <name>Parent2</name>
+      <mapping_type_name>Import Contact</mapping_type_name>
+    </MappingGroup>
+    <MappingGroup>
+      <name>First</name>
+      <mapping_type_name>Import Contact</mapping_type_name>
+    </MappingGroup>
+    <MappingGroup>
+      <name>Second</name>
+      <mapping_type_name>Import Contact</mapping_type_name>
+    </MappingGroup>
+    <MappingGroup>
+      <name>2nd</name>
+      <mapping_type_name>Import Contact</mapping_type_name>
+    </MappingGroup>
+    <MappingGroup>
+      <name>Advisee</name>
+      <mapping_type_name>Import Contact</mapping_type_name>
+    </MappingGroup>
+    <MappingGroup>
+      <name>Teachers</name>
+      <mapping_type_name>Import Contact</mapping_type_name>
+    </MappingGroup>
+    <MappingGroup>
+      <name>Advisee Second</name>
+      <mapping_type_name>Import Contact</mapping_type_name>
+    </MappingGroup>
+  </MappingGroups>
+  <MappingFields>
+    <MappingField>
+      <name>First Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>0</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent1</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Last Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>1</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent1</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: Grade</name>
+      <contact_type>Individual</contact_type>
+      <column_number>2</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent1</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>External Identifier</name>
+      <contact_type>Individual</contact_type>
+      <column_number>3</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent1</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: SubType</name>
+      <contact_type>Individual</contact_type>
+      <column_number>4</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent1</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>First Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>5</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent1</mapping_group_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>Last Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>6</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent1</mapping_group_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>Custom 1</name>
+      <contact_type>Individual</contact_type>
+      <column_number>7</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent1</mapping_group_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>8</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent1</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>9</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent1</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>10</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent1</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Phone</name>
+      <contact_type>Individual</contact_type>
+      <column_number>11</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent1</mapping_group_name>
+      <location_type_name>Home</location_type_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>Email</name>
+      <contact_type>Individual</contact_type>
+      <column_number>12</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent1</mapping_group_name>
+      <location_type_name>Home</location_type_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>13</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent1</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>First Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>0</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent2</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Last Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>1</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent2</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: Grade</name>
+      <contact_type>Individual</contact_type>
+      <column_number>2</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent2</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>External Identifier</name>
+      <contact_type>Individual</contact_type>
+      <column_number>3</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent2</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: SubType</name>
+      <contact_type>Individual</contact_type>
+      <column_number>4</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent2</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>5</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent2</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>6</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent2</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>7</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent2</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>First Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>8</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent2</mapping_group_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>Last Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>9</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent2</mapping_group_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>Custom 1</name>
+      <contact_type>Individual</contact_type>
+      <column_number>10</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent2</mapping_group_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>Phone</name>
+      <contact_type>Individual</contact_type>
+      <column_number>11</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent2</mapping_group_name>
+      <location_type_name>Home</location_type_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>12</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent2</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Email</name>
+      <contact_type>Individual</contact_type>
+      <column_number>13</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent2</mapping_group_name>
+      <location_type_name>Home</location_type_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>First Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>0</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>First</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Last Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>1</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>First</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: Grade</name>
+      <contact_type>Individual</contact_type>
+      <column_number>2</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>First</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>External Identifier</name>
+      <contact_type>Individual</contact_type>
+      <column_number>3</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>First</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: SubType</name>
+      <contact_type>Individual</contact_type>
+      <column_number>4</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>First</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>First Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>5</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>First</mapping_group_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>Last Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>6</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>First</mapping_group_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: SubType</name>
+      <contact_type>Individual</contact_type>
+      <column_number>7</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>First</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>8</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>First</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>9</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>First</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>10</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>First</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Phone</name>
+      <contact_type>Individual</contact_type>
+      <column_number>11</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>First</mapping_group_name>
+      <location_type_name>Home</location_type_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>Email</name>
+      <contact_type>Individual</contact_type>
+      <column_number>12</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>First</mapping_group_name>
+      <location_type_name>Home</location_type_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>13</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>First</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>First Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>0</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Second</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Last Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>1</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Second</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: Grade</name>
+      <contact_type>Individual</contact_type>
+      <column_number>2</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Second</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: External ID</name>
+      <contact_type>Individual</contact_type>
+      <column_number>3</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Second</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: SubType</name>
+      <contact_type>Individual</contact_type>
+      <column_number>4</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Second</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>5</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Second</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>6</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Second</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>7</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Second</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>First Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>8</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Second</mapping_group_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>Last Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>9</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Second</mapping_group_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: SubType</name>
+      <contact_type>Individual</contact_type>
+      <column_number>10</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Second</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Phone</name>
+      <contact_type>Individual</contact_type>
+      <column_number>11</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Second</mapping_group_name>
+      <location_type_name>Home</location_type_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>12</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Second</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Email</name>
+      <contact_type>Individual</contact_type>
+      <column_number>13</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Second</mapping_group_name>
+      <location_type_name>Home</location_type_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>First Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>0</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>2nd</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Last Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>1</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>2nd</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: Grade</name>
+      <contact_type>Individual</contact_type>
+      <column_number>2</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>2nd</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>External Identifier</name>
+      <contact_type>Individual</contact_type>
+      <column_number>3</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>2nd</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: SubType</name>
+      <contact_type>Individual</contact_type>
+      <column_number>4</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>2nd</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>5</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>2nd</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>6</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>2nd</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>7</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>2nd</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>First Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>8</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>2nd</mapping_group_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>Last Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>9</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>2nd</mapping_group_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: SubType</name>
+      <contact_type>Individual</contact_type>
+      <column_number>10</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>2nd</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Phone</name>
+      <contact_type>Individual</contact_type>
+      <column_number>11</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>2nd</mapping_group_name>
+      <location_type_name>Home</location_type_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>12</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>2nd</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Email</name>
+      <contact_type>Individual</contact_type>
+      <column_number>13</column_number>
+      <relationship_direction>a_b</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>2nd</mapping_group_name>
+      <location_type_name>Home</location_type_name>
+      <relationship_type_name>Child of</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>First Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>0</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Last Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>1</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>External Identifier</name>
+      <contact_type>Individual</contact_type>
+      <column_number>2</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Last Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>3</column_number>
+      <relationship_direction>b_a</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee</mapping_group_name>
+      <relationship_type_name>Advisee</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>First Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>4</column_number>
+      <relationship_direction>b_a</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee</mapping_group_name>
+      <relationship_type_name>Advisee</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>External Identifier</name>
+      <contact_type>Individual</contact_type>
+      <column_number>5</column_number>
+      <relationship_direction>b_a</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee</mapping_group_name>
+      <relationship_type_name>Advisee</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>6</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>7</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>8</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>First Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>0</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Teachers</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Last Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>1</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Teachers</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>External Identifier</name>
+      <contact_type>Individual</contact_type>
+      <column_number>2</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Teachers</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Email</name>
+      <contact_type>Individual</contact_type>
+      <column_number>3</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Teachers</mapping_group_name>
+      <location_type_name>Work</location_type_name>
+    </MappingField>
+    <MappingField>
+      <name>First Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>0</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee Second</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Last Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>1</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee Second</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>External Identifier</name>
+      <contact_type>Individual</contact_type>
+      <column_number>2</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee Second</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>3</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee Second</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>4</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee Second</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>- do not import -</name>
+      <contact_type>Individual</contact_type>
+      <column_number>5</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee Second</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>Last Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>6</column_number>
+      <relationship_direction>b_a</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee Second</mapping_group_name>
+      <relationship_type_name>Advisee</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>First Name</name>
+      <contact_type>Individual</contact_type>
+      <column_number>7</column_number>
+      <relationship_direction>b_a</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee Second</mapping_group_name>
+      <relationship_type_name>Advisee</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>External Identifier</name>
+      <contact_type>Individual</contact_type>
+      <column_number>8</column_number>
+      <relationship_direction>b_a</relationship_direction>
+      <grouping>1</grouping>
+      <mapping_group_name>Advisee Second</mapping_group_name>
+      <relationship_type_name>Advisee</relationship_type_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: Grade SIS</name>
+      <column_number>14</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent1</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: Grade SIS</name>
+      <column_number>14</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Parent2</mapping_group_name>
+    </MappingField>
+    <MappingField>
+      <name>School Inf...: SubType</name>
+      <column_number>4</column_number>
+      <grouping>1</grouping>
+      <mapping_group_name>Teachers</mapping_group_name>
+    </MappingField>
+  </MappingFields>
+</CustomData>
