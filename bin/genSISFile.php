@@ -36,7 +36,7 @@
 require_once 'Utils.php';
 
 function run( ) {
-    SFS_bin_Utils_auth( );
+    SCH_bin_Utils_auth( );
 
     $config =& CRM_Core_Config::singleton( );
 
@@ -44,7 +44,7 @@ function run( ) {
     sfschool_civicrm_config( $config );
 
     $time = null;
-    
+
     // if first day of month, then generate monthly report
     if ( $_GET['all'] ) {
         $time = null;
@@ -56,8 +56,8 @@ function run( ) {
         $time = strftime( "%Y-%m-%d", time( ) - 30 * 60 * 60 );
     }
 
-    require_once 'SFS/Utils/PowerSchool.php';
-    SFS_Utils_PowerSchool::export( $time, true );
+    require_once 'SCH/Utils/PowerSchool.php';
+    SCH_Utils_PowerSchool::export( $time, true );
 }
 
 // first set the time limit to infinity

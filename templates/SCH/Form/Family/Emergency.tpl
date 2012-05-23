@@ -1,7 +1,7 @@
 <div id="help">
 Welcome to the Emergency Contact Page (step 2 of 5). Please identify at least two individuals the school can contact in the case of an emergency if (and only if) parents/ guardians cannot be reached. These individuals need to live in the Bay Area. Complete all relevant fields for all Emergency Contacts for your child. When complete, click "Save & Next."
 <br/>
-{include file="SFS/Form/Family/HelpInfo.tpl"}
+{include file="SCH/Form/Family/HelpInfo.tpl"}
 </div>
 
 {section name="numContacts" start=1 step=1 loop=4}
@@ -12,7 +12,7 @@ Welcome to the Emergency Contact Page (step 2 of 5). Please identify at least tw
   <tr><td>
   <table><tr>
          <td>
-            {$form.ec_contact.$contactIndex.first_name.label}<br /> 
+            {$form.ec_contact.$contactIndex.first_name.label}<br />
             {$form.ec_contact.$contactIndex.first_name.html}
          </td>
          <td>
@@ -36,11 +36,11 @@ Welcome to the Emergency Contact Page (step 2 of 5). Please identify at least tw
             {$form.ec_contact.$contactIndex.phone.1.phone.html}
       </td>
       <td>
-            {$form.ec_contact.$contactIndex.phone.2.phone.label}<br /> 
+            {$form.ec_contact.$contactIndex.phone.2.phone.label}<br />
             {$form.ec_contact.$contactIndex.phone.2.phone.html}
       </td>
       <td>
-            {$form.ec_contact.$contactIndex.phone.3.phone.label}<br /> 
+            {$form.ec_contact.$contactIndex.phone.3.phone.label}<br />
             {$form.ec_contact.$contactIndex.phone.3.phone.html}
       </td>
       <td>
@@ -52,4 +52,4 @@ Welcome to the Emergency Contact Page (step 2 of 5). Please identify at least tw
 </fieldset>
 {/section}
 
-{include file="SFS/Form/Family/Buttons.tpl"}
+{include file="SCH/Form/Family/Buttons.tpl"}

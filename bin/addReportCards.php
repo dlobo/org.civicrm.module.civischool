@@ -12,12 +12,12 @@ function initialize( ) {
 }
 
 function loadFiles( $inputDir, $year, $term, &$files ) {
-    $dir = 
+    $dir =
         $inputDir . DIRECTORY_SEPARATOR .
         $year     . DIRECTORY_SEPARATOR .
         $term;
 
-    $outDir = 
+    $outDir =
         $inputDir     . DIRECTORY_SEPARATOR .
         'reportCards' . DIRECTORY_SEPARATOR .
         $year         . DIRECTORY_SEPARATOR .
@@ -171,7 +171,7 @@ function generateSQL( &$files, $year, $term,
     $sql  = null;
     $sql .= "
 INSERT INTO civicrm_file ( id, mime_type, uri, upload_date )
-VALUES 
+VALUES
 " . implode( ",\n", $fileSQL ) . ";\n";
 
     $sql .= "
@@ -201,7 +201,7 @@ function run( $inputDir, $year, $term ) {
     print_r( $sql );
 }
 
-run( '/Users/lobo/SFS/Reports',
+run( '/Users/lobo/SCH/Reports',
      '2011-2012',
      'S1' );
 

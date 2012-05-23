@@ -6,14 +6,14 @@ define( 'CELL_PHONE_TYPE_ID', 2 );
 define( 'WORK_PHONE_TYPE_ID', 4 );
 
 function &parsePSFile( &$studentInfo ) {
-    
-    $fdRead  = fopen( '/Users/lobo/SFS/PowerSchool/export/StudentInfo_080910.csv', 'r' );
+
+    $fdRead  = fopen( '/Users/lobo/SCH/PowerSchool/export/StudentInfo_080910.csv', 'r' );
 
     if ( ! $fdRead ) {
         echo "Could not read file\n";
         exit( );
     }
-    
+
     // read first line
     $fields = fgetcsv( $fdRead );
 
@@ -42,14 +42,14 @@ function parseRow( &$fields, &$studentInfo ) {
         return;
     }
 
-    $studentInfo[$fields[0]] = 
+    $studentInfo[$fields[0]] =
         array( 'student_id'  => $fields[0],
                'first_name'  => $fields[1],
                'middle_name' => $fields[2],
                'last_name'   => $fields[3],
                'birth_date'  => $fields[6] );
 
-    $studentInfo[$fields[0]]['grade']     = 
+    $studentInfo[$fields[0]]['grade']     =
         $studentInfo[$fields[0]]['grade_sis'] = $fields[4];
 
     // fix for pre K to include north / south
@@ -144,7 +144,7 @@ function checkAndSaveParentAddress( &$student, &$parent ) {
     if ( ! CRM_Utils_Array::value( 'street_address', $parent ) ) {
         // delete existing address
         $query = "
-DELETE 
+DELETE
 FROM   civicrm_address
 WHERE  contact_id = %1
 AND    location_type_id = %2
@@ -161,7 +161,7 @@ WHERE  contact_id = %1
 AND    location_type_id = %2
 ";
     $addressID = CRM_Core_DAO::singleValueQuery( $query, $params );
-    
+
     $params[3] = array( trim( $parent['street_address'] ), 'String' );
     $city = CRM_Utils_Array::value( 'city', $parent, 'San Francisco' );
     $params[4] = array( trim( $city ), 'String' );
@@ -207,7 +207,7 @@ function checkAndSaveParentEmail( &$student, &$parent, &$errors ) {
     }
 
     $newEmail = strtolower( trim( $parent['email'] ) );
-    
+
     // first check if email exists and matches
     $query = "
 SELECT email
@@ -229,14 +229,14 @@ WHERE  ( name = %1 OR mail = %1 )
         $user = CRM_Core_DAO::executeQuery( $query, $params );
         $user->fetch( );
         if ( ! $user->uid ) {
-            $errors['Drupal Account does not exist'][] = 
+            $errors['Drupal Account does not exist'][] =
                 "$studentID, {$student['first_name']}, {$student['last_name']}, {$parent['first_name']}, {$parent['last_name']}, {$parent['name']}, {$parent['email']}, CiviCRM Email: $email";
         }
     }
 
     if ( $email != $newEmail ) {
         if ( empty( $email ) ) {
-            $errors['No Email in CiviCRM'][] = 
+            $errors['No Email in CiviCRM'][] =
                 "$studentID, {$student['first_name']}, {$student['last_name']}, {$parent['first_name']}, {$parent['last_name']}, {$parent['name']}, {$parent['email']}";
         } else if ( strpos( $newEmail, '/' ) !== false ) {
             $errors['Multiple Emails in PowerSchool'][] =
@@ -267,7 +267,7 @@ function checkAndSaveParentPhone( &$student, &$parent ) {
               CRM_Utils_Array::value( 'phone_work', $parent ),
               WORK_PHONE_TYPE_ID,
               $primary );
-}    
+}
 
 function addPhone( $contactID,
                    $locationTypeID,
@@ -316,12 +316,12 @@ VALUES ( %1, %2, %3, %4, %5 )
         $primary = 0;
     }
 }
-                      
+
 function matchName( $name ) {
     static $names = array(
                           'Lee, Mike' => 'Lee, Michael',
                           );
-    
+
     $name = trim( $name );
     return CRM_Utils_Array::value( $name, $names, $name );
 }
@@ -372,14 +372,14 @@ AND        ( ( s.subtype = 'Parent' ) OR ( s.subtype = 'Staff' ) )
                               'contact_type'        => 'Individual',
                               'custom_1'            => 'Parent',
                               );
-        
+
         require_once 'api/v2/Contact.php';
         $result = civicrm_contact_create( $contactData );
         $parentID = $result['contact_id'];
     } else {
         $parentID = $dao->parent_id;
     }
-    
+
     // next create relationship between parent and student
     $sql = "
 INSERT INTO civicrm_relationship

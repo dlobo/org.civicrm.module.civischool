@@ -1,10 +1,10 @@
 <div id="help">
 Welcome to the Household Page (step 1 of 5). We ask that you please complete all relevant fields for Household 1. If your child’s parents/guardians live at a different address, please complete Household 2 information as well. When complete, click "Save & Next."
 <br/>
-{include file="SFS/Form/Family/HelpInfo.tpl"}
+{include file="SCH/Form/Family/HelpInfo.tpl"}
 </div>
 
-{include file="SFS/Form/Family/Buttons.tpl}
+{include file="SCH/Form/Family/Buttons.tpl}
 
 {section name="parentNumber" start=1 step=1 loop=5}
 {assign  var='parentNum'     value=$smarty.section.parentNumber.index}
@@ -12,7 +12,7 @@ Welcome to the Household Page (step 1 of 5). We ask that you please complete all
 {if $parentNum is odd}
 <div class="crm-accordion-wrapper crm-accordion_title-accordion {if $parentNum gte 2}{if $form.contact.$parentNum.first_name.value or $form.contact.$parentNum.email.1.email.value}crm-accordion-open{else}crm-accordion-closed{/if}{else}crm-accordion-open{/if}">
   <div class="crm-accordion-header">
-    <div class="icon crm-accordion-pointer"></div> 
+    <div class="icon crm-accordion-pointer"></div>
       Household {if $parentNum gte 2}2{else}1{/if}
     </div><!-- /.crm-accordion-header -->
     <div class="crm-accordion-body">
@@ -27,7 +27,7 @@ Welcome to the Household Page (step 1 of 5). We ask that you please complete all
                </tr>
                <tr>
                  <td style="padding:1px">
-                    {$form.contact.$parentNum.first_name.label}<br /> 
+                    {$form.contact.$parentNum.first_name.label}<br />
                     {$form.contact.$parentNum.first_name.html}
                  </td>
                  <td style="padding:1px">
@@ -41,7 +41,7 @@ Welcome to the Household Page (step 1 of 5). We ask that you please complete all
                <table>
                {* Email *}
                <tr>
-	          <td style="padding:1px" width=18%>{$form.contact.$parentNum.email.1.email.label}</td><td>{$form.contact.$parentNum.email.1.email.html|crmReplace:class:twenty}</td> 
+	          <td style="padding:1px" width=18%>{$form.contact.$parentNum.email.1.email.label}</td><td>{$form.contact.$parentNum.email.1.email.html|crmReplace:class:twenty}</td>
                </tr>
 
                {* Phone *}
@@ -69,7 +69,7 @@ Welcome to the Household Page (step 1 of 5). We ask that you please complete all
                <table>
                {include file=CRM/Contact/Form/Edit/Address/street_address.tpl blockId="$parentNum"}
 
-               {* city postal *}                 
+               {* city postal *}
                {if $form.address.$parentNum}
                <tr>
                   {if $form.address.$parentNum.city}
@@ -97,7 +97,7 @@ Welcome to the Household Page (step 1 of 5). We ask that you please complete all
                        {$form.address.$parentNum.country_id.html}
                     </td>
                   {/if}
-                  {if $form.address.$parentNum.state_province_id} 
+                  {if $form.address.$parentNum.state_province_id}
                     <td style="padding:1px">
                        {$form.address.$parentNum.state_province_id.label}<br />
                        {$form.address.$parentNum.state_province_id.html}
@@ -114,7 +114,7 @@ Welcome to the Household Page (step 1 of 5). We ask that you please complete all
      </tr>
     </table>
 
-    {include file="SFS/Form/Family/Buttons.tpl}
+    {include file="SCH/Form/Family/Buttons.tpl}
 
   </div><!-- /.crm-accordion-body -->
 </div><!-- /.crm-accordion-wrapper -->
@@ -128,7 +128,7 @@ Welcome to the Household Page (step 1 of 5). We ask that you please complete all
 <script type="text/javascript">
 cj(function() {
    cj(".crm-error:first").hide();
-   cj().crmaccordions(); 
+   cj().crmaccordions();
 });
 </script>
 {/literal}

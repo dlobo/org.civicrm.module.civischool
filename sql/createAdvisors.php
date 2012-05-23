@@ -7,7 +7,7 @@ FROM       civicrm_contact c
 INNER JOIN civicrm_value_school_information s ON c.id = s.entity_id
 WHERE      c.first_name = %1
 AND        c.last_name  = %2
-AND        s.subtype IN ( $subType )   
+AND        s.subtype IN ( $subType )
 ";
     $params = array( 1 => array( trim( $firstName ), 'String' ),
                      2 => array( trim( $lastName ), 'String' ) );
@@ -26,7 +26,7 @@ AND        s.subtype IN ( $subType )
 }
 
 function createAdvisors( ) {
-    $fdRead  = fopen( '/Users/lobo/SFS/PowerSchool/export/MS_Advisors.csv', 'r' );
+    $fdRead  = fopen( '/Users/lobo/SCH/PowerSchool/export/MS_Advisors.csv', 'r' );
 
     if ( ! $fdRead ) {
         echo "Could not read file\n";

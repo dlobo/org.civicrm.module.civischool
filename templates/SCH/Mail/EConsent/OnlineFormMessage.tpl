@@ -11,7 +11,7 @@ Instructions:
 
 2. Click on PARENT INFORMATION link.
 
-3. Click on "Submit {$childName}'s SFS Family Information Form" link.
+3. Click on "Submit {$childName}'s SCH Family Information Form" link.
 
 4. Follow the instructions to complete the form.
 

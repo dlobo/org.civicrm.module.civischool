@@ -1,7 +1,7 @@
 <div id="help">
 Welcome to the Release Page (step 4 of 5). Please review these releases carefully and confirm that you have read and agree to each statement by checking each box. When complete, click "Save & Next."
 <br/>
-{include file="SFS/Form/Family/HelpInfo.tpl"}
+{include file="SCH/Form/Family/HelpInfo.tpl"}
 </div>
 
 <fieldset>
@@ -12,10 +12,10 @@ Welcome to the Release Page (step 4 of 5). Please review these releases carefull
 I/we permit my/our child to attend and participate in all San Francisco School activities, events, off-campus travel/transportation, field trips (including overnights), sporting events, and other school sponsored activities (including Walk(s) on Thursday), some of which involve a heightened risk of injury and/or reduced level of supervision. While I/we understand that the School will attempt to exercise reasonable diligence to ensure the safety of my/our child in general, I/we understand that the level of supervision of specific activities and travel may be limited, and it is not practicable for the School to provide continuous supervision of all activities at all times.
 </p>
 <p>
-I/we understand that there are inherent risks of serious bodily injury and property damage involved in all of the above activities and travel. On behalf of my/our child, I/we voluntarily assume and accept such risks of personal injury and property damage arising from my/our child's attendance and participation in such activities and travel. 
+I/we understand that there are inherent risks of serious bodily injury and property damage involved in all of the above activities and travel. On behalf of my/our child, I/we voluntarily assume and accept such risks of personal injury and property damage arising from my/our child's attendance and participation in such activities and travel.
 </p>
 <p>
-I/we also agree to assume financial responsibility for emergency care and services for my/our child, including rescue and transportation services. This express assumption of risk does not apply to liability for gross negligence or intentional injury, and is not intended to apply to the School’s insurer or non-agent, third parties. This consent shall remain effective throughout the duration of my child’s attendance at The San Francisco School. 
+I/we also agree to assume financial responsibility for emergency care and services for my/our child, including rescue and transportation services. This express assumption of risk does not apply to liability for gross negligence or intentional injury, and is not intended to apply to the School’s insurer or non-agent, third parties. This consent shall remain effective throughout the duration of my child’s attendance at The San Francisco School.
 </p>
 <table class="form-layout-compressed">
   <tr>
@@ -78,7 +78,7 @@ As the parent/guardian of the above named Student I/we authorize my child to lea
 </p>
 </fieldset>
 
-{include file="SFS/Form/Family/Buttons.tpl"}
+{include file="SCH/Form/Family/Buttons.tpl"}
 
 {literal}
 <script type="text/javascript">
@@ -104,7 +104,7 @@ function confirmClicks( ) {
   {/literal}{if $form.ms_release_authorization}{literal}
   if ( cj('input[name=ms_release_authorization]:checked').val() != 1 ) {
     showWarning = true;
-    if ( cj('#media_authorization').attr('checked') != true ) {  
+    if ( cj('#media_authorization').attr('checked') != true ) {
       msg = msg + {/literal}{ts}' and '{/ts}{literal} + schoolRelease;
     } else {
       msg =  msg + ' ' + schoolRelease;
@@ -116,7 +116,7 @@ function confirmClicks( ) {
     return window.confirm(msg + '. ' + {/literal}{ts}'The School will be in touch with you to discuss your concerns. In case you forgot to check it click CANCEL, otherwise click OK to proceed.'{/ts}{literal});
   }
 
-  return true;	
+  return true;
 }
 
 </script>

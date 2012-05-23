@@ -1,4 +1,4 @@
-{if ! empty( $row )} 
+{if ! empty( $row )}
 {* wrap in crm-container div so crm styles are used *}
 <div id="crm-container" lang="{$config->lcMessages|truncate:2:"":true}" xml:lang="{$config->lcMessages|truncate:2:"":true}">
 <fieldset>
@@ -23,8 +23,8 @@
 </table>
 </fieldset>
 {/if}
-{include file="SFS/common/child.tpl"}
+{include file="SCH/common/child.tpl"}
 
 </div>
-{/if} 
+{/if}
 {* fields array is not empty *}

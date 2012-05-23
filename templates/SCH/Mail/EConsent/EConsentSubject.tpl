@@ -1,1 +1,1 @@
-Reminder: Please submit the SFS Electronic Signature Consent From
+Reminder: Please submit the SCH Electronic Signature Consent From

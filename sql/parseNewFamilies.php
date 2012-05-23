@@ -3,14 +3,14 @@
 define( 'HOME_LOCATION_TYPE_ID', 1 );
 
 function parsePSFile( &$studentInfo ) {
-    
-    $fdRead  = fopen( '/Users/lobo/SFS/PowerSchool/export/MiaPerelman_2011.csv', 'r' );
+
+    $fdRead  = fopen( '/Users/lobo/SCH/PowerSchool/export/MiaPerelman_2011.csv', 'r' );
 
     if ( ! $fdRead ) {
         echo "Could not read file\n";
         exit( );
     }
-    
+
     // read first line
     $fields = fgetcsv( $fdRead );
 
@@ -35,12 +35,12 @@ function parseRow( &$fields, &$studentInfo ) {
         CRM_Core_Error::fatal( 'First parent name in household 1 cannot be empty' );
     }
 
-    $studentInfo[$fields[3]] = 
+    $studentInfo[$fields[3]] =
         array( 'student_id'  => $fields[3],
                'first_name'  => $fields[0],
                'last_name'   => $fields[1] );
 
-    $studentInfo[$fields[3]]['grade']     = 
+    $studentInfo[$fields[3]]['grade']     =
         $studentInfo[$fields[3]]['grade_sis'] = $fields[2];
 
     // fix for pre K to include north / south
@@ -71,13 +71,13 @@ function parseRow( &$fields, &$studentInfo ) {
 function parseOneHousehold( &$fields, &$studentInfo ) {
     $studentInfo[$fields[3]]['parents'] = array( );
 
-    $studentInfo[$fields[3]]['parents'][1] = 
+    $studentInfo[$fields[3]]['parents'][1] =
         array( 'name' => $fields[4],
                'email'      => $fields[5],
                'parent_index' => 1 );
 
     if ( ! empty( $fields[6] ) ) {
-        $studentInfo[$fields[3]]['parents'][2] = 
+        $studentInfo[$fields[3]]['parents'][2] =
             array( 'name' => $fields[6],
                    'email'      => $fields[7],
                    'parent_index' => 2 );
@@ -87,7 +87,7 @@ function parseOneHousehold( &$fields, &$studentInfo ) {
 function parseTwoHousehold( &$fields, &$studentInfo ) {
     $studentInfo[$fields[3]]['parents'] = array( );
 
-    $studentInfo[$fields[3]]['parents'][1] = 
+    $studentInfo[$fields[3]]['parents'][1] =
         array( 'name' => $fields[11],
                'street_address' => $fields[13],
                'city' => $fields[14],
@@ -100,7 +100,7 @@ function parseTwoHousehold( &$fields, &$studentInfo ) {
                'parent_index' => 1 );
 
     if ( ! empty( $fields[12] ) ) {
-        $studentInfo[$fields[3]]['parents'][2] = 
+        $studentInfo[$fields[3]]['parents'][2] =
             array( 'name' => $fields[12],
                    'parent_index' => 2 );
     }
@@ -109,7 +109,7 @@ function parseTwoHousehold( &$fields, &$studentInfo ) {
         CRM_Core_Error::fatal( 'First parent name in household 2 cannot be empty' );
     }
 
-    $studentInfo[$fields[3]]['parents'][3] = 
+    $studentInfo[$fields[3]]['parents'][3] =
         array( 'name' => $fields[21],
                'street_address' => $fields[23],
                'city' => $fields[24],
@@ -245,7 +245,7 @@ function checkAndSaveParentAddress( &$student, &$parent ) {
     if ( ! CRM_Utils_Array::value( 'street_address', $parent ) ) {
         // delete existing address
         $query = "
-DELETE 
+DELETE
 FROM   civicrm_address
 WHERE  contact_id = %1
 AND    location_type_id = %2
@@ -262,7 +262,7 @@ WHERE  contact_id = %1
 AND    location_type_id = %2
 ";
     $addressID = CRM_Core_DAO::singleValueQuery( $query, $params );
-    
+
     $params[3] = array( trim( $parent['street_address'] ), 'String' );
     $city = CRM_Utils_Array::value( 'city', $parent, 'San Francisco' );
     $params[4] = array( trim( $city ), 'String' );
@@ -308,7 +308,7 @@ function checkAndSaveParentEmail( &$student, &$parent, &$errors ) {
     }
 
     $newEmail = strtolower( trim( $parent['email'] ) );
-    
+
     // first check if email exists and matches
     $query = "
 SELECT email
@@ -330,20 +330,20 @@ WHERE  ( name = %1 OR mail = %1 )
         $user = CRM_Core_DAO::executeQuery( $query, $params );
         $user->fetch( );
         if ( ! isset( $user->uid ) ) {
-            $errors['Drupal Account does not exist'][] = 
+            $errors['Drupal Account does not exist'][] =
                 "{$student['first_name']}, {$student['last_name']}, {$parent['first_name']}, {$parent['last_name']}, {$parent['name']}, {$parent['email']}, CiviCRM Email: $email";
         }
     }
 
     if ( $email != $newEmail ) {
         if ( empty( $email ) ) {
-            $errors['No Email in CiviCRM'][] = 
+            $errors['No Email in CiviCRM'][] =
                 "{$student['first_name']}, {$student['last_name']}, {$parent['first_name']}, {$parent['last_name']}, {$parent['name']}, {$parent['email']}";
         } else if ( strpos( $newEmail, '/' ) !== false ) {
             $errors['Multiple Emails in PowerSchool'][] =
                 "Email does not match for parent of {$student['contact_id']}, {$student['first_name']}, {$student['last_name']}, {$parent['name']}: Drupal Email: $email, PowerSchool Email: $newEmail";
         } else {
-            $loginMessage = 
+            $loginMessage =
                 isset( $user->login ) && $user->login ?
                 'User has logged in' :
                 'User has not logged in';
@@ -371,7 +371,7 @@ function checkAndSaveParentPhone( &$student, &$parent ) {
               CRM_Utils_Array::value( 'phone_work', $parent ),
               WORK_PHONE_TYPE_ID,
               $primary );
-}    
+}
 
 function addPhone( $contactID,
                    $locationTypeID,
@@ -420,12 +420,12 @@ VALUES ( %1, %2, %3, %4, %5 )
         $primary = 0;
     }
 }
-                      
+
 function matchName( $name ) {
     static $names = array(
                           'Lee, Mike' => 'Lee, Michael',
                           );
-    
+
     $name = trim( $name );
     return CRM_Utils_Array::value( $name, $names, $name );
 }
@@ -476,14 +476,14 @@ AND        ( ( s.subtype = 'Parent' ) OR ( s.subtype = 'Staff' ) )
                               'contact_type'        => 'Individual',
                               'custom_1'            => 'Parent',
                               );
-        
+
         require_once 'api/v2/Contact.php';
         $result = civicrm_contact_create( $contactData );
         $parentID = $result['contact_id'];
     } else {
         $parentID = $dao->parent_id;
     }
-    
+
     // next create relationship between parent and student
     $sql = "
 INSERT INTO civicrm_relationship
@@ -503,7 +503,7 @@ function run( ) {
     $errors = array( 'No Contact Info Student'        => array( ),
                      'No Contact Info Parent'         => array( ),
                      'No Email in CiviCRM'            => array( ),
-                     'Drupal Account does not exist'  => array( ), 
+                     'Drupal Account does not exist'  => array( ),
                      'Email MisMatch'                 => array( ),
                      'Multiple Emails in PowerSchool' => array( ),
                      );

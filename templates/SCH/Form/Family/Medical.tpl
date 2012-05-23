@@ -1,7 +1,7 @@
 <div id="help">
 Welcome to the Medical Information Page (step 3 of 5 ). It is important that the school has accurate and updated medical information for your child in the unlikely case of a serious injury. Complete all relevant fields for all Emergency Contacts for your child. When complete, click "Save & Next."
 <br/>
-{include file="SFS/Form/Family/HelpInfo.tpl"}
+{include file="SCH/Form/Family/HelpInfo.tpl"}
 </div>
 
 <fieldset>
@@ -45,34 +45,34 @@ Specify health considerations (allergies, medications, medical conditions, etc.)
   <tr>
     <td style="vertical-align:top;" width=25%>
         {$form.nuts_specifics.label}
-    </td><td>	
+    </td><td>
         {$form.nuts_specifics.html}
     </td>
-  </tr><tr>  
+  </tr><tr>
     <td style="vertical-align:top;" width=25%>
         {$form.dairy_products_specifics.label}
-    </td><td>	 
+    </td><td>
         {$form.dairy_products_specifics.html}
     </td>
-  </tr><tr>  
+  </tr><tr>
     <td style="vertical-align:top;" width=25%>
         {$form.animals_specifics.label}
-    </td><td> 
+    </td><td>
         {$form.animals_specifics.html}
     </td>
-  </tr><tr>  
+  </tr><tr>
     <td style="vertical-align:top;" width=25%>
         {$form.medicine_specifics.label}
     </td><td>
         {$form.medicine_specifics.html}
     </td>
-  </tr><tr>  
+  </tr><tr>
     <td style="vertical-align:top;" width=25%>
         {$form.insects_specifics.label}
-    </td><td> 
+    </td><td>
         {$form.insects_specifics.html}
     </td>
-  </tr><tr>  
+  </tr><tr>
     <td style="vertical-align:top;" width=25%>
         {$form.other_specifics.label}
     </td><td>
@@ -95,12 +95,12 @@ Specify health considerations (allergies, medications, medical conditions, etc.)
     </td>
   </tr>
   <tr>
-    <td style="vertical-align:top;" width=25%> 
+    <td style="vertical-align:top;" width=25%>
         {$form.other.label}
     </td><td>
         {$form.other.html}
     </td>
-  </tr> 
+  </tr>
 </table>
 <br />
 </span>
@@ -115,14 +115,14 @@ The school employs a school counselor whose primary role is to address the emoti
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4. When a child is a danger to others <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5. In the event of a valid medical emergency <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6. Upon receipt of a court order. <br />
-Additionally, if a student over the age of 12 presents a danger to him/ herself or others without intervention or counseling, or if a student over the age of 12 is an alleged victim of abuse, the Counselor may provide services without parental consent. 
+Additionally, if a student over the age of 12 presents a danger to him/ herself or others without intervention or counseling, or if a student over the age of 12 is an alleged victim of abuse, the Counselor may provide services without parental consent.
 </p>
 <p>
 I further authorize the exchange of educational and psychological information relating to my child between the School Counselor and appropriate school teachers and personnel.
 </p>
 </fieldset>
 
-{include file="SFS/Form/Family/Buttons.tpl"}
+{include file="SCH/Form/Family/Buttons.tpl"}
 
 {literal}
 <script type="text/javascript">

@@ -1,4 +1,4 @@
-{include file="SFS/Form/Family/Buttons.tpl"}
+{include file="SCH/Form/Family/Buttons.tpl"}
 <div id="common-form-controls" class="form-item">
 <fieldset>
       <legend>{ts}School Information{/ts}</legend>
@@ -14,8 +14,8 @@
               {$form.$school.label}{$form.$school.html}
               {$form.$apply.label}{$form.$apply.html}</td>
           </tr>
-      {/foreach}   
+      {/foreach}
       </table>
 </fieldset>
 </div>
-{include file="SFS/Form/Family/Buttons.tpl"}
+{include file="SCH/Form/Family/Buttons.tpl"}

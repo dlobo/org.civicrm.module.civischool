@@ -1,7 +1,7 @@
 <?php
 
 function &readContactCSV( ) {
-    $fdRead  = fopen( '/Users/lobo/tmp/SFS/csv/Students.csv', 'r' );
+    $fdRead  = fopen( '/Users/lobo/tmp/SCH/csv/Students.csv', 'r' );
 
     $contactIDValues = array( );
     while ( $fields = fgetcsv( $fdRead ) ) {
@@ -23,13 +23,13 @@ function getContactID( &$contactIDValues, $grade, $last, $first ) {
 }
 
 function &readClassFile( &$fdWrite, &$contactIDValues, &$globalID ) {
-    $fdRead  = fopen( '/Users/lobo/tmp/SFS/csv/Fall2009_ClassBlocks.csv', 'r' );
+    $fdRead  = fopen( '/Users/lobo/tmp/SCH/csv/Fall2009_ClassBlocks.csv', 'r' );
 
     if ( ! $fdRead ) {
         echo "Could not read input file\n";
         exit( );
     }
-    
+
     // read first line
     $header = fgetcsv( $fdRead );
 
@@ -70,13 +70,13 @@ function &readClassFile( &$fdWrite, &$contactIDValues, &$globalID ) {
 }
 
 function &readBlockFile( &$fdWrite, &$contactIDValues, &$globalID ) {
-    $fdRead  = fopen( '/Users/lobo/tmp/SFS/csv/Fall2009_SeptNovBlocks.csv', 'r' );
+    $fdRead  = fopen( '/Users/lobo/tmp/SCH/csv/Fall2009_SeptNovBlocks.csv', 'r' );
 
     if ( ! $fdRead ) {
         echo "Could not read input file\n";
         exit( );
     }
-    
+
     // read first line
     $header = fgetcsv( $fdRead );
 
@@ -150,7 +150,7 @@ function &readBlockFile( &$fdWrite, &$contactIDValues, &$globalID ) {
 function run( ) {
     $contactIDValues =& readContactCSV( );
 
-    $fdWrite = fopen( '/Users/lobo/tmp/SFS/csv/Fall2009_FeeDetails.csv' , 'w' );
+    $fdWrite = fopen( '/Users/lobo/tmp/SCH/csv/Fall2009_FeeDetails.csv' , 'w' );
 
     if ( ! $fdWrite ) {
         echo "Could not write output file\n";

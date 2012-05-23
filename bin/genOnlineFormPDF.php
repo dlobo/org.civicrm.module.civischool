@@ -36,7 +36,7 @@
 require_once 'Utils.php';
 
 function run( ) {
-    SFS_bin_Utils_auth( );
+    SCH_bin_Utils_auth( );
 
     $config =& CRM_Core_Config::singleton( );
 
@@ -46,12 +46,12 @@ function run( ) {
 
     if ( $_GET['powerschool'] ) {
         // generate PowerSchool Export
-        require_once 'SFS/Utils/PowerSchool.php';
-        SFS_Utils_PowerSchool::export( );
+        require_once 'SCH/Utils/PowerSchool.php';
+        SCH_Utils_PowerSchool::export( );
     } else {
         // generate PDF
-        require_once 'SFS/Utils/EConsent.php';
-        SFS_Utils_EConsent::genOnlineFormPDF( );
+        require_once 'SCH/Utils/EConsent.php';
+        SCH_Utils_EConsent::genOnlineFormPDF( );
     }
 }
 

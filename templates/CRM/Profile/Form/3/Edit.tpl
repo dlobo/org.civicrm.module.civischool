@@ -7,7 +7,7 @@
     {if $mode eq 8 || $mode eq 1}
         {include file="CRM/Form/body.tpl"}
     {/if}
-    
+
     {strip}
     {if $help_pre && $action neq 4}
     <div class="messages help">{$help_pre}</div>
@@ -38,14 +38,14 @@
 
         {if $mode eq 8}
             <fieldset>
-        {else} 
+        {else}
 	   {if $context neq 'dialog'}
               <div id="profilewrap{$field.group_id}">
               <fieldset><legend>{ts}{$field.groupTitle}{/ts}</legend>
            {else}
               <div>
 	      <fieldset><legend>{ts}{$field.groupTitle}{/ts}</legend>
-	   {/if}	
+	   {/if}
         {/if}
         {assign var=fieldset  value=`$field.groupTitle`}
         {assign var=groupHelpPost  value=`$field.groupHelpPost`}
@@ -102,30 +102,30 @@
                      <td id="customGreeting">
                      {$form.custom_greeting.label}&nbsp;&nbsp;&nbsp;{$form.custom_greeting.html|crmReplace:class:big}</td>
                   </tr>
-               </table> 
+               </table>
             {elseif $n eq 'group' && $form.group}
                 <table id="selector" class="selector" style="width:auto;">
                     <tr><td>{$form.$n.html}{* quickform add closing </td> </tr>*}
                 </table>
-           {else}        
+           {else}
                {$form.$n.html}
                {if ($n eq 'gender') or ($field.html_type eq 'Radio' and $form.formName eq 'Edit')}
                        &nbsp;&nbsp;(&nbsp;<a href="#" title="unselect" onclick="unselectRadio('{$n}', '{$form.formName}'); return false;">{ts}unselect{/ts}</a>&nbsp;)
                {elseif $field.data_type eq 'Date'}
-	            {if $element.skip_calendar NEQ true } 
+	            {if $element.skip_calendar NEQ true }
                     <span>
                         {include file="CRM/common/calendar/desc.tpl" trigger="$form.$n.name"}
 		        {include file="CRM/common/calendar/body.tpl" dateVar=$form.$n.name startDate=1905 endDate=2010 doTime=1  trigger="$form.$n.name"}
 		    </span>
 		    {/if}
-               {/if}    
+               {/if}
            {/if}
            </td>
         </tr>
         {if $form.$n.type eq 'file'}
 	      <tr><td class="label"></td><td>{$customFiles.$n.displayURL}</td></tr>
 	      <tr><td class="label"></td><td>{$customFiles.$n.deleteURL}</td></tr>
-        {/if} 
+        {/if}
 	{/if}
     {* Show explanatory text for field if not in 'view' mode *}
     {if $field.help_post && $action neq 4 && $form.$n.html}
@@ -142,7 +142,7 @@
 <table class="form-layout-compressed">
   <tr>
      <th>Student Name</th>
-     <th>Time</th> 
+     <th>Time</th>
      <th>Cancel?</th>
  </tr>
 {foreach from=$occupiedSlots item=slot}
@@ -161,7 +161,7 @@
 <legend>Available Conference Slots</legend>
 <table class="form-layout-compressed">
   <tr>
-     <th>Time</th> 
+     <th>Time</th>
      <th>Schedule</th>
      <th>Delete?</th>
  </tr>
@@ -220,7 +220,7 @@
     {/if}
 
 {if $mode eq 4 OR $mode eq 8}
-<div class="crm-submit-buttons"> 
+<div class="crm-submit-buttons">
      {$form.buttons.html}{if $isDuplicate}&nbsp;&nbsp;{$form._qf_Edit_upload_duplicate.html}{/if}
 </div>
 {/if}
@@ -243,10 +243,10 @@
 {/if} {* fields array is not empty *}
 
 {if $drupalCms}
-{include file="CRM/common/showHideByFieldValue.tpl" 
+{include file="CRM/common/showHideByFieldValue.tpl"
 trigger_field_id    ="create_account"
 trigger_value       =""
-target_element_id   ="details" 
+target_element_id   ="details"
 target_element_type ="block"
 field_type          ="radio"
 invert              = 0
@@ -266,16 +266,16 @@ invert              = 0
 <script type="text/javascript">
     function showGreeting() {
        if( document.getElementById("greeting_type").value == 4 ) {
-           show('customGreeting');                   
+           show('customGreeting');
        } else {
-           hide('customGreeting');      
-       }     
+           hide('customGreeting');
+       }
     }
-cj(document).ready(function(){ 
+cj(document).ready(function(){
 	cj('#selector tr:even').addClass('odd-row ');
 	cj('#selector tr:odd ').addClass('even-row');
 });
 </script>
 {/literal}
 
-{include file="SFS/common/footer.tpl"}
+{include file="SCH/common/footer.tpl"}

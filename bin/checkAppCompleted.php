@@ -36,19 +36,19 @@
 require_once 'Utils.php';
 
 function run( ) {
-    SFS_bin_Utils_auth( );
+    SCH_bin_Utils_auth( );
 
     $config =& CRM_Core_Config::singleton( );
 
     require_once '../drupal/sfschool/sfschool.module';
     sfschool_civicrm_config( $config );
 
-    require_once 'SFS/Utils/EConsent.php';
-    
+    require_once 'SCH/Utils/EConsent.php';
+
     if ( $_GET['ec'] ) {
-        SFS_Utils_EConsent::checkEmergencyContacts( );
+        SCH_Utils_EConsent::checkEmergencyContacts( );
     } else {
-        SFS_Utils_EConsent::checkAppCompleted( );
+        SCH_Utils_EConsent::checkAppCompleted( );
     }
 }
 

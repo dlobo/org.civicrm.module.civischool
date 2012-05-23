@@ -1,4 +1,4 @@
-{include file="SFS/Form/Family/Buttons.tpl"}
+{include file="SCH/Form/Family/Buttons.tpl"}
 
 <div id="common-form-controls" class="form-item">
     <fieldset>
@@ -17,16 +17,16 @@ that you would like your child to experience or to avoid experiencing.<br /><br 
  <tr>
  <td>{$form.ideal_refer.label} {$form.ideal_refer.html}</td>
  </tr>
- 
+
  {foreach key=key item=item from=$fieldNames}
                <tr>
                   <td>{$form.$item.label}{$form.$item.html}</td>
                </tr>
-      {/foreach} 
-   
+      {/foreach}
+
 </table>
- 
+
     </fieldset>
- 
- 
+
+
 </div>

@@ -11,7 +11,7 @@
 <fieldset>
 <legend>Online Forms for Family Information</legend>
 <div>
-<a href="{$childInfo.familyURL}"><strong>Submit {$childInfo.name}'s SFS Family Information Form</strong></a>
+<a href="{$childInfo.familyURL}"><strong>Submit {$childInfo.name}'s SCH Family Information Form</strong></a>
 </div>
 </fieldset>
 {if $childInfo.meeting}

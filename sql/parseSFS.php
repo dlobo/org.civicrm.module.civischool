@@ -1,15 +1,15 @@
 <?php
 
-function &fixSFSFile( &$northSouthInfo ) {
-    
-    $fdRead  = fopen( 'SFS_0910.csv', 'r' );
-    $fdWrite = fopen( 'SFS_0910_FIX.csv', 'w' );
+function &fixSCHFile( &$northSouthInfo ) {
+
+    $fdRead  = fopen( 'SCH_0910.csv', 'r' );
+    $fdWrite = fopen( 'SCH_0910_FIX.csv', 'w' );
 
     if ( ! $fdRead ) {
         echo "Could not read file\n";
         exit( );
     }
-    
+
     // read first line
     $fields = fgetcsv( $fdRead );
 
@@ -21,14 +21,14 @@ function &fixSFSFile( &$northSouthInfo ) {
     $fields[] = 'Grade SIS';
 
     fputcsv( $fdWrite, $fields );
-    
+
     $fixFields = array( 4, 5, 6, 7 );
-    
+
     $validSIDs = array( 100030, 100033, 201820, 201513, 100019, 201610, 201421, 201121, 201811, 201812, 201722 );
 
     while ( $fields = fgetcsv( $fdRead ) ) {
         // print_r( $fields );
-        
+
         if ( $fields[2] <= 0 ) {
             if ( ! array_key_exists( $fields[3], $northSouthInfo ) ) {
                 echo 'FATAL: ' . implode( ',', $fields ) . "\n";
@@ -41,14 +41,14 @@ function &fixSFSFile( &$northSouthInfo ) {
         } else {
             $fields[]  = $fields[2];
         }
-        
+
         foreach ( $fixFields as $fix ) {
             if ( empty( $fields[$fix] ) ) {
                 continue;
             }
 
             $name = splitName( $fields[$fix] );
-            
+
             $fields[$fix] = ( $fix == 4 || $fix == 6 ) ? $name[1] : $name[0];
         }
 
@@ -59,13 +59,13 @@ function &fixSFSFile( &$northSouthInfo ) {
         } else {
             array_splice( $fields, 7, 0, array( '' ) );
         }
-        
+
         if ( ! empty( $fields[8] ) ) {
             array_splice( $fields, 10, 0, array( 'Parent' ) );
         } else {
             array_splice( $fields, 10, 0, array( '' ) );
         }
-        
+
         /*******
         // scramble the fields
         if ( in_array( $fields[3], $validSIDs ) === false &&
@@ -112,7 +112,7 @@ function &readNorthSouthFile( ) {
         echo "Could not read file\n";
         exit( );
     }
-    
+
     // read and ignore first line
     $fields = fgetcsv( $fdRead );
 
@@ -144,7 +144,7 @@ function &fixStaffFile( ) {
         echo "Could not read file\n";
         exit( );
     }
-    
+
     // read and ignore first line
     $fields = fgetcsv( $fdRead );
 
@@ -175,7 +175,7 @@ function fixAdvisorFile( &$studentInfo, &$staffInfo ) {
         echo "Could not read file\n";
         exit( );
     }
-    
+
     // read first line
     $fields = fgetcsv( $fdRead );
 
@@ -236,7 +236,7 @@ function splitName( $name, $separator = ',' ) {
 
 $northSouthInfo =& readNorthSouthFile( );
 
-$studentInfo =& fixSFSFile( $northSouthInfo );
+$studentInfo =& fixSCHFile( $northSouthInfo );
 
 $staffInfo =& fixStaffFile( );
 

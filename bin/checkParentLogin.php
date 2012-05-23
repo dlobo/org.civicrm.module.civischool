@@ -36,9 +36,9 @@
 require_once 'Utils.php';
 
 function run( ) {
-    SFS_bin_Utils_auth( );
+    SCH_bin_Utils_auth( );
 
-    require_once '../SFS/Utils/Conference.php';
+    require_once '../SCH/Utils/Conference.php';
 
     // first cache all the contacts who have created a login
     $sql = "
@@ -70,7 +70,7 @@ AND   s.grade_sis >= 1
 AND   r.relationship_type_id = 1
 ORDER BY p_id
 ";
-    
+
     $parentsDoNotHaveLogin = array( );
     $parentsDoHaveLogin    = array( );
 

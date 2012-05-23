@@ -5,4 +5,4 @@
     </div>
 {/foreach}
 
-{include file="SFS/common/footer.tpl"}
+{include file="SCH/common/footer.tpl"}

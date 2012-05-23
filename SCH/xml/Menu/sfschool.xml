@@ -2,161 +2,161 @@
 
 <menu>
   <item>
-     <path>civicrm/sfschool/signout</path>
-     <page_callback>SFS_Form_SignOut</page_callback>
+     <path>civicrm/school/signout</path>
+     <page_callback>SCH_Form_SignOut</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
   </item>  
   <item>
-     <path>civicrm/sfschool/morning</path>
-     <page_callback>SFS_Form_Morning</page_callback>
+     <path>civicrm/school/morning</path>
+     <page_callback>SCH_Form_Morning</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
   </item>  
   <item>
-     <path>civicrm/sfschool/extendedCare</path>
-     <page_callback>SFS_Page_ExtendedCare</page_callback>
+     <path>civicrm/school/extendedCare</path>
+     <page_callback>SCH_Page_ExtendedCare</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
   </item>  
   <item>
-     <path>civicrm/sfschool/extendedCareSummary</path>
-     <page_callback>SFS_Form_ExtendedCareSummary</page_callback>
+     <path>civicrm/school/extendedCareSummary</path>
+     <page_callback>SCH_Form_ExtendedCareSummary</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
   </item>  
   <item>
-     <path>civicrm/sfschool/conference</path>
-     <page_callback>SFS_Form_Conference</page_callback>
+     <path>civicrm/school/conference</path>
+     <page_callback>SCH_Form_Conference</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
   </item>  
   <item>
-     <path>civicrm/sfschool/conferenceReminder</path>
-     <page_callback>SFS_Form_ConferenceReminder</page_callback>
+     <path>civicrm/school/conferenceReminder</path>
+     <page_callback>SCH_Form_ConferenceReminder</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
   </item>  
   <item>
-     <path>civicrm/sfschool/extended/class</path>
-     <page_callback>SFS_Page_Class</page_callback>
+     <path>civicrm/school/extended/class</path>
+     <page_callback>SCH_Page_Class</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
   </item>  
   <item>
-     <path>civicrm/sfschool/extended/detail</path>
-     <page_callback>SFS_Page_Detail</page_callback>
+     <path>civicrm/school/extended/detail</path>
+     <page_callback>SCH_Page_Detail</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
   </item>  
   <item>
-     <path>civicrm/sfschool/info</path>
-     <page_callback>SFS_Page_Info</page_callback>
+     <path>civicrm/school/info</path>
+     <page_callback>SCH_Page_Info</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
   </item>
   <item>
-     <path>civicrm/sfschool/signin</path>
-     <page_callback>SFS_Form_SignIn</page_callback>
+     <path>civicrm/school/signin</path>
+     <page_callback>SCH_Form_SignIn</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
   </item>
   <item>
-     <path>civicrm/ajax/sfschool/signin</path>
-     <page_callback>SFS_Form_SignIn::addRecord</page_callback>
+     <path>civicrm/ajax/school/signin</path>
+     <page_callback>SCH_Form_SignIn::addRecord</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
   </item>
   <item>
-     <path>civicrm/ajax/sfschool/addnew</path>
-     <page_callback>SFS_Form_SignIn::addNewStudents</page_callback>
+     <path>civicrm/ajax/school/addnew</path>
+     <page_callback>SCH_Form_SignIn::addNewStudents</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
   </item>
   <item>
-     <path>civicrm/ajax/sfschool/signout</path>
-     <page_callback>SFS_Form_SignOut::addSignOutRecord</page_callback>
+     <path>civicrm/ajax/school/signout</path>
+     <page_callback>SCH_Form_SignOut::addSignOutRecord</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
   </item>
   <item>
-     <path>civicrm/ajax/sfschool/morning</path>
-     <page_callback>SFS_Form_Morning::addMorningRecord</page_callback>
+     <path>civicrm/ajax/school/morning</path>
+     <page_callback>SCH_Form_Morning::addMorningRecord</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
   </item>
   <item>
-     <path>civicrm/ajax/sfschool/contactlist</path>
-     <page_callback>SFS_Utils_Query::getStudents</page_callback>
+     <path>civicrm/ajax/school/contactlist</path>
+     <page_callback>SCH_Utils_Query::getStudents</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
   </item>
   <item>
-     <path>civicrm/sfschool/econsent</path>
-     <page_callback>SFS_Form_EConsent</page_callback>
+     <path>civicrm/school/econsent</path>
+     <page_callback>SCH_Form_EConsent</page_callback>
      <access_arguments>profile listings and forms</access_arguments>       
   </item>
   <item>
-     <path>civicrm/sfschool/batchConsent</path>
-     <page_callback>SFS_Form_BatchConsent</page_callback>
+     <path>civicrm/school/batchConsent</path>
+     <page_callback>SCH_Form_BatchConsent</page_callback>
      <access_arguments>profile listings and forms</access_arguments>       
   </item>
   <item>
-     <path>civicrm/sfschool/family/view</path>
-     <page_callback>SFS_Page_Family</page_callback>
+     <path>civicrm/school/family/view</path>
+     <page_callback>SCH_Page_Family</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
-     <title>SFS Family Information</title>
+     <title>SCH Family Information</title>
   </item>
   <item>
-     <path>civicrm/sfschool/family</path>
-     <page_callback>SFS_Form_Family_Household</page_callback>
+     <path>civicrm/school/family</path>
+     <page_callback>SCH_Form_Family_Household</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
-     <title>SFS Family Information</title>
+     <title>SCH Family Information</title>
   </item>
   <item>
-     <path>civicrm/sfschool/family/household</path>
-     <page_callback>SFS_Form_Family_Household</page_callback>
-     <title>SFS Family Information</title>
+     <path>civicrm/school/family/household</path>
+     <page_callback>SCH_Form_Family_Household</page_callback>
+     <title>SCH Family Information</title>
   </item>
   <item>
-     <path>civicrm/sfschool/family/emergency</path>
-     <page_callback>SFS_Form_Family_Emergency</page_callback>
-     <title>SFS Family Information</title>
+     <path>civicrm/school/family/emergency</path>
+     <page_callback>SCH_Form_Family_Emergency</page_callback>
+     <title>SCH Family Information</title>
   </item>
   <item>
-     <path>civicrm/sfschool/family/medical</path>
-     <page_callback>SFS_Form_Family_Medical</page_callback>
-     <title>SFS Family Information</title>
+     <path>civicrm/school/family/medical</path>
+     <page_callback>SCH_Form_Family_Medical</page_callback>
+     <title>SCH Family Information</title>
   </item>
   <item>
-     <path>civicrm/sfschool/family/release</path>
-     <page_callback>SFS_Form_Family_Release</page_callback>
-     <title>SFS Family Information</title>
+     <path>civicrm/school/family/release</path>
+     <page_callback>SCH_Form_Family_Release</page_callback>
+     <title>SCH Family Information</title>
   </item>
   <item>
-     <path>civicrm/sfschool/family/diversity</path>
-     <page_callback>SFS_Form_Family_Diversity</page_callback>
-     <title>SFS Family Information</title>
+     <path>civicrm/school/family/diversity</path>
+     <page_callback>SCH_Form_Family_Diversity</page_callback>
+     <title>SCH Family Information</title>
   </item>
   <item>
-     <path>civicrm/sfschool/family/complete</path>
-     <page_callback>SFS_Page_Family_Complete</page_callback>
-     <title>SFS Family Information</title>
+     <path>civicrm/school/family/complete</path>
+     <page_callback>SCH_Page_Family_Complete</page_callback>
+     <title>SCH Family Information</title>
   </item>
   <item>
-     <path>civicrm/sfschool/apply</path>
-     <page_callback>SFS_Form_Apply_Applicant</page_callback>
+     <path>civicrm/school/apply</path>
+     <page_callback>SCH_Form_Apply_Applicant</page_callback>
      <access_arguments>profile listings and forms</access_arguments>
      <title>Application for Admissions</title>
   </item>
   <item>
-     <path>civicrm/sfschool/apply/applicant</path>
-     <page_callback>SFS_Form_Apply_Applicant</page_callback>
+     <path>civicrm/school/apply/applicant</path>
+     <page_callback>SCH_Form_Apply_Applicant</page_callback>
      <title>Application for Admissions</title>
   </item>
   <item>
-     <path>civicrm/sfschool/apply/school</path>
-     <page_callback>SFS_Form_Apply_School</page_callback>
+     <path>civicrm/school/apply/school</path>
+     <page_callback>SCH_Form_Apply_School</page_callback>
      <title>Application for Admissions</title>
   </item>
   <item>
-     <path>civicrm/sfschool/apply/family</path>
-     <page_callback>SFS_Form_Apply_Family</page_callback>
+     <path>civicrm/school/apply/family</path>
+     <page_callback>SCH_Form_Apply_Family</page_callback>
      <title>Application for Admissions</title>
   </item>
   <item>
-     <path>civicrm/sfschool/apply/children</path>
-     <page_callback>SFS_Form_Apply_Children</page_callback>
+     <path>civicrm/school/apply/children</path>
+     <page_callback>SCH_Form_Apply_Children</page_callback>
      <title>Application for Admissions</title>
   </item>
   <item>
-     <path>civicrm/sfschool/apply/additional</path>
-     <page_callback>SFS_Form_Apply_Additional</page_callback>
+     <path>civicrm/school/apply/additional</path>
+     <page_callback>SCH_Form_Apply_Additional</page_callback>
      <title>Application for Admissions</title>
   </item>
 </menu>

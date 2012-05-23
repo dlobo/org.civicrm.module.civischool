@@ -1,14 +1,14 @@
 <?php
 
 function &parseAuctionFile( &$auction ) {
-    
-    $fdRead  = fopen( '/Users/lobo/SFS/Auctions/2011_01.csv', 'r' );
+
+    $fdRead  = fopen( '/Users/lobo/SCH/Auctions/2011_01.csv', 'r' );
 
     if ( ! $fdRead ) {
         echo "Could not read file\n";
         exit( );
     }
-    
+
     // read first line
     $fields = fgetcsv( $fdRead );
 
@@ -80,7 +80,7 @@ function parseRow( &$fields, &$auctions ) {
         break;
     }
 
-        
+
     $auctions[$orgID] = array( 'orgID'   => $orgID    ,
                                'status'  => $status   ,
                                'result'  => $result   ,
@@ -114,7 +114,7 @@ function createActivities( &$auctions ) {
     require_once 'CRM/Activity/DAO/Activity.php';
     require_once 'CRM/Activity/DAO/ActivityTarget.php';
     require_once 'CRM/Activity/DAO/ActivityAssignment.php';
-    
+
     $params = array(
                     'source_contact_id'  => 745,
                     'source_record_id'   => 2,
@@ -147,7 +147,7 @@ function createActivity( &$auction, &$params ) {
     $activityTarget->activity_id = $activity->id;
     $activityTarget->target_contact_id = $auction['orgID'];
     $activityTarget->save( );
-    
+
     $activityAssignment = new CRM_Activity_DAO_ActivityAssignment( );
     $activityAssignment->activity_id = $activity->id;
     $activityAssignment->assignee_contact_id = $params['source_contact_id'];

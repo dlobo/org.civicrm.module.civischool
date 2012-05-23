@@ -36,15 +36,15 @@
 require_once 'Utils.php';
 
 function run( ) {
-    SFS_bin_Utils_auth( false );
+    SCH_bin_Utils_auth( false );
 
     $config =& CRM_Core_Config::singleton( );
 
     require_once '../drupal/sfschool/sfschool.module';
     sfschool_civicrm_config( $config );
 
-    require_once 'SFS/Utils/ExtendedCare.php';
-    require_once 'SFS/Utils/ExtendedCareFees.php';
+    require_once 'SCH/Utils/ExtendedCare.php';
+    require_once 'SCH/Utils/ExtendedCareFees.php';
 
     $startDate = '20100901';
     $endDate   = '20110831';
@@ -70,24 +70,24 @@ ORDER BY v.grade_sis, c.id
         echo "$id, $studentName, {$dao->grade_sis}<p>";
         flush( );
 
-        $feeDetails = SFS_Utils_ExtendedCareFees::feeDetails( $startDate,
+        $feeDetails = SCH_Utils_ExtendedCareFees::feeDetails( $startDate,
                                                               $endDate,
                                                               null,
                                                               false,
                                                               true,
                                                               $id,
                                                               null );
-    
+
         $allDetails = array( );
         $allDetails['Payments and Charges'] = array_pop( $feeDetails );
 
-        $ecMonth = SFS_Utils_ExtendedCare::signoutDetailsPerMonth( $startDate, $endDate, $id );
+        $ecMonth = SCH_Utils_ExtendedCare::signoutDetailsPerMonth( $startDate, $endDate, $id );
         if ( ! empty( $ecMonth ) ) {
-            $allDetails['Extended care charges per month'] = 
+            $allDetails['Extended care charges per month'] =
                 array( 'details' => $ecMonth );
         }
 
-        $dayCharges = SFS_Utils_ExtendedCare::signoutDetails( $startDate, $endDate, true, true, false, $id );
+        $dayCharges = SCH_Utils_ExtendedCare::signoutDetails( $startDate, $endDate, true, true, false, $id );
         if ( ! empty( $dayCharges ) ) {
             $allDetails['Extended care charges per day'] =  array_pop( $dayCharges );
         }

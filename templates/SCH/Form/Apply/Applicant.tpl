@@ -1,4 +1,4 @@
-{include file="SFS/Form/Family/Buttons.tpl"}
+{include file="SCH/Form/Family/Buttons.tpl"}
 <div id="common-form-controls" class="form-item">
     <fieldset>
       <legend>{ts}Applicant Information{/ts}</legend>
@@ -14,5 +14,5 @@
       </dl>
     </fieldset>
   </div>
-{include file="SFS/Form/Family/Buttons.tpl"}
+{include file="SCH/Form/Family/Buttons.tpl"}
 

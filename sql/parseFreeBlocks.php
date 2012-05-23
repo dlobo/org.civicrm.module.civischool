@@ -30,7 +30,7 @@ function readPaymentFile( $readFile, $writeFile, $globalID ) {
         echo "Could not read input file: $readFile\n";
         exit( );
     }
-    
+
     $fdWrite  = fopen( $writeFile, "w" );
     if ( ! $fdWrite ) {
         echo "Could not write output file: $writeFile\n";
@@ -75,8 +75,8 @@ function initialize( ) {
 function run( ) {
     initialize( );
 
-    readPaymentFile( '/Users/lobo/SFS/SFS/FreeBlocks2011.csv',
-                     '/Users/lobo/SFS/SFS/FreeBlocks2011.sql',
+    readPaymentFile( '/Users/lobo/SCH/SCH/FreeBlocks2011.csv',
+                     '/Users/lobo/SCH/SCH/FreeBlocks2011.sql',
                      1645 );
 }
 

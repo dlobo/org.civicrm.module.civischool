@@ -33,19 +33,19 @@
  *
  */
 
-define( 'SFS_BALANCE_OVERDUE', 10 );
+define( 'SCH_BALANCE_OVERDUE', 10 );
 require_once 'Utils.php';
 
 function run( ) {
-    SFS_bin_Utils_auth( );
+    SCH_bin_Utils_auth( );
 
     $config =& CRM_Core_Config::singleton( );
 
     require_once '../drupal/sfschool/sfschool.module';
     sfschool_civicrm_config( $config );
 
-    require_once 'SFS/Utils/ExtendedCare.php';
-    $details = SFS_Utils_ExtendedCare::balanceDetails( null, '20100901', '20110831' );
+    require_once 'SCH/Utils/ExtendedCare.php';
+    $details = SCH_Utils_ExtendedCare::balanceDetails( null, '20100901', '20110831' );
 
     $values = array( );
     $globalID = 1784;

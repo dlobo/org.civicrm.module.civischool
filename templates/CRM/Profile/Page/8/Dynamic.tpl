@@ -1,4 +1,4 @@
-{if ! empty( $row )} 
+{if ! empty( $row )}
 {* wrap in crm-container div so crm styles are used *}
 <div id="crm-container" lang="{$config->lcMessages|truncate:2:"":true}" xml:lang="{$config->lcMessages|truncate:2:"":true}">
 <fieldset>
@@ -6,8 +6,8 @@
 {assign var=fName value="First Name"}
 {assign var=lName value="Last Name"}
   <tr id="contact_name"><td class="label">Parent Name</td><td class="view-value">{$row.$fName}&nbsp;{$row.$lName}</td></tr>
-  <tr id="contact_email"><td class="label">Email</td><td class="view-value">{$row.Email}</td></tr> 
-  <tr id="contact_phone"><td class="label">Phone</td><td class="view-value">{$row.Phone}</td></tr> 
+  <tr id="contact_email"><td class="label">Email</td><td class="view-value">{$row.Email}</td></tr>
+  <tr id="contact_phone"><td class="label">Phone</td><td class="view-value">{$row.Phone}</td></tr>
 </table>
 </fieldset>
 {if $childrenInfo}
@@ -22,7 +22,7 @@
 </div>
 <br/>
 
-{include file="SFS/common/child.tpl"}
+{include file="SCH/common/child.tpl"}
 </fieldset>
 {/foreach}
 {/if}
@@ -34,7 +34,7 @@
 <table class="form-layout-compressed">
   <tr>
      <th>Student Name</th>
-     <th>Time</th> 
+     <th>Time</th>
  </tr>
 {foreach from=$ptcValues item=ptcValue}
   <tr>
@@ -56,5 +56,5 @@
 {/if}
 
 </div>
-{/if} 
+{/if}
 {* fields array is not empty *}

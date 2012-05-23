@@ -37,10 +37,10 @@
 require_once 'Utils.php';
 
 function run( ) {
-    SFS_bin_Utils_auth( );
+    SCH_bin_Utils_auth( );
 
-    require_once '../SFS/Utils/Conference.php';
-    SFS_Utils_Conference::createConferenceSchedule( );
+    require_once '../SCH/Utils/Conference.php';
+    SCH_Utils_Conference::createConferenceSchedule( );
 }
 
 run( );

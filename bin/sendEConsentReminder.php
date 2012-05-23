@@ -36,17 +36,17 @@
 require_once 'Utils.php';
 
 function run( ) {
-    SFS_bin_Utils_auth( );
+    SCH_bin_Utils_auth( );
 
     $config =& CRM_Core_Config::singleton( );
 
     require_once '../drupal/sfschool/sfschool.module';
     sfschool_civicrm_config( $config );
 
-    require_once 'SFS/Utils/EConsent.php';
+    require_once 'SCH/Utils/EConsent.php';
 
     // send reminder email for all
-    SFS_Utils_EConsent::sendReminderEmail( );
+    SCH_Utils_EConsent::sendReminderEmail( );
 }
 
 run( );

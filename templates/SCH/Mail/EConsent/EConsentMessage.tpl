@@ -15,7 +15,7 @@ If you have any questions please email Charlie Meade at cmeade@sfschool.org or c
 
 If you have already submitted the form, please send an email to frontdesk@sfschool.org to confirm they have received the signed form.
 
-You can download the consent form here: http://sfschool.org/SFS_E-ProgramConsentForm.pdf
+You can download the consent form here: http://sfschool.org/SCH_E-ProgramConsentForm.pdf
 
 Thanks.
 

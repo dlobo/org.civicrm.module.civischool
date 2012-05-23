@@ -87,8 +87,8 @@ function initialize( ) {
 function run( ) {
     initialize( );
 
-    readPaymentFile( '/Users/lobo/SFS/SFS/Spring2012Charges.csv',
-                     '/Users/lobo/SFS/SFS/Spring2012Charges.sql',
+    readPaymentFile( '/Users/lobo/SCH/SCH/Spring2012Charges.csv',
+                     '/Users/lobo/SCH/SCH/Spring2012Charges.sql',
                      2062 );
 }
 

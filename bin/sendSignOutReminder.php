@@ -36,16 +36,16 @@
 require_once 'Utils.php';
 
 function run( ) {
-    SFS_bin_Utils_auth( );
+    SCH_bin_Utils_auth( );
 
-    require_once '../SFS/Utils/Conference.php';
+    require_once '../SCH/Utils/Conference.php';
 
     // send reminder email for all
     $startDate = '2009-12-01';
     $endDate   = '2009-12-10';
 
-    require_once 'SFS/Utils/ExtendedCare.php';
-    SFS_Utils_ExtendedCare::sendNotSignedOutEmail( $startDate, $endDate );
+    require_once 'SCH/Utils/ExtendedCare.php';
+    SCH_Utils_ExtendedCare::sendNotSignedOutEmail( $startDate, $endDate );
 }
 
 run( );
